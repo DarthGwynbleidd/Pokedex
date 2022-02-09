@@ -1,10 +1,11 @@
 
-import './App.css';
+import './styles/index.scss';
+import Footer from './components/Footer';
 
 function App() {
   return (
     <div className="App">
-
+      <Footer />
     </div>
   );
 }
