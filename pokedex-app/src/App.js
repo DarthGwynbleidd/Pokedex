@@ -1,11 +1,11 @@
 
-import './styles/index.scss';
-import Footer from './components/Footer';
-
 function App() {
   return (
     <div className="App">
-      <Footer />
+        <div className="container">
+          <Header />
+          <Footer />
+        </div>
     </div>
   );
 }
