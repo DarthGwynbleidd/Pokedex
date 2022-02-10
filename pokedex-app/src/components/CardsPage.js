@@ -1,9 +1,10 @@
 import React from 'react';
+import Grid from './Grid';
 
 const CardsPage = () => {
     return (
-        <div>
-            
+        <div className='cardsPage'>
+            <Grid />
         </div>
     );
 };
