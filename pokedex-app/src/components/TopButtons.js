@@ -1,11 +1,18 @@
 import React from 'react';
+
+import RandomSelect from './RandomSelect';
+
 import SearchBar from './SearchBar';
 
 const TopButtons = () => {
     return (
-        <div>
+
+        <div className='buttons'>
             <SearchBar />
-        </div>
+            <RandomSelect />
+        </div>  
+
+
     );
 };
 
