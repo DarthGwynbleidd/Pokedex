@@ -18,27 +18,22 @@
         padding-left: 7.2525%;
         background-color: #e4e4e4;
         p {
-            font-family: Righteous;
-            font-style: normal;
-            font-weight: normal;
+            font-family: Righteous, Arial, Helvetica, sans-serif;
             font-size: 18px;
             display: flex;
             align-items: center;
             letter-spacing: 0.04em;
             color: #969696;
-            line-height: 200%;
+            line-height: 40px;
         }
         h5 {
-            font-family: Righteous;
-            font-style: normal;
-            font-weight: normal;
+            font-family: Righteous, Arial, Helvetica, sans-serif;
             font-size: 33px;
             line-height: 43px;
             display: flex;
             align-items: center;
             letter-spacing: 0.04em;
-            color: #5e5e5e;
-            text-transform: none;            
+            color: #5e5e5e;       
         }
         .card_desc_abilities {
             .pill {
@@ -48,7 +43,6 @@
                 margin: 0 1.5625% 0 0;
                 width: 38.4375%;
                 float: left;
-                text-transform: none;
                 font-size: 12px;
                 text-align: center;
             }
