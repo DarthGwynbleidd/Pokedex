@@ -1,0 +1,28 @@
+.searchbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    .search {
+        display: block;
+        width: 236.08px;
+        height: 42px;
+        border: 3px solid #5e5e5e;
+        font-size: 26px;
+        color: #5e5e5e;
+        text-align: center;
+    }
+    .searchbutton {
+        margin-left: 4px;
+        display: block;
+        background: #ff9533;
+        border-radius: 7px;
+    }
+}
+
+.imgloupe {
+    padding: 7px;
+    display: block;
+    max-width: 36px;
+}

@@ -1,11 +1,13 @@
 import Header from "./components/header"
 import Footer from "./components/Footer"
+import CardsPage from "./components/CardsPage";
 
 function App() {
   return (
     <div className="App">
       <div className="container">
         <Header />
+        <CardsPage />
         <Footer />
       </div>
     </div>
