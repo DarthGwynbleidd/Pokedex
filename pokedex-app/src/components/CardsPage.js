@@ -1,18 +1,16 @@
 import React from 'react';
-import Grid from './Grid';
-
+import AdvancedResearch from './AdvancedResearch';
 import TopButtons from './TopButtons';
+import Grid from './Grid';
+import Bottom_button from './Bottom_button';
 
 const CardsPage = () => {
     return (
         <div className='cardsPage'>
-           <div className='borderTop'>
-              <div className='borderTop-left'></div>
-              <div className='borderTop-center'></div>
-              <div className='borderTop-right'></div>
-           </div>
+           <AdvancedResearch />
            <TopButtons />
            <Grid />
+           <Bottom_button />
         </div>
     );
 };

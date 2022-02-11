@@ -9,7 +9,6 @@ function App() {
       <div className="container">
         <Header />
         <CardsPage />
-        <Bottom_button />
         <Footer />
       </div>
     </div>
