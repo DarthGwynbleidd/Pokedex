@@ -1,0 +1,114 @@
+.card {
+    display: block;
+    float: left;
+    position: relative;
+    width: 23.4375%;
+    margin: 20px 0.78125%;
+    .card_picture {
+        background-color: #dedede;
+        padding: 20px;
+        img {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+    }
+    .card_desc {
+        top: -10px;
+        padding-left: 7.2525%;
+        background-color: #e4e4e4;
+        p {
+            font-family: Righteous, Arial, Helvetica, sans-serif;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.04em;
+            color: #969696;
+            line-height: 40px;
+        }
+        h5 {
+            font-family: Righteous, Arial, Helvetica, sans-serif;
+            font-size: 33px;
+            line-height: 43px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 0.04em;
+            color: #5e5e5e;       
+        }
+        .card_desc_abilities {
+            .pill {
+                border-radius: 5px;
+                line-height: 20px;
+                max-width: 110px;
+                margin: 0 1.5625% 0 0;
+                width: 38.4375%;
+                float: left;
+                font-size: 12px;
+                text-align: center;
+            }
+            .insecte {
+                @include insecte
+            }
+            .dragon {
+                @include dragon
+            }
+            .fee {
+                @include fee
+            }
+            .feu {
+                @include feu
+            }
+            .spectre {
+                @include spectre
+            }
+            .sol {
+                @include sol
+            }
+            .normal {
+                @include normal
+            }
+            .psy {
+                @include psy
+            }
+            .acier {
+                @include acier
+            }
+            .tenebres {
+                @include tenebres
+            }
+            .electrik {
+                @include electrik
+            }
+            .combat {
+                @include combat
+            }
+            .vol {
+                @include vol
+            }
+            .plante {
+                @include plante
+            }
+            .glace {
+                @include glace
+            }
+            .poison {
+                @include poison
+            }
+            .roche {
+                @include roche
+            }
+            .eau {
+                @include eau
+            }
+        }
+    }
+    @media screen and (min-width: 800px) and (max-width: 1000px) {
+        width: 31.4375%;
+    }
+    @media screen and (min-width: 500px) and (max-width: 799px) {
+        width: 48.4375%;
+    }
+    @media screen and (max-width: 499px) {
+        width: 95%;
+    }
+}
