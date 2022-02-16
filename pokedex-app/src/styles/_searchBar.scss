@@ -12,17 +12,20 @@
         font-size: 26px;
         color: #5e5e5e;
         text-align: center;
+        
     }
     .searchbutton {
         margin-left: 4px;
         display: block;
         background: #ff9533;
         border-radius: 7px;
+ 
+        .imgloupe {
+            padding: 7px;
+            display: block;
+            max-width: 36px;
+
+        }
     }
 }
 
-.imgloupe {
-    padding: 7px;
-    display: block;
-    max-width: 36px;
-}

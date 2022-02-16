@@ -16,6 +16,12 @@
         border-radius: 10px;
         font-size: 24px;
         margin: 0 auto;
+
+        @media  all and (max-width: 600px) {
+            height: 40px;
+            width: 300px;
+            font-size: 1em;
+        }
     }
     .bottom_button--up {
         height: 50px;
@@ -25,6 +31,10 @@
 
         & img {
             width: 50px;
+
+            @media all and (max-width: 600px) {
+                width: 40px;
+            }
         }
     }
 

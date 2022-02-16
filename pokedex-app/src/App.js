@@ -1,14 +1,21 @@
 import Header from "./components/header"
 import Footer from "./components/Footer"
 import CardsPage from "./components/CardsPage";
-import Bottom_button from "./components/Bottom_button";
+import PokemonPage from "./components/PokemonPage";
+import NotFound from "./components/NotFound";
+import { Routes, Route } from "react-router-dom";
+
 
 function App() {
   return (
     <div className="App">
       <div className="container">
         <Header />
-        <CardsPage />
+        <Routes>
+          <Route path="/" element={<CardsPage />} />
+          <Route path="/:name" element={<PokemonPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
         <Footer />
       </div>
     </div>

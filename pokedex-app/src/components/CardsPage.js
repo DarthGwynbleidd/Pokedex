@@ -2,7 +2,7 @@ import React from 'react';
 import AdvancedResearch from './AdvancedResearch';
 import TopButtons from './TopButtons';
 import Grid from './Grid';
-import Bottom_button from './Bottom_button';
+import BottomButton from './BottomButton';
 
 const CardsPage = () => {
     return (
@@ -10,7 +10,7 @@ const CardsPage = () => {
            <AdvancedResearch />
            <TopButtons />
            <Grid />
-           <Bottom_button />
+           <BottomButton />
         </div>
     );
 };
