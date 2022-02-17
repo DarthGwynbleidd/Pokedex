@@ -54,6 +54,18 @@ const Grid = () => {
             <Card {...obj[3]} />
             <Card {...obj[4]} />
             <Card {...obj[5]} />
+            <Card {...obj[0]} />
+            <Card {...obj[1]} />
+            <Card {...obj[2]} />
+            <Card {...obj[3]} />
+            <Card {...obj[4]} />
+            <Card {...obj[5]} />
+            <Card {...obj[0]} />
+            <Card {...obj[1]} />
+            <Card {...obj[2]} />
+            <Card {...obj[3]} />
+            <Card {...obj[4]} />
+            <Card {...obj[5]} />
         </div>
     );
 };
