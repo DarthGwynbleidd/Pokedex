@@ -24,7 +24,9 @@ const CardsPage = () => {
                 obj.pokemonName = response.data.name;
                 obj.image = response.data.sprites.other["official-artwork"].front_default;
                 obj.type1 = response.data.types[0].type.name;
-                obj.type2 = response.data.types[1].type.name && response.data.types[1].type.name;
+                try{
+                    obj.type2 = response.data.types[1].type.name ;
+                } catch(error){};
                 array.push(obj);
             }
         }

@@ -45,7 +45,7 @@ const Grid = (props) => {
     //     type1: 'normal',
     //     type2: 'vol'
     // }])
-    console.log(props.array);
+    console.log(props);
 
     return (
         <div className='grid'>
