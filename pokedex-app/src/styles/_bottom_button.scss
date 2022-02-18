@@ -3,31 +3,35 @@
     justify-content: center;
     margin-top: 20px;
     margin-bottom: 20px;
+    position: relative;
 
-    &--more {
+    &__more {
         width: 100%;
         text-align: center;
-    }
-    &--more button {
-        height: 65px;
-        width: 436px;
-        background-color: #4ca8e6;
-        border: 0;
-        border-radius: 10px;
-        font-size: 24px;
-        margin: 0 auto;
-
-        @media  all and (max-width: 600px) {
-            height: 40px;
-            width: 300px;
-            font-size: 1em;
+        
+        & button {
+            height: 65px;
+            width: 436px;
+            background-color: #4ca8e6;
+            border: 0;
+            border-radius: 10px;
+            font-size: 24px;
+            margin: 0 auto;
+    
+            @media  all and (max-width: 600px) {
+                height: 40px;
+                width: 300px;
+                font-size: 1em;
+            }
         }
     }
-    .bottom_button--up {
+
+    &__up {
         height: 50px;
         text-align: end;
-        margin: auto 10px;
-        bottom: 150px;
+        // right: 2%;
+        bottom: 5%;
+        position: fixed;
 
         & img {
             width: 50px;
@@ -38,4 +42,7 @@
         }
     }
 
+    &__up__no {
+        display: none;
+    }
 }
