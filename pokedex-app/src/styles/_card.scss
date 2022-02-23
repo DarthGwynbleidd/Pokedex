@@ -2,7 +2,7 @@
 @keyframes mouseOver {
     0% {
         transform: rotate(-10deg) scale(1.3);
-    } 
+    }
 
     20% {
         transform: rotate(0deg) scale(1.4);
@@ -34,8 +34,7 @@
 
     // LANCE L'ANIMATION AU SURVOL DE LA CARTE
     &:hover > .card_picture img {
-        animation: mouseOver .3s ;
-
+        animation: mouseOver 0.3s;
     }
     .card_picture {
         background-color: #dedede;
@@ -45,9 +44,7 @@
             margin: 0;
             padding: 0;
             width: 100%;
-
         }
-
     }
 
     .card_desc {
@@ -57,7 +54,7 @@
 
         p {
             font-family: Righteous, Arial, Helvetica, sans-serif;
-            font-size: 18px;
+            font-size: 20px;
             display: flex;
             align-items: center;
             letter-spacing: 0.04em;
@@ -88,75 +85,75 @@
             }
 
             .insecte {
-                @include insecte
+                @include insecte;
             }
 
             .dragon {
-                @include dragon
+                @include dragon;
             }
 
             .fee {
-                @include fee
+                @include fee;
             }
 
             .feu {
-                @include feu
+                @include feu;
             }
 
             .spectre {
-                @include spectre
+                @include spectre;
             }
 
             .sol {
-                @include sol
+                @include sol;
             }
 
             .normal {
-                @include normal
+                @include normal;
             }
 
             .psy {
-                @include psy
+                @include psy;
             }
 
             .acier {
-                @include acier
+                @include acier;
             }
 
             .tenebres {
-                @include tenebres
+                @include tenebres;
             }
 
             .electrik {
-                @include electrik
+                @include electrik;
             }
 
             .combat {
-                @include combat
+                @include combat;
             }
 
             .vol {
-                @include vol
+                @include vol;
             }
 
             .plante {
-                @include plante
+                @include plante;
             }
 
             .glace {
-                @include glace
+                @include glace;
             }
 
             .poison {
-                @include poison
+                @include poison;
             }
 
             .roche {
-                @include roche
+                @include roche;
             }
 
             .eau {
-                @include eau
+                @include eau;
             }
         }
     }
