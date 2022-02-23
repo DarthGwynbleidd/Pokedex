@@ -1,4 +1,4 @@
-import React, {useEffect, useContext} from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import axios from 'axios';
 import AdvancedResearch from './AdvancedResearch';
 import TopButtons from './TopButtons';
@@ -7,39 +7,41 @@ import BottomButton from './BottomButton';
 import PokemonContext from '../contexts/PokemonContext';
 
 const CardsPage = () => {
-    const {pokemon, setPokemon} = useContext(PokemonContext);
-    const array = [];
+    const { pokemons, setPokemons } = useContext(PokemonContext);
 
     useEffect(() => {
 
-        async function fetchPokemons(){
+        async function fetchPokemons() {
 
-            
-            for(let number = 1; number < 10; number++){
+            const temp = []
+
+            for (let number = 1; number <= 12; number++) {
                 const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${number}`)
-                
-                const obj = {id: '', pokemonName: '', image: '', type1: '', type2: ''};
-                console.log(response)
+
+                const obj = { id: '', pokemonName: '', image: '', type1: '', type2: '' };
+                // console.log(response)
                 obj.id = response.data.id;
                 obj.pokemonName = response.data.name;
                 obj.image = response.data.sprites.other["official-artwork"].front_default;
                 obj.type1 = response.data.types[0].type.name;
-                try{
-                    obj.type2 = response.data.types[1].type.name ;
-                } catch(error){};
-                array.push(obj);
-            }
-        }
+                try {
+                    obj.type2 = response.data.types[1].type.name;
+                } catch (error) {
 
+                }
+                temp.push(obj)
+            }
+            setPokemons(prevPokemons => prevPokemons.concat(temp));
+        }
         fetchPokemons();
-    },[]);
+    }, []);
 
     return (
         <div className='cardsPage'>
-           <AdvancedResearch />
-           <TopButtons />
-           <Grid array = {array}/>
-           <BottomButton />
+            <AdvancedResearch />
+            <TopButtons />
+            <Grid />
+            <BottomButton />
         </div>
     );
 };

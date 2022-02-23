@@ -5,21 +5,13 @@ import PokemonPage from "./components/PokemonPage";
 import NotFound from "./components/NotFound";
 import { Routes, Route } from "react-router-dom";
 import PokemonContext from "./contexts/PokemonContext";
-import {useState} from 'react';
+import { useState } from 'react';
 
 
 function App() {
-  const [pokemon, setPokemon] = useState([
-    {
-      name: '', 
-      number: '',
-      image: '',
-      type1: '',
-      type2: ''
-    }
-  ])
+  const [pokemons, setPokemons] = useState([])
   return (
-    <PokemonContext.Provider value={{pokemon: pokemon, setPokemon: setPokemon}}>
+    <PokemonContext.Provider value={{ pokemons: pokemons, setPokemons: setPokemons }}>
       <div className="App">
         <div className="container">
           <Header />
