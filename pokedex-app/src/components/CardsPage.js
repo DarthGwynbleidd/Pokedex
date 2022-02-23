@@ -8,7 +8,7 @@ import PokemonContext from '../contexts/PokemonContext';
 
 const CardsPage = () => {
     const { setPokemons } = useContext(PokemonContext);
-    const [group, setGroup] = useState(850)
+    const [group, setGroup] = useState(1)
 
 
     useEffect(() => {
