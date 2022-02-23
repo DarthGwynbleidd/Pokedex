@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const BottomButton = () => {
+const BottomButton = (props) => {
     const [apparait, setApparait] = useState(false);
     const [leftMargin, setLeftMargin] = useState();
     // Initialisation du bottom_button__up à 100px du bas de la page
@@ -52,7 +52,7 @@ const BottomButton = () => {
     return (
         <div className='bottom_button'>
             <div className='bottom_button__more'>
-                <button onClick={() => {}}>Charger d'autres Pokémons</button>
+                <button onClick={() => {props.setGroup(prevGroup => prevGroup + 12)}}>Charger d'autres Pokémons</button>
             </div>
             <div className={apparait? 'bottom_button__up' : 'bottom_button__up__no'} style={{left:leftMargin + 'px', bottom: bottomMargin + "px"}}>
                 <img src='./assets/fleche_haut.png' alt='Fleche'></img>
