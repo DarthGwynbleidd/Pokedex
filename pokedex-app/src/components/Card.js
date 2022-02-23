@@ -1,15 +1,22 @@
 import React from 'react';
 import typeTranslate from '../jsonfiles/type_translate.json'
+import nameTranslate from '../jsonfiles/pokemon_translate.json'
 
 const Card = (props) => {
-    const translate = (typeName) => {
-
-
+    const translateName = (pokemonName) => {
+        let vfName = ''
+        for (let name in nameTranslate) {
+            if (nameTranslate[name].toLowerCase() === pokemonName)
+                vfName = name
+        }
+        return vfName
+    }
+    const translateType = (typeName) => {
         let vfType = ''
         for (let type in typeTranslate) {
             if (type.toLowerCase() === typeName)
                 vfType = typeTranslate[type]
-        } console.log(vfType)
+        }
         return vfType.toLowerCase()
     }
     return (
@@ -19,12 +26,12 @@ const Card = (props) => {
             </figure>
             <div className='card_desc'>
                 <p><span>No. {props.id}</span></p>
-                <h5>{props.pokemonName}</h5>
+                <h5>{translateName(props.pokemonName)}</h5>
                 <div className='card_desc_abilities'>
-                    <span className={`pill ${translate(props.type1)}`}>{translate(props.type1)}</span>
+                    <span className={`pill ${translateType(props.type1)}`}>{translateType(props.type1)}</span>
                 </div>
                 <div className='card_desc_abilities'>
-                    <span className={`pill ${translate(props.type2)}`}>{translate(props.type2)}</span>
+                    <span className={`pill ${translateType(props.type2)}`}>{translateType(props.type2)}</span>
                 </div>
             </div>
         </div>
