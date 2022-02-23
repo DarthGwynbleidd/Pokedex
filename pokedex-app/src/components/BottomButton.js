@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 const BottomButton = (props) => {
     const [apparait, setApparait] = useState(false);
@@ -6,7 +6,7 @@ const BottomButton = (props) => {
     // Initialisation du bottom_button__up à 100px du bas de la page
     const [bottomMargin, setBottomMargin] = useState(100);
 
-    const calculLeftArrow = ()=>{
+    const calculLeftArrow = () => {
         /*
         offsetWidth = largeur du navigateur
         .cardsPage.offsetWidth = la largeur du contenu principal
@@ -24,10 +24,22 @@ const BottomButton = (props) => {
     window.addEventListener('resize', () => {
         calculLeftArrow();
     })
+    let memoire = 0;
 
     window.onscroll = () => {
-        setApparait (document.documentElement.scrollTop > 400? true : false);
-        
+        setApparait(document.documentElement.scrollTop > 400 ? true : false);
+        // if (document.documentElement.offsetHeight > 2200) {
+             
+        //     if (+document.documentElement.offsetHeight !== memoire) {
+                 
+        //         if (document.documentElement.offsetHeight - document.documentElement.scrollTop <= 1000) {
+        //             memoire = document.documentElement.offsetHeight;
+        //             props.setGroup(prevGroup => prevGroup + 12);
+        //             setTimeout(() => {  }, 1000);
+        //             console.log('hello memoire = ' + memoire);
+        //         }
+        //     }
+        // }
         // Hauteur de la div footer
         const heightFooter = document.querySelector('.footer').offsetHeight;
         // Hauteur de la page web complète
@@ -45,17 +57,17 @@ const BottomButton = (props) => {
         // le résultat étant une différence, j'inverse le signe pour qu'il reste positif
         // ex calc = -20 => 20 + 20 = 40 => bottom: 40px
         // ex calc = 1278 => bottom: 100px(initialisé dans le useState)
-        if (calc < 0) setBottomMargin(-calc + 20);
+        setBottomMargin(calc < 0? -calc + 20 : 50);
 
         calculLeftArrow();
     }
     return (
         <div className='bottom_button'>
             <div className='bottom_button__more'>
-                <button onClick={() => {props.setGroup(prevGroup => prevGroup + 12)}}>Charger d'autres Pokémons</button>
+                <button onClick={() => { props.setGroup(prevGroup => prevGroup + 12) }}>Charger d'autres Pokémons</button>
             </div>
-            <div className={apparait? 'bottom_button__up' : 'bottom_button__up__no'} style={{left:leftMargin + 'px', bottom: bottomMargin + "px"}}>
-                <img src='./assets/fleche_haut.png' alt='Fleche'></img>
+            <div className={apparait ? 'bottom_button__up' : 'bottom_button__up__no'} style={{ left: leftMargin + 'px', bottom: bottomMargin + "px" }}>
+                <img src='./assets/fleche_haut.png' alt='Fleche' onClick={() => window.location.href='/'}></img>
             </div>
         </div>
     );

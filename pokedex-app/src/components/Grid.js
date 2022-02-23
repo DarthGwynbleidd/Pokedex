@@ -7,7 +7,7 @@ const Grid = () => {
 
     const { pokemons } = useContext(PokemonContext);
 
-    console.log(pokemons)
+    // console.log(pokemons)
     return (
         <div className='grid'>
             {pokemons.map((pokemon) => {
