@@ -26,9 +26,9 @@ const RandomSelect = () => {
                 <span className='randomSelect__button__p'>Surprise</span></button>
             <div className='randomSelect__wrapper'>
                 <img className='randomSelect__wrapper__pokeball' src='./assets/top-buttons/select-logo.png' alt='pokeball' />
-                <select onChange={handleChange} className='randomSelect__wrapper__select'>
+                <select id="selectBox" onChange={handleChange} className='randomSelect__wrapper__select'>
 
-                    <option value="displayNumericUp">Choisissez une option</option>
+                    <option value="default">Choisissez une option</option>
                     <option value="displayNumericUp" selected>Tri par ordre croissant</option>
                     <option value="displayNumericDown">Tri par ordre décroissant</option>
                     <option value="displayAlphaUp">Tri de A-Z</option>
