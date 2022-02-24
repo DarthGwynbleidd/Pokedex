@@ -1,4 +1,6 @@
-// animation de l'image au survol de la carte
+
+// ******* animation de l'image au survol de la carte *******
+
 @keyframes mouseOver {
     0% {
         transform: rotate(0deg) scale(1);
@@ -44,40 +46,42 @@
     }
 }
 
+// ******** 4 ANIMATIONS POUR L'AFFICHAGE DES CARTES ********
+
 @keyframes droite {
-    from { transform: translateX(-100px); }
+    from { transform: translateX(-50px); }
     to   { transform: translateX(0); }
   }
 
 @keyframes gauche {
-    from { transform: translateX(100px); }
+    from { transform: translateX(50px); }
     to   { transform: translateX(0); }
   }
 
 @keyframes haut {
-    from { transform: translatey(-100px); }
+    from { transform: translatey(-50px); }
     to   { transform: translatey(0); }
   }
 
 @keyframes bas {
-    from { transform: translatey(100px); }
+    from { transform: translatey(50px); }
     to   { transform: translatey(0); }
   }
 
 .card_1 {
-    animation: droite 1s;
+    animation: droite .5s;
 }
 
 .card_2 {
-    animation: haut 1s;
+    animation: haut .5s;
 }
 
 .card_3 {
-    animation: gauche 1s;
+    animation: gauche .5s;
 }
 
 .card_4 {
-    animation: bas 1s;
+    animation: bas .5s;
 }
 
 .card {
@@ -214,16 +218,17 @@
             }
         }
 
-        @media screen and (min-width: 800px) and (max-width: 1000px) {
-            width: 31.4375%;
-        }
-
-        @media screen and (min-width: 500px) and (max-width: 799px) {
-            width: 48.4375%;
-        }
-
-        @media screen and (max-width: 499px) {
-            width: 95%;
-        }
     }
+
+@media screen and (min-width: 800px) and (max-width: 1000px) {
+    width: 31.4375%;
+}
+
+@media screen and (min-width: 500px) and (max-width: 799px) {
+    width: 48.4375%;
+}
+
+@media screen and (max-width: 499px) {
+    width: 95%;
+}
 }
