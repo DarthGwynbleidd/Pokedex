@@ -5,6 +5,11 @@
     margin-bottom: 20px;
     position: relative;
 
+    
+    &__more__no {
+        display: none;
+    }
+
     &__more {
         width: 100%;
         text-align: center;

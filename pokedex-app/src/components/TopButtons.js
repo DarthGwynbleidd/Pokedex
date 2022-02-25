@@ -7,7 +7,7 @@ import SearchBar from './SearchBar';
 const TopButtons = () => {
     return (
 
-        <div className='buttons'>
+        <div className='buttons' id='buttons'>
             <SearchBar />
             <RandomSelect />
         </div>  

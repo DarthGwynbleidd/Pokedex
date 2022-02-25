@@ -1,66 +1,70 @@
-// animation de l'image au survol de la carte
+
+// ******* animation de l'image au survol de la carte *******
+
 @keyframes mouseOver {
     0% {
-        transform: rotate(0deg) scale(1);
+        transform: scale(1);
     }
 
     10% {
-        transform: rotate(-15deg) scale(1.1);
+        transform: scale(1.1);
     }
 
     20% {
-        transform: rotate(0deg) scale(1.1);
+        transform: scale(1.1);
     }
 
     30% {
-        transform: rotate(+15deg) scale(1.2);
+        transform: scale(1.2);
     }
 
     40% {
-        transform: rotate(0deg) scale(1.2);
+        transform: scale(1.2);
     }
 
     50% {
-        transform: rotate(-15deg) scale(1.3);
+        transform: scale(1.3);
     }
     60% {
-        transform: rotate(0deg) scale(1.3);
+        transform :scale(1.3);
     }
 
     70% {
-        transform: rotate(+15deg) scale(1.3);
+        transform: scale(1.3);
     }
 
     80% {
-        transform: rotate(0deg) scale(1.3);
+        transform: scale(1.3);
     }
 
     90% {
-        transform: rotate(-15deg) scale(1.3);
+        transform: scale(1.3);
     }
 
     100% {
-        transform: rotate(0deg) scale(1.3);
+        transform: scale(1.3);
     }
 }
 
+// ******** 4 ANIMATIONS POUR L'AFFICHAGE DES CARTES ********
+
 @keyframes droite {
-    from { transform: translateX(-100px); }
+    from { transform: translateX(-50px); }
     to   { transform: translateX(0); }
   }
 
 @keyframes gauche {
-    from { transform: translateX(100px); }
+    from { transform: translateX(50px); }
     to   { transform: translateX(0); }
   }
 
 @keyframes haut {
-    from { transform: translatey(-100px); }
+    from { transform: translatey(-50px); }
     to   { transform: translatey(0); }
   }
 
 @keyframes bas {
-    from { transform: translatey(100px); }
+    from { transform: translatey(50px); }
     to   { transform: translatey(0); }
   }
 
@@ -214,16 +218,17 @@
             }
         }
 
-        @media screen and (min-width: 800px) and (max-width: 1000px) {
-            width: 31.4375%;
-        }
-
-        @media screen and (min-width: 500px) and (max-width: 799px) {
-            width: 48.4375%;
-        }
-
-        @media screen and (max-width: 499px) {
-            width: 95%;
-        }
     }
+
+@media screen and (min-width: 800px) and (max-width: 1000px) {
+    width: 31.4375%;
+}
+
+@media screen and (min-width: 500px) and (max-width: 799px) {
+    width: 48.4375%;
+}
+
+@media screen and (max-width: 499px) {
+    width: 95%;
+}
 }
