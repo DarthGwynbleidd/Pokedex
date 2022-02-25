@@ -3,46 +3,46 @@
 
 @keyframes mouseOver {
     0% {
-        transform: rotate(0deg) scale(1);
+        transform: scale(1);
     }
 
     10% {
-        transform: rotate(-15deg) scale(1.1);
+        transform: scale(1.1);
     }
 
     20% {
-        transform: rotate(0deg) scale(1.1);
+        transform: scale(1.1);
     }
 
     30% {
-        transform: rotate(+15deg) scale(1.2);
+        transform: scale(1.2);
     }
 
     40% {
-        transform: rotate(0deg) scale(1.2);
+        transform: scale(1.2);
     }
 
     50% {
-        transform: rotate(-15deg) scale(1.3);
+        transform: scale(1.3);
     }
     60% {
-        transform: rotate(0deg) scale(1.3);
+        transform :scale(1.3);
     }
 
     70% {
-        transform: rotate(+15deg) scale(1.3);
+        transform: scale(1.3);
     }
 
     80% {
-        transform: rotate(0deg) scale(1.3);
+        transform: scale(1.3);
     }
 
     90% {
-        transform: rotate(-15deg) scale(1.3);
+        transform: scale(1.3);
     }
 
     100% {
-        transform: rotate(0deg) scale(1.3);
+        transform: scale(1.3);
     }
 }
 
@@ -69,19 +69,19 @@
   }
 
 .card_1 {
-    animation: droite .5s;
+    animation: droite 1s;
 }
 
 .card_2 {
-    animation: haut .5s;
+    animation: haut 1s;
 }
 
 .card_3 {
-    animation: gauche .5s;
+    animation: gauche 1s;
 }
 
 .card_4 {
-    animation: bas .5s;
+    animation: bas 1s;
 }
 
 .card {

@@ -3,7 +3,7 @@ import typeTranslate from '../jsonfiles/type_translate.json'
 import nameTranslate from '../jsonfiles/pokemon_translate.json'
 
 const Card = (props) => {
-    const effetClass = `card_${Math.floor(Math.random() * (5 - 1) + 1)}`;// chiifre aléatoire (1 à 4) pour className card
+    // const effetClass = `card_${Math.floor(Math.random() * (5 - 1) + 1)}`;// chiifre aléatoire (1 à 4) pour className card
     
     const translateName = (pokemonName) => {
         let vfName = ''
@@ -22,7 +22,7 @@ const Card = (props) => {
         return vfType.toLowerCase()
     }
     return (
-        <div className= {`card ${effetClass}`}>
+        <div className= 'card'>
             <div className='card_vide'>
             <figure className='card_vide_picture'>
                 <img src={props.image} alt={props.name} />
