@@ -1,12 +1,13 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 const BottomButton = (props) => {
-    const [apparait, setApparait] = useState(false);
+    const [apparaitUp, setApparaitUp] = useState(false);
+    const [apparaitMore, setApparaitMore] = useState(true);
     const [leftMargin, setLeftMargin] = useState();
     // Initialisation du bottom_button__up à 100px du bas de la page
     const [bottomMargin, setBottomMargin] = useState(100);
 
-    const calculLeftArrow = ()=>{
+    const calculLeftArrow = () => {
         /*
         offsetWidth = largeur du navigateur
         .cardsPage.offsetWidth = la largeur du contenu principal
@@ -24,10 +25,30 @@ const BottomButton = (props) => {
     window.addEventListener('resize', () => {
         calculLeftArrow();
     })
+    let memoire = 0;
 
     window.onscroll = () => {
-        setApparait (document.documentElement.scrollTop > 400? true : false);
-        
+        // Fait apparaitre la flêche dès que le scroll atteint 400
+        setApparaitUp(document.documentElement.scrollTop > 400 ? true : false);
+        // Fait disparaitre le bouton 'charger plus de pokémons' dès que la page dépasse
+        // les 2200 px (ce qui correspond à 24 pokémons d'affichés)
+        setApparaitMore(document.documentElement.offsetHeight < 2200 ? true : false);
+ 
+        // Envoie une requête pour charger 12 pokémons supplémentaires dès que le scroll
+        // arrive à moins de 1000px du bas le la page.
+        if (!apparaitMore) {
+            if (+document.documentElement.offsetHeight !== memoire) {
+                const position = document.documentElement.offsetHeight - document.documentElement.scrollTop;
+                if ( position < 900) {
+                    // remonte le scroll au dessus de 1100px avant de charger les nouveaux pokémons
+                    // afin de ne pas plusieurs requêtes en même temps
+                    document.documentElement.scrollTop = document.documentElement.offsetHeight - 1300;
+                    memoire = document.documentElement.offsetHeight;
+                    props.setGroup(prevGroup => prevGroup + 12);
+                }
+            }
+        }
+
         // Hauteur de la div footer
         const heightFooter = document.querySelector('.footer').offsetHeight;
         // Hauteur de la page web complète
@@ -45,17 +66,23 @@ const BottomButton = (props) => {
         // le résultat étant une différence, j'inverse le signe pour qu'il reste positif
         // ex calc = -20 => 20 + 20 = 40 => bottom: 40px
         // ex calc = 1278 => bottom: 100px(initialisé dans le useState)
-        if (calc < 0) setBottomMargin(-calc + 20);
+        setBottomMargin(calc < 0? -calc + 20 : 50);
 
         calculLeftArrow();
     }
+
+    // remet le scroll à 300 afin de voir la barre de recherche
+    const backTop = () => {
+        document.documentElement.scrollTop = 300;
+    }
+
     return (
         <div className='bottom_button'>
-            <div className='bottom_button__more'>
-                <button onClick={() => {props.setGroup(prevGroup => prevGroup + 12)}}>Charger d'autres Pokémons</button>
+            <div className={apparaitMore ? 'bottom_button__more' : 'bottom_button__more__no'}>
+                <button onClick={() => { props.setGroup(prevGroup => prevGroup + 12) }}>Charger d'autres Pokémons</button>
             </div>
-            <div className={apparait? 'bottom_button__up' : 'bottom_button__up__no'} style={{left:leftMargin + 'px', bottom: bottomMargin + "px"}}>
-                <img src='./assets/fleche_haut.png' alt='Fleche'></img>
+            <div className={apparaitUp ? 'bottom_button__up' : 'bottom_button__up__no'} style={{ left: leftMargin + 'px', bottom: bottomMargin + "px" }}>
+                <img src='./assets/fleche_haut.png' alt='Fleche' onClick={backTop}></img>
             </div>
         </div>
     );
