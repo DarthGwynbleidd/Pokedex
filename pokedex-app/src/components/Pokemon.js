@@ -2,7 +2,13 @@ import React from 'react';
 
 const Pokemon = () => {
     return (
-        <div>
+        <div className='Pokemon'>
+            <div className='pokemon__detail'>
+                <div>
+                    
+                </div>
+
+            </div>
             
         </div>
     );
