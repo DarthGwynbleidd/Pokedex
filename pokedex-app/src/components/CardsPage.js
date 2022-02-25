@@ -77,7 +77,7 @@ const CardsPage = () => {
     }, [group, setPokemons, display]);
 
     return (
-        <DisplayContext.Provider value={{ display, setDisplay }}>
+        <DisplayContext.Provider value={{ display, setDisplay, group, setGroup }}>
             <div className='cardsPage'>
                 <AdvancedResearch />
                 <TopButtons />

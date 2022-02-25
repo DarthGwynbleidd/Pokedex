@@ -6,6 +6,7 @@ const RandomSelect = () => {
 
     const { display, setDisplay } = useContext(DisplayContext)
     const { setPokemons } = useContext(PokemonContext)
+    const {setGroup} = useContext(DisplayContext)
 
     const handleClick = () => {
         if (display === 'randomVice')
@@ -14,10 +15,12 @@ const RandomSelect = () => {
             setDisplay('randomVice')
         else setDisplay('randomVersa')
         setPokemons([])
+        setGroup(1)
     }
     const handleChange = (event) => {
         setDisplay(event.target.value)
         setPokemons([])
+        setGroup(1)
     }
     return (
         <div className='randomSelect'>
