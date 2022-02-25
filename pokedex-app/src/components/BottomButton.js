@@ -39,10 +39,10 @@ const BottomButton = (props) => {
         if (!apparaitMore) {
             if (+document.documentElement.offsetHeight !== memoire) {
                 const position = document.documentElement.offsetHeight - document.documentElement.scrollTop;
-                if ( position < 1000) {
+                if ( position < 900) {
                     // remonte le scroll au dessus de 1100px avant de charger les nouveaux pokémons
                     // afin de ne pas plusieurs requêtes en même temps
-                    document.documentElement.scrollTop = document.documentElement.offsetHeight - 1100;
+                    document.documentElement.scrollTop = document.documentElement.offsetHeight - 1300;
                     memoire = document.documentElement.offsetHeight;
                     props.setGroup(prevGroup => prevGroup + 12);
                 }
