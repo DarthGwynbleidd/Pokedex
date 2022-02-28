@@ -1,0 +1,93 @@
+.PokemonStats {
+    height: 280px;
+    width: 500px;
+
+    &__fond {
+        background-color: #A4A4A4;
+        height: 80%;
+        width: 80%;
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+
+        &__barreVide {
+            height: 80%;
+            width: 80%;
+            background-color: #A4A4A4;
+            margin: auto;
+            display: flex;
+
+            &__col {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                height: 100%;
+
+
+                &__pv,
+                &__attaque,
+                &__defense,
+                &__attaqueSpeciale,
+                &__defenseSpeciale,
+                &__vitesse {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 0 2px 2px;
+                    background-color: white;
+                    width: 80%;
+                    height: 100%;
+                    position: relative;
+
+                    &__blue {
+
+                        background-color: blue;
+                        bottom: 0;
+                        width: 100%;
+
+                        position: absolute;
+                        z-index: 0;
+                    }
+
+                    &__1 {
+                        height: 4px;
+                        width: 100%;
+                        background-color: #A4A4A4;
+                        margin-bottom: 7px;
+                        z-index: 5;
+                    }
+
+                }
+
+                &__pv__legende {
+                    font-size: 0.7em;
+                    text-align: center;
+                    bottom: 0;
+                }
+                
+                &__pv__blue {
+                height: 66px;
+            }
+            
+            &__attaque__blue {
+                height: 21px;
+            }
+            
+            &__defense__blue {
+                height: 120px;
+            }
+            
+            &__attaqueSpeciale__blue {
+                height: 55px;
+            }
+            
+            &__defenseSpeciale__blue {
+                height: 110px;
+            }
+            
+            &__vitesse__blue {
+                height: 165px;
+            }
+        }
+        }
+    }
+}
