@@ -1,6 +1,7 @@
 import React from 'react';
 import typeTranslate from '../jsonfiles/type_translate.json'
 import nameTranslate from '../jsonfiles/pokemon_translate.json'
+import PokemonStats from './PokemonStats';
 
 const Card = (props) => {
     // const effetClass = `card_${Math.floor(Math.random() * (5 - 1) + 1)}`;// chiifre aléatoire (1 à 4) pour className card
@@ -25,7 +26,7 @@ const Card = (props) => {
         <div className= 'card'>
             <div className='card_vide'>
             <figure className='card_vide_picture'>
-                <img src={props.image} alt={props.name} />
+                <img src={props.image} alt={props.name}/>
             </figure>
             <div className='card_vide_desc'>
                 <p><span>No. {props.id}</span></p>
