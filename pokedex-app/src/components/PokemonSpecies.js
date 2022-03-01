@@ -1,4 +1,5 @@
 import React from 'react';
+import PokemonStats from './PokemonStats';
 // import typeTranslate from '../jsonfiles/type_translate.json'
 // import nameTranslate from '../jsonfiles/pokemon_translate.json'
 
@@ -10,7 +11,7 @@ const PokemonSpecies = () => {
                     <img src='/assets/bulbizarre.png' alt='bulbizar' />
                 </div>
                 <div className='pokemon__left__stat' >
-
+                <PokemonStats />
                 </div>
             </div>
             <div className='pokemon__species'>

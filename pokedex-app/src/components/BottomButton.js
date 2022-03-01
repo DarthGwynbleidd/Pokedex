@@ -3,7 +3,7 @@ import PokemonStats from './PokemonStats';
 
 const BottomButton = (props) => {
     const [apparaitUp, setApparaitUp] = useState(false);
-    // const [apparaitMore, setApparaitMore] = useState(true);
+    const [apparaitMore, setApparaitMore] = useState(true);
     const [leftMargin, setLeftMargin] = useState();
     // Initialisation du bottom_button__up à 100px du bas de la page
     const [bottomMargin, setBottomMargin] = useState(100);
@@ -48,9 +48,9 @@ const BottomButton = (props) => {
         //             document.documentElement.scrollTop = document.documentElement.offsetHeight - 1300;
         //             memoire = document.documentElement.offsetHeight;
         //             props.setGroup(prevGroup => prevGroup + 12);
-        //         }
-        //     }
-        // }
+                }
+            }
+        }
 
         // Hauteur de la div footer
         const heightFooter = document.querySelector('.footer').offsetHeight;

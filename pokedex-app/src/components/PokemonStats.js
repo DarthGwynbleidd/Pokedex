@@ -12,7 +12,7 @@ const PokemonStats = () => {
      
     return (
         <div className='PokemonStats'>
-            <div className='PokemonStats__fond'>Stats de base
+            <div className='PokemonStats__fond'><h4>Stats de base</h4>
                 <div className='PokemonStats__fond__barreVide'>
                     <div className='PokemonStats__fond__barreVide__col'>
                         <div className='PokemonStats__fond__barreVide__col__pv'>
