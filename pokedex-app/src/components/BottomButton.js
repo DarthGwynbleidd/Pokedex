@@ -37,10 +37,12 @@ const BottomButton = (props) => {
  
         // Envoie une requête pour charger 12 pokémons supplémentaires dès que le scroll
         // arrive à moins de 1000px du bas le la page.
-        // if (!apparaitMore) {
-        //     if (+document.documentElement.offsetHeight !== memoire) {
-        //         const position = document.documentElement.offsetHeight - document.documentElement.scrollTop;
-        //         if ( position < 930) {
+
+        if (!apparaitMore) {
+            if (+document.documentElement.offsetHeight !== memoire) {
+                const position = document.documentElement.offsetHeight - document.documentElement.scrollTop;
+                if ( position < 1000) {
+
                     // remonte le scroll au dessus de 1100px avant de charger les nouveaux pokémons
                     // afin de ne pas plusieurs requêtes en même temps
         //             document.documentElement.scrollTop = document.documentElement.offsetHeight - 1300;
