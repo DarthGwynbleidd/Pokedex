@@ -1,10 +1,10 @@
 import React from 'react';
-import PokemonStats from './PokemonStats';
+import PokemonDetail from './PokemonDetail';
 
 const Pokemon = () => {
     return (
         <div>
-            <PokemonStats />
+            <PokemonDetail />
         </div>
     );
 };

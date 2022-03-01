@@ -1,14 +1,17 @@
 import React from 'react';
 /* La hauteur du bleu = around( valeur / 15) et * 11 */
 
+
 const PokemonStats = () => {
+    const colHeight = (150 / 15) * 11 + 'px';
+    console.log(colHeight);
     return (
         <div className='PokemonStats'>
             <div className='PokemonStats__fond'>
                 <div className='PokemonStats__fond__barreVide'>
                     <div className='PokemonStats__fond__barreVide__col'>
                         <div className='PokemonStats__fond__barreVide__col__pv'>
-                            <div className='PokemonStats__fond__barreVide__col__pv__blue'></div>
+                            <div className='PokemonStats__fond__barreVide__col__pv__blue' style={{Height: {colHeight}}}></div>
                             <div className='PokemonStats__fond__barreVide__col__pv__1'></div><div className='PokemonStats__fond__barreVide__col__pv__1'></div><div className='PokemonStats__fond__barreVide__col__pv__1'></div>
                             <div className='PokemonStats__fond__barreVide__col__pv__1'></div><div className='PokemonStats__fond__barreVide__col__pv__1'></div><div className='PokemonStats__fond__barreVide__col__pv__1'></div>
                             <div className='PokemonStats__fond__barreVide__col__pv__1'></div><div className='PokemonStats__fond__barreVide__col__pv__1'></div><div className='PokemonStats__fond__barreVide__col__pv__1'></div>
