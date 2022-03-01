@@ -1,14 +1,10 @@
 import React from 'react';
+import PokemonSpecies from './PokemonSpecies';
 
 const Pokemon = () => {
     return (
-        <div className='Pokemon'>
-            <div className='pokemon__detail'>
-                <div>
-                    
-                </div>
-
-            </div>
+        <div className='pokemons'>
+            <PokemonSpecies />
             
         </div>
     );
