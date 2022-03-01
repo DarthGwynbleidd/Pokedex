@@ -1,20 +1,54 @@
+@keyframes pvBlue {
+    0% { height: 0px; }
+    100%  {height: var(--col-pv); }
+  }
+
+@keyframes attBlue {
+    0% { height: 0px; }
+    100%  {height: var(--col-att); }
+  }
+
+@keyframes defBlue {
+    0% { height: 0px; }
+    100%  {height: var(--col-def); }
+  }
+
+@keyframes attSpecBlue {
+    0% { height: 0px; }
+    100%  {height: var(--col-attSpec); }
+  }
+
+@keyframes defSpecBlue {
+    0% { height: 0px; }
+    100%  {height: var(--col-defSpec); }
+  }
+
+@keyframes speedBlue {
+    0% { height: 0px; }
+    100%  {height: var(--col-speed); }
+  }
+
+
 .PokemonStats {
     height: 280px;
     width: 500px;
-
+    display: flex;
+    margin: auto;
+    
     &__fond {
         background-color: #A4A4A4;
-        height: 80%;
+        height: 90%;
         width: 80%;
         display: flex;
         align-items: center;
         border-radius: 10px;
+        flex-direction: column;
 
         &__barreVide {
-            height: 80%;
+            height: 70%;
             width: 80%;
             background-color: #A4A4A4;
-            margin: auto;
+            margin: 15px auto;
             display: flex;
 
             &__col {
@@ -65,28 +99,27 @@
                 }
                 
                 &__pv__blue {
-                height: 0px;
-                animation-duration: 1s;
+                animation: pvBlue 1s forwards;
             }
             
             &__attaque__blue {
-                height: 21px;
+                animation: attBlue 1s 0.2s forwards;
             }
             
             &__defense__blue {
-                height: 120px;
+                animation: defBlue 1s 0.2s forwards;
             }
             
             &__attaqueSpeciale__blue {
-                height: 55px;
+                animation: attSpecBlue 1s 0.3s forwards;
             }
             
             &__defenseSpeciale__blue {
-                height: 110px;
+                animation: defSpecBlue 1s .4s forwards;
             }
             
             &__vitesse__blue {
-                height: 165px;
+                animation: speedBlue 1s .5s forwards;
             }
         }
         }
