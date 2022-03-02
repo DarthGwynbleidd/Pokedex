@@ -1,5 +1,4 @@
 import React from 'react';
-/* La hauteur du bleu = around( valeur / 15) et * 11 */
 
 
 const PokemonStats = () => {
