@@ -3,12 +3,12 @@ import React from 'react';
 
 
 const PokemonStats = () => {
-    const pvHeight = (150 / 15) * 11 + 'px';
-    const attHeight = (50 / 15) * 11 + 'px';
-    const defHeight = (15 / 15) * 11 + 'px';
-    const attSpecHeight = (80 / 15) * 11 + 'px';
-    const defSpecHeight = (34 / 15) * 11 + 'px';
-    const speedHeight = (64 / 15) * 11 + 'px';
+    const pvHeight = Math.round(330 / 22) * (100/15) + '%';
+    const attHeight = Math.round(80 / 22) * (100/15) + '%';
+    const defHeight = Math.round(150 / 22) * (100/15) + '%';
+    const attSpecHeight = Math.round(3 / 22) * (100/15) + '%';
+    const defSpecHeight = Math.round(33 / 22) * (100/15) + '%';
+    const speedHeight = Math.round(64 / 22) * (100/15) + '%';
      
     return (
         <div className='PokemonStats'>
