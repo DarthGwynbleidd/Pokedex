@@ -6,10 +6,11 @@ import Pokemon from './Pokemon';
 const PokemonPage = () => {
     return (
         <div className='pokemonPage'>
-           <NavigBar />
-           <Pokemon />
-           <Evolutions />
-           
+            <NavigBar />
+            <Pokemon />
+            <Evolutions id={"1"} />
+
+
         </div>
     );
 };

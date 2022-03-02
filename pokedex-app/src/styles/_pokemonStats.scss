@@ -1,0 +1,149 @@
+@keyframes pvBlue {
+    0% { height: 0px; }
+    65% {height: calc(var(--col-pv) + 16px)}
+    70% {height: calc(var(--col-pv) + 16px)}
+    100%  {height: var(--col-pv); }
+  }
+
+@keyframes attBlue {
+    0% { height: 0px; }
+    65%  {height: calc(var(--col-att) + 16px); }
+    70%  {height: calc(var(--col-att) + 16px); }
+    100%  {height: var(--col-att); }
+  }
+
+@keyframes defBlue {
+    0% { height: 0px; }
+    65%  {height: calc(var(--col-def) + 16px); }
+    70%  {height: calc(var(--col-def) + 16px); }
+    100%  {height: var(--col-def); }
+  }
+
+@keyframes attSpecBlue {
+    0% { height: 0px; }
+    65%  {height: calc(var(--col-attSpec) + 16px); }
+    70%  {height: calc(var(--col-attSpec) + 16px); }
+    100%  {height: var(--col-attSpec); }
+  }
+
+@keyframes defSpecBlue {
+    0% { height: 0px; }
+    65%  {height: calc(var(--col-defSpec) + 16px); }
+    70%  {height: calc(var(--col-defSpec) + 16px); }
+    100%  {height: var(--col-defSpec); }
+  }
+
+@keyframes speedBlue {
+    0% { height: 0px; }
+    65%  {height: calc(var(--col-speed) + 16px); }
+    70%  {height: calc(var(--col-speed) + 16px); }
+    100%  {height: var(--col-speed); }
+  }
+
+
+.PokemonStats {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    
+    
+    &__fond {
+        background-color: #A4A4A4;
+        height: 100%;
+        margin: auto 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        border-radius: 10px;
+        flex-direction: column;
+
+        & h4 {
+            padding-top: 5px;
+            
+        }
+
+        &__barreVide {
+            height: 250px;
+            width: 85%;
+            background-color: #A4A4A4;
+            margin: 8% auto;
+            display: flex;
+
+            &__col {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                height: 100%;
+
+
+                &__pv,
+                &__attaque,
+                &__defense,
+                &__attaqueSpeciale,
+                &__defenseSpeciale,
+                &__vitesse {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 0 2px 5px;
+                    background-color: white;
+                    width: 80%;
+                    height: 100%;
+                    
+                    position: relative;
+
+                    &__blue {
+
+                        background-color: blue;
+                        bottom: 0;
+                        width: 100%;
+
+                        position: absolute;
+                        z-index: 0;
+                    }
+
+                    &__1 {
+                        height: 6px;
+                        // height: 6px;
+                        width: 100%;
+                        background-color: #A4A4A4;
+                        margin-bottom: 10px;
+                        z-index: 5;
+                    }
+
+                }
+
+                &__pv__legende {
+                    font-size: 0.7em;
+                    text-align: center;
+                    margin-top: 10px;
+                    bottom: 0;
+                    transform: rotate(-50deg);// dès 700px
+                }
+                
+                &__pv__blue {
+                animation: pvBlue 1s forwards;
+            }
+            
+            &__attaque__blue {
+                animation: attBlue 1s 0.1s forwards;
+            }
+            
+            &__defense__blue {
+                animation: defBlue 1s 0.2s forwards;
+            }
+            
+            &__attaqueSpeciale__blue {
+                animation: attSpecBlue 1s 0.3s forwards;
+            }
+            
+            &__defenseSpeciale__blue {
+                animation: defSpecBlue 1s .4s forwards;
+            }
+            
+            &__vitesse__blue {
+                animation: speedBlue 1s .5s forwards;
+            }
+        }
+        }
+    }
+}

@@ -1,0 +1,278 @@
+.pokemon {
+    height:800px;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+
+    &__left {
+        width: 50%;
+
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+
+        &__img{
+            height: 50%;
+        }
+
+        &__img img{
+            height: 100%;
+            width: 100%;
+           
+        }
+
+        &__stat{
+            height: 50%;
+            width: 100%;
+            // background-color: dimgray;
+        }
+    }
+    &__species {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding-left: 25px;
+
+        p{
+            font-size: 17px;
+        }
+
+        &__anotation {
+            height: auto;
+            
+            text-align: start;
+        }
+
+        &__mensuration {
+            height: 200px;
+            width: 80%;
+           
+            background-color: #30a7d7;
+            color: white;            
+            border-radius: 20px;
+            display: flex;
+            flex-direction: row;
+            padding: 15px;
+
+            &__left{
+                width: 50%;
+                
+                h4, p{
+                    height: 15%;
+                    
+                }
+                p{
+                    color: black;
+                    font-size: 18px;
+                    letter-spacing: 1.2px;
+                }
+            }
+            &__rigth{
+                width: 50%;
+
+                h4, p{
+                    height: 15%;
+                }
+                p{
+                    color: black;
+                    font-size: 18px;
+                    letter-spacing: 1.2px;
+                }
+            }
+            
+        }
+
+
+        &__types {
+            height: 15%;
+            width: 100%;
+
+            &__abilities {
+
+                .type {
+                    border-radius: 5px;
+                    line-height: 30px;
+                    letter-spacing: 1.2px;
+                    max-width: 110px;
+                    margin: 1.6% 1.6% 0 0;
+                    width: 39%;
+                    float: left;
+                    font-size: 1rem;
+                    text-align: center;
+                   
+                }
+
+                .insecte {
+                    @include insecte;
+                }
+
+                .dragon {
+                    @include dragon;
+                }
+
+                .fée {
+                    @include fée;
+                }
+
+                .feu {
+                    @include feu;
+                }
+
+                .spectre {
+                    @include spectre;
+                }
+
+                .sol {
+                    @include sol;
+                }
+
+                .normal {
+                    @include normal;
+                }
+
+                .psy {
+                    @include psy;
+                }
+
+                .acier {
+                    @include acier;
+                }
+
+                .ténèbres {
+                    @include ténèbres;
+                }
+
+                .électrik {
+                    @include électrik;
+                }
+
+                .combat {
+                    @include combat;
+                }
+
+                .vol {
+                    @include vol;
+                }
+
+                .plante {
+                    @include plante;
+                }
+
+                .glace {
+                    @include glace;
+                }
+
+                .poison {
+                    @include poison;
+                }
+
+                .roche {
+                    @include roche;
+                }
+
+                .eau {
+                    @include eau;
+                }
+            }
+        }
+        &__weaknesses {
+            height: 25%;
+            width: 100%;
+  
+
+            &__type {
+                .weakness {
+                    border-radius: 5px;
+                    line-height: 30px;
+                    letter-spacing: 1.2px;
+                    max-width: 110px;
+                    margin: 1.6% 1.6% 0 0;
+                    width: 39%;
+                    float: left;
+                    font-size: 1rem;
+                    text-align: center;
+                    
+                }
+
+                .insecte {
+                    @include insecte;
+                }
+
+                .dragon {
+                    @include dragon;
+                }
+
+                .fée {
+                    @include fée;
+                }
+
+                .feu {
+                    @include feu;
+                }
+
+                .spectre {
+                    @include spectre;
+                }
+
+                .sol {
+                    @include sol;
+                }
+
+                .normal {
+                    @include normal;
+                }
+
+                .psy {
+                    @include psy;
+                }
+
+                .acier {
+                    @include acier;
+                }
+
+                .ténèbres {
+                    @include ténèbres;
+                }
+
+                .électrik {
+                    @include électrik;
+                }
+
+                .combat {
+                    @include combat;
+                }
+
+                .vol {
+                    @include vol;
+                }
+
+                .plante {
+                    @include plante;
+                }
+
+                .glace {
+                    @include glace;
+                }
+
+                .poison {
+                    @include poison;
+                }
+
+                .roche {
+                    @include roche;
+                }
+
+                .eau {
+                    @include eau;
+                }
+            }
+        }
+    }
+}
