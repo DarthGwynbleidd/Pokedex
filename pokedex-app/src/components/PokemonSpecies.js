@@ -2,6 +2,7 @@ import React from 'react';
 import PokemonStats from './PokemonStats';
 import typeTranslate from '../jsonfiles/type_translate.json'
 import nameTranslate from '../jsonfiles/pokemon_translate.json'
+import abilitiesTranslate from '../jsonfiles/abilities_translate.json'
 
 const PokemonSpecies = (props) => {
     const translateName = (pokemonName) => {
@@ -19,6 +20,14 @@ const PokemonSpecies = (props) => {
                 vfType = typeTranslate[type]
         }
         return vfType.toLowerCase()
+    }
+    const translateAbilities = (abilityName) => {
+        let vfAbility = ''
+        for (let ability in abilitiesTranslate){
+            if (abilitiesTranslate[ability].toLowerCase() === abilityName)
+                vfAbility = ability
+        }
+        return vfAbility
     }
 
     return (
@@ -43,8 +52,8 @@ const PokemonSpecies = (props) => {
                     </div>
                     <div className='pokemon__species__mensuration__rigth'>
                         <h4>Talent(s)</h4>
-                        <p>{props.ability1}</p>
-                        <p>{props.ability2}</p>
+                        <p>{translateAbilities(props.ability1)}</p>
+                        <p>{translateAbilities(props.ability2)}</p>
                     </div>
                 </div>
                 <div className='pokemon__species__types'>
