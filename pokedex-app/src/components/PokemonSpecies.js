@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PokemonStats from './PokemonStats';
 import typeTranslate from '../jsonfiles/type_translate.json'
 import nameTranslate from '../jsonfiles/pokemon_translate.json'
 import abilitiesTranslate from '../jsonfiles/abilities_translate.json'
+import CurrentPokemonContext from '../contexts/CurrentPokemonContext';
 
-const PokemonSpecies = (props) => {
+const PokemonSpecies = () => {
+
+    const {currentPokemon} = useContext(CurrentPokemonContext)
+
     const translateName = (pokemonName) => {
         let vfName = ''
         for (let name in nameTranslate) {
@@ -34,35 +38,35 @@ const PokemonSpecies = (props) => {
         <div className='pokemon'>
             <div className='pokemon__left'>
                 <div className='pokemon__left__img'>
-                    <img src={props.image} alt={translateName(props.pokemonName)} />
+                    <img src={currentPokemon.image} alt={translateName(currentPokemon.pokemonName)} />
                 </div>
                 <div className='pokemon__left__stat' >
-                    <PokemonStats stats={props.stats} />
+                    <PokemonStats />
                 </div>
             </div>
             <div className='pokemon__species'>
-                <p className='pokemon__species__anotation'/*flavor_text*/>{props.flavor}</p>
+                <p className='pokemon__species__anotation'/*flavor_text*/>{currentPokemon.flavor}</p>
                 <div className='pokemon__species__mensuration'>
                     <div className='pokemon__species__mensuration__left'>
                         <h4>Taille</h4>
-                        <p /*heigth API en decimetre*/>{props.height / 10}m</p>
+                        <p /*heigth API en decimetre*/>{currentPokemon.height / 10}m</p>
                         <h4>Poids</h4>
-                        <p /*weigth en decigramme*/>{props.weight / 10}kg </p>
+                        <p /*weigth en decigramme*/>{currentPokemon.weight / 10}kg </p>
 
                     </div>
                     <div className='pokemon__species__mensuration__rigth'>
                         <h4>Talent(s)</h4>
-                        <p>{translateAbilities(props.ability1)}</p>
-                        <p>{translateAbilities(props.ability2)}</p>
+                        <p>{translateAbilities(currentPokemon.ability1)}</p>
+                        <p>{translateAbilities(currentPokemon.ability2)}</p>
                     </div>
                 </div>
                 <div className='pokemon__species__types'>
                     <h3>Types</h3>
                     <div className='pokemon__species__types__abilities'>
-                        <span className={`type ${translateType(props.type1)}`}>{translateType(props.type1)}</span>
+                        <span className={`type ${translateType(currentPokemon.type1)}`}>{translateType(currentPokemon.type1)}</span>
                     </div>
                     <div className='pokemon__species__types__abilities'>
-                        <span className={`type ${translateType(props.type2)}`}>{translateType(props.type2)}</span>
+                        <span className={`type ${translateType(currentPokemon.type2)}`}>{translateType(currentPokemon.type2)}</span>
                     </div>
                 </div>
 

@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import CurrentPokemonContext from '../contexts/CurrentPokemonContext';
 
 
-const PokemonStats = (props) => {
-    console.log(props.stats);
-    const pvHeight = Math.round(10 / 22) * (100 / 15) + '%';
-    const attHeight = Math.round(10 / 22) * (100 / 15) + '%';
-    const defHeight = Math.round(10 / 22) * (100 / 15) + '%';
-    const attSpecHeight = Math.round(10 / 22) * (100 / 15) + '%';
-    const defSpecHeight = Math.round(10 / 22) * (100 / 15) + '%';
-    const speedHeight = Math.round(10 / 22) * (100 / 15) + '%';
+const PokemonStats = () => {
+    
+     const {currentPokemon} = useContext(CurrentPokemonContext)
+
+        console.log(currentPokemon);
+    
+    
+    const pvHeight = Math.round(currentPokemon.hp / 22) * (100 / 15) + '%';
+    const attHeight = Math.round(currentPokemon.attack / 22) * (100 / 15) + '%';
+    const defHeight = Math.round(currentPokemon.defense / 22) * (100 / 15) + '%';
+    const attSpecHeight = Math.round(currentPokemon.specialAttack / 22) * (100 / 15) + '%';
+    const defSpecHeight = Math.round(currentPokemon.specialDefense / 22) * (100 / 15) + '%';
+    const speedHeight = Math.round(currentPokemon.speed / 22) * (100 / 15) + '%';
 
     return (
         <div className='PokemonStats'>

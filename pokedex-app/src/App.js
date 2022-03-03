@@ -5,24 +5,28 @@ import PokemonPage from "./components/PokemonPage";
 import NotFound from "./components/NotFound";
 import { Routes, Route } from "react-router-dom";
 import PokemonContext from "./contexts/PokemonContext";
+import BackUpContext from "./contexts/BackupContext"
 import { useState } from 'react';
 
 
 function App() {
   const [pokemons, setPokemons] = useState([])
+  const [backUp, setBackUp] = useState(false)
   return (
     <PokemonContext.Provider value={{ pokemons: pokemons, setPokemons: setPokemons }}>
-      <div className="App">
-        <div className="container">
-          <Header />
-          <Routes>
-            <Route path="/" element={<CardsPage />} />
-            <Route path="/:name" element={<PokemonPage />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <Footer />
+      <BackUpContext.Provider value={{ backUp: backUp, setBackUp: setBackUp }}>
+        <div className="App">
+          <div className="container">
+            <Header />
+            <Routes>
+              <Route path="/" element={<CardsPage />} />
+              <Route path="/:name" element={<PokemonPage />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <Footer />
+          </div>
         </div>
-      </div>
+      </BackUpContext.Provider>
     </PokemonContext.Provider>
   );
 }

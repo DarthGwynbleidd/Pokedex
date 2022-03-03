@@ -6,6 +6,8 @@ import NavigBar from './NavigBar';
 import PokemonSpecies from './PokemonSpecies';
 import nameTranslate from '../jsonfiles/pokemon_translate.json'
 import PokemonContext from '../contexts/PokemonContext';
+import CurrentPokemonContext from '../contexts/CurrentPokemonContext'
+import DisplayContext from '../contexts/DisplayContext';
 
 const PokemonPage = () => {
 
@@ -48,14 +50,12 @@ const PokemonPage = () => {
                 ability1: "",
                 ability2: "",
                 flavor: "",
-                stats: {
-                    hp: null,
-                    attack: null,
-                    defense: null,
-                    specialAttack: null,
-                    specialDefense: null,
-                    speed: null
-                }
+                hp: '',
+                attack: '',
+                defense: '',
+                specialAttack: '',
+                specialDefense: '',
+                speed: ''
             }
 
             obj.id = response.data.id;
@@ -79,12 +79,12 @@ const PokemonPage = () => {
             obj.ability1 = response.data.abilities[0].ability.name
             try { obj.ability2 = response.data.abilities[1].ability.name }
             catch { }
-            obj.stats.hp = response.data.stats[0].base_stat
-            obj.stats.attack = response.data.stats[1].base_stat
-            obj.stats.defense = response.data.stats[2].base_stat
-            obj.stats.specialAttack = response.data.stats[3].base_stat
-            obj.stats.specialDefense = response.data.stats[4].base_stat
-            obj.stats.speed = response.data.stats[5].base_stat
+            obj.hp = response.data.stats[0].base_stat
+            obj.attack = response.data.stats[1].base_stat
+            obj.defense = response.data.stats[2].base_stat
+            obj.specialAttack = response.data.stats[3].base_stat
+            obj.specialDefense = response.data.stats[4].base_stat
+            obj.speed = response.data.stats[5].base_stat
             const responseFlavor = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${alias}`)
             obj.flavor = responseFlavor.data.flavor_text_entries[16].flavor_text
             temp.push(obj)
@@ -97,13 +97,15 @@ const PokemonPage = () => {
 
         } else {
             for (let pokemon of pokemons) {
-                if (!pokemon[name])
+                if (!pokemon[name]){
                     fetchPokemons();
+                }
                 else
-                    setCurrentPokemon(pokemon)
+                    setCurrentPokemon(prevCurrentPokemon => prevCurrentPokemon = pokemon)
             }
 
         }
+        
         setPokemons(prevPokemons => prevPokemons.concat(temp));
 
 
@@ -112,12 +114,14 @@ const PokemonPage = () => {
     }, []);
 
     return (
-        <div className='pokemonPage'>
-            <NavigBar {...currentPokemon} />
-            <PokemonSpecies {...currentPokemon} />
-            <Evolutions />
+        <CurrentPokemonContext.Provider value={{ currentPokemon, setCurrentPokemon }}>
+            <div className='pokemonPage'>
+                <NavigBar />
+                <PokemonSpecies />
+                <Evolutions />
 
-        </div>
+            </div>
+        </CurrentPokemonContext.Provider>
     );
 };
 

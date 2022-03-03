@@ -7,11 +7,13 @@ import BottomButton from './BottomButton';
 import PokemonContext from '../contexts/PokemonContext';
 import DisplayContext from '../contexts/DisplayContext';
 import nameTranslate from '../jsonfiles/pokemon_translate.json'
+import BackUpContext from '../contexts/BackupContext'
 
 const CardsPage = () => {
-    const { setPokemons } = useContext(PokemonContext);
+    const {setPokemons } = useContext(PokemonContext);
     const [group, setGroup] = useState(1)
     const [display, setDisplay] = useState("displayNumericUp")
+    const {backUp, setBackUp} = useContext(BackUpContext)
 
 
     const frenchNames = Object.keys(nameTranslate).map(element => {
@@ -72,14 +74,12 @@ const CardsPage = () => {
                     height: "",
                     ability1: "",
                     ability2: "",
-                    stats: {
-                        hp: null,
-                        attack: null,
-                        defense: null,
-                        specialAttack: null,
-                        specialDefense: null,
-                        speed: null
-                    }
+                    hp: "",
+                    attack: "",
+                    defense: "",
+                    specialAttack: "",
+                    specialDefense: "",
+                    speed: ""
                 }
 
                 obj.id = response.data.id;
@@ -104,20 +104,23 @@ const CardsPage = () => {
                 obj.ability1 = response.data.abilities[0].ability.name
                 try { obj.ability2 = response.data.abilities[1].ability.name }
                 catch { }
-                obj.stats.hp = response.data.stats[0].base_stat
-                obj.stats.attack = response.data.stats[1].base_stat
-                obj.stats.defense = response.data.stats[2].base_stat
-                obj.stats.specialAttack = response.data.stats[3].base_stat
-                obj.stats.specialDefense = response.data.stats[4].base_stat
-                obj.stats.speed = response.data.stats[5].base_stat
-
+                obj.hp = response.data.stats[0].base_stat
+                obj.attack = response.data.stats[1].base_stat
+                obj.defense = response.data.stats[2].base_stat
+                obj.specialAttack = response.data.stats[3].base_stat
+                obj.specialDefense = response.data.stats[4].base_stat
+                obj.speed = response.data.stats[5].base_stat
 
                 temp.push(obj)
 
             }
             setPokemons(prevPokemons => prevPokemons.concat(temp));
         }
-        fetchPokemons();
+            if (backUp === false){
+                fetchPokemons();
+                setBackUp(false)
+            }
+
     }, [group, setPokemons, display]);
 
     return (
