@@ -70,7 +70,6 @@ const CardsPage = () => {
                     nextName: "",
                     weight: "",
                     height: "",
-                    gender: "",
                     ability1: "",
                     ability2: "",
                     stats: {
@@ -92,6 +91,27 @@ const CardsPage = () => {
                 } catch (error) {
 
                 }
+                obj.prevId = obj.id === 1 ? length - 1 : obj.id - 1
+                const responsePrev = await axios.get(`https://pokeapi.co/api/v2/pokemon/${obj.prevId}`)
+                obj.prevName = responsePrev.data.name
+
+                obj.nextId = obj.id === length - 1 ? 1 : obj.id + 1
+
+                const responseNext = await axios.get(`https://pokeapi.co/api/v2/pokemon/${obj.nextId}`)
+                obj.nextName = responseNext.data.name
+                obj.height = response.data.height
+                obj.weight = response.data.weight
+                obj.ability1 = response.data.abilities[0].ability.name
+                try { obj.ability2 = response.data.abilities[1].ability.name }
+                catch { }
+                obj.stats.hp = response.data.stats[0].base_stat
+                obj.stats.attack = response.data.stats[1].base_stat
+                obj.stats.defense = response.data.stats[2].base_stat
+                obj.stats.specialAttack = response.data.stats[3].base_stat
+                obj.stats.specialDefense = response.data.stats[4].base_stat
+                obj.stats.speed = response.data.stats[5].base_stat
+
+
                 temp.push(obj)
 
             }

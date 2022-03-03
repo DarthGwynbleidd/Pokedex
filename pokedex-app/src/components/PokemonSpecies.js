@@ -1,49 +1,63 @@
 import React from 'react';
 import PokemonStats from './PokemonStats';
-// import typeTranslate from '../jsonfiles/type_translate.json'
-// import nameTranslate from '../jsonfiles/pokemon_translate.json'
+import typeTranslate from '../jsonfiles/type_translate.json'
+import nameTranslate from '../jsonfiles/pokemon_translate.json'
 
-const PokemonSpecies = () => {
+const PokemonSpecies = (props) => {
+    const translateName = (pokemonName) => {
+        let vfName = ''
+        for (let name in nameTranslate) {
+            if (nameTranslate[name].toLowerCase() === pokemonName)
+                vfName = name
+        }
+        return vfName
+    }
+    const translateType = (typeName) => {
+        let vfType = ''
+        for (let type in typeTranslate) {
+            if (type.toLowerCase() === typeName)
+                vfType = typeTranslate[type]
+        }
+        return vfType.toLowerCase()
+    }
+
     return (
         <div className='pokemon'>
             <div className='pokemon__left'>
                 <div className='pokemon__left__img'>
-                    <img src='/assets/bulbizarre.png' alt='bulbizar' />
+                    <img src={props.image} alt={translateName(props.pokemonName)} />
                 </div>
                 <div className='pokemon__left__stat' >
-                <PokemonStats />
+                    <PokemonStats stats={props.stats} />
                 </div>
             </div>
             <div className='pokemon__species'>
-                <p className='pokemon__species__anotation'/*flavor_text*/>Il y a une graine de plante sur son dos dès la naissance de ce Pokémon. La graine grossit lentement.</p>
+                <p className='pokemon__species__anotation'/*flavor_text*/>{props.flavor}</p>
                 <div className='pokemon__species__mensuration'>
                     <div className='pokemon__species__mensuration__left'>
                         <h4>Taille</h4>
-                        <p /*heigth API en decimetre*/>0.4m</p>
+                        <p /*heigth API en decimetre*/>{props.height / 10}m</p>
                         <h4>Poids</h4>
-                        <p /*weigth en decigramme*/>6.00kg </p>
-                        <h4>Genre</h4>
-                        <img /*symbole ?*/ src='./assets/pokemon-page/female_1.png' alt='symbole female' />
-                        <img src='/assets/pokemon-page/male_1.png' alt='symbole male' />
+                        <p /*weigth en decigramme*/>{props.weight / 10}kg </p>
+
                     </div>
                     <div className='pokemon__species__mensuration__rigth'>
-                        <h4>Catégories</h4>
-                        <p> souris</p>
-                        <h4>Talent</h4>
-                        <p>Statik</p>
+                        <h4>Talent(s)</h4>
+                        <p>{props.ability1}</p>
+                        <p>{props.ability2}</p>
                     </div>
                 </div>
                 <div className='pokemon__species__types'>
                     <h3>Types</h3>
                     <div className='pokemon__species__types__abilities'>
-                        <span className='type plante'>Plante</span>
+                        <span className={`type ${translateType(props.type1)}`}>{translateType(props.type1)}</span>
                     </div>
                     <div className='pokemon__species__types__abilities'>
-                        <span className='type glace'>Poison</span>
+                        <span className={`type ${translateType(props.type2)}`}>{translateType(props.type2)}</span>
                     </div>
                 </div>
 
-                <div className='pokemon__species__weaknesses'>
+                {/* <div className='pokemon__species__weaknesses'>
                     <h3>Faiblesses</h3>
                     <div className='pokemon__species__weaknesses__type'>
                         <span className='weakness feu'>Feu</span>
@@ -61,7 +75,7 @@ const PokemonSpecies = () => {
                     </div>
 
 
-                </div>
+                </div> */}
             </div>
         </div>
     );
