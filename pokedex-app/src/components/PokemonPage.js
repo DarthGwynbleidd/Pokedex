@@ -9,10 +9,20 @@ import PokemonContext from '../contexts/PokemonContext';
 
 const PokemonPage = () => {
 
-    const { pokemonName } = useParams()
+    const { name } = useParams()
     const { pokemons, setPokemons } = useContext(PokemonContext);
-
-    const pokemonNameNoAccent = pokemonName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    const urlName = name.split(":").join("")
+    const pokemonNameNoAccent = urlName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    const currentPokemon = {
+        id: "",
+        name: "",
+        image: "",
+        type1: "",
+        type2: "",
+        prevId: "",
+        prevName: "",
+        nextId: ""
+    }
 
     useEffect(() => {
         const temp = []
@@ -21,10 +31,10 @@ const PokemonPage = () => {
 
 
             let alias = ""
-            for (let name in nameTranslate) {
-                let noAccent = name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+            for (let element in nameTranslate) {
+                let noAccent = element.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
                 if (noAccent === pokemonNameNoAccent)
-                    alias = nameTranslate[name]
+                    alias = nameTranslate[element]
             }
 
             const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${alias}`)
@@ -42,17 +52,24 @@ const PokemonPage = () => {
             temp.push(obj)
 
         }
+        if (pokemons.length === 0) {
+            fetchPokemons()
+        } else {
+            for (let pokemon of pokemons) {
+                if (!pokemon[name])
+                    fetchPokemons();
+            }
+
+        }
         setPokemons(prevPokemons => prevPokemons.concat(temp));
 
-        for (let pokemon of pokemons) {
-            if (!pokemon[pokemonName])
-                fetchPokemons();
-        }
+
+
 
     }, []);
     return (
         <div className='pokemonPage'>
-            <NavigBar />
+            <NavigBar name={urlName} />
             <Pokemon />
             <Evolutions />
 

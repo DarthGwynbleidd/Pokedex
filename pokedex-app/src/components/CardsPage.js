@@ -58,7 +58,31 @@ const CardsPage = () => {
 
                 const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${alias}`)
 
-                const obj = { id: '', pokemonName: '', image: '', type1: '', type2: '' };
+                const obj = {
+                    id: "",
+                    name: "",
+                    image: "",
+                    type1: "",
+                    type2: "",
+                    prevId: "",
+                    prevName: "",
+                    nextId: "",
+                    nextName: "",
+                    weight: "",
+                    height: "",
+                    gender: "",
+                    ability1: "",
+                    ability2: "",
+                    stats: {
+                        hp: null,
+                        attack: null,
+                        defense: null,
+                        specialAttack: null,
+                        specialDefense: null,
+                        speed: null
+                    }
+                }
+
                 obj.id = response.data.id;
                 obj.pokemonName = response.data.name;
                 obj.image = response.data.sprites.other["official-artwork"].front_default;
