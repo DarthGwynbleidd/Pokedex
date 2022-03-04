@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import AutoSuggest from 'react-autosuggest/dist/Autosuggest';
+import AutoSuggest from 'react-autosuggest';
 import nameTranslate from '../jsonfiles/pokemon_translate.json'
 
 
 const SearchBar = () => {
     const [value, setValue] = useState("");
     const [suggestions, setSuggestions] = useState([]);
+    suggestions.length = 3;
 
     const frenchNames = Object.keys(nameTranslate).map(element => {
         return element.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
@@ -22,9 +23,14 @@ const SearchBar = () => {
 
 
     function getSuggestions(value) {
-        return frenchNames.filter(frenchName =>
-            frenchName.includes(value.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
+
+        const inputValue = value.trim().toLowerCase();
+        const inputLength = inputValue.length;
+
+        return inputLength === 0 ? [] : frenchNames.filter(frenchName => 
+            frenchName.slice(0, inputLength) === inputValue
         );
+        
     }
     return (
         <div className='searchbar'>
@@ -39,8 +45,8 @@ const SearchBar = () => {
                 onSuggestionSelected={(_, { suggestionValue }) =>
                     console.log("Selected: " + suggestionValue)
                 }
-                getSuggestionValue={suggestion => suggestion.name}
-                renderSuggestion={suggestion => <span>{suggestion.name}</span>}
+                getSuggestionValue={suggestion => suggestion}
+                renderSuggestion={suggestion => <span>{suggestion}</span>}
                 inputProps={{
                     placeholder: 'Nom ou numéro',
                     value: value,
