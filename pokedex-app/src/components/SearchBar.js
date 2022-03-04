@@ -11,28 +11,28 @@ const SearchBar = () => {
         return element.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     })
 
-    // const lowerCasedCompanies = frenchNames.map(frenchName => {
-    //     return {
-    //         id: frenchName.id,
-    //         name: frenchName.name.toLowerCase()
-    //     };
-    // });
-
+    const pokemons = frenchNames.map((frenchName, index) => {
+        return {
+            id: index + 1,
+            name: frenchName
+        };
+    });
 
 
 
     function getSuggestions(value) {
-        return frenchNames.filter(frenchName =>
-            frenchName.includes(value.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
+        return pokemons.filter(pokemon =>
+            pokemon.name.includes(value.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
+
         );
     }
     return (
         <div className='searchbar'>
             <AutoSuggest className='search'
-                suggestions={suggestions}
+                suggestions={suggestions.slice(0,5)}
                 onSuggestionsClearRequested={() => setSuggestions([])}
                 onSuggestionsFetchRequested={({ value }) => {
-                    console.log(value);
+                    // console.log(value);
                     setValue(value);
                     setSuggestions(getSuggestions(value));
                 }}
@@ -40,7 +40,9 @@ const SearchBar = () => {
                     console.log("Selected: " + suggestionValue)
                 }
                 getSuggestionValue={suggestion => suggestion.name}
-                renderSuggestion={suggestion => <span>{suggestion.name}</span>}
+                renderSuggestion={suggestion => {
+                    
+                    return <span>{suggestion.name}</span>}}
                 inputProps={{
                     placeholder: 'Nom ou numéro',
                     value: value,
