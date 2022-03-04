@@ -7,7 +7,7 @@ import PokemonSpecies from './PokemonSpecies';
 import nameTranslate from '../jsonfiles/pokemon_translate.json'
 import PokemonContext from '../contexts/PokemonContext';
 import CurrentPokemonContext from '../contexts/CurrentPokemonContext'
-import DisplayContext from '../contexts/DisplayContext';
+
 
 const PokemonPage = () => {
 
@@ -97,7 +97,7 @@ const PokemonPage = () => {
 
         } else {
             for (let pokemon of pokemons) {
-                if (!pokemon[name]){
+                if (!pokemon[name]) {
                     fetchPokemons();
                 }
                 else
@@ -105,13 +105,13 @@ const PokemonPage = () => {
             }
 
         }
-        
+
         setPokemons(prevPokemons => prevPokemons.concat(temp));
 
 
 
 
-    }, []);
+    }, [name]);
 
     return (
         <CurrentPokemonContext.Provider value={{ currentPokemon, setCurrentPokemon }}>

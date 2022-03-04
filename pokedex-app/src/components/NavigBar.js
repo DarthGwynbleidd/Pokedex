@@ -5,9 +5,8 @@ import CurrentPokemonContext from '../contexts/CurrentPokemonContext';
 import BackUpContext from '../contexts/BackupContext'
 
 const NavigBar = () => {
-
-    const {setBackUp} = useContext(BackUpContext)
-    const {currentPokemon} = useContext(CurrentPokemonContext)
+    const { setBackUp } = useContext(BackUpContext)
+    const { currentPokemon } = useContext(CurrentPokemonContext)
     const translateName = (pokemonName) => {
         let vfName = ''
         for (let name in nameTranslate) {
@@ -20,15 +19,15 @@ const NavigBar = () => {
     return (
         <div className='navigbar'>
             <div className='navigbar__top'>
-                <div className='navigbar__top__previous'>
+                <NavLink to={`/:${translateName(currentPokemon.prevName)}`} className='navigbar__top__previous'>
                     &#60; N°. {currentPokemon.prevId}  {translateName(currentPokemon.prevName)}
-                </div>
+                </NavLink>
                 <NavLink onClick={setBackUp(true)} to="/" className='navigbar__top__home'>
                     Retour
                 </NavLink>
-                <div className='navigbar__top__next'>
+                <NavLink to={`/:${translateName(currentPokemon.nextName)}`} className='navigbar__top__next'>
                     {translateName(currentPokemon.nextName)}  N°. {currentPokemon.nextId} &#62;
-                </div>
+                </NavLink>
             </div>
             <div className='navigbar__bottom'>
                 <div className='navigbar__bottom__blocLeft'>
