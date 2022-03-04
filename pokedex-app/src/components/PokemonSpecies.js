@@ -8,12 +8,11 @@ import CurrentPokemonContext from '../contexts/CurrentPokemonContext';
 const PokemonSpecies = () => {
 
     const {currentPokemon} = useContext(CurrentPokemonContext)
-
     const translateName = (pokemonName) => {
         let vfName = ''
         for (let name in nameTranslate) {
             if (nameTranslate[name].toLowerCase() === pokemonName)
-                vfName = name
+            vfName = name
         }
         return vfName
     }
@@ -21,7 +20,7 @@ const PokemonSpecies = () => {
         let vfType = ''
         for (let type in typeTranslate) {
             if (type.toLowerCase() === typeName)
-                vfType = typeTranslate[type]
+            vfType = typeTranslate[type]
         }
         return vfType.toLowerCase()
     }
@@ -29,11 +28,11 @@ const PokemonSpecies = () => {
         let vfAbility = ''
         for (let ability in abilitiesTranslate){
             if (abilitiesTranslate[ability].toLowerCase() === abilityName)
-                vfAbility = ability
+            vfAbility = ability
         }
         return vfAbility
     }
-
+    
     return (
         <div className='pokemon'>
             <div className='pokemon__left'>
@@ -55,7 +54,7 @@ const PokemonSpecies = () => {
 
                     </div>
                     <div className='pokemon__species__mensuration__rigth'>
-                        <h4>Talent(s)</h4>
+                        <h4>{currentPokemon.ability2? "Talents" : "Talent"}</h4>
                         <p>{translateAbilities(currentPokemon.ability1)}</p>
                         <p>{translateAbilities(currentPokemon.ability2)}</p>
                     </div>

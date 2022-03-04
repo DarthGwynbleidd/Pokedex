@@ -19,7 +19,6 @@ const CardsPage = () => {
     const frenchNames = Object.keys(nameTranslate).map(element => {
         return element.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     }).sort()
-
     useEffect(() => {
 
         async function fetchPokemons() {
