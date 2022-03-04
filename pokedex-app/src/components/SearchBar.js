@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AutoSuggest from 'react-autosuggest/dist/Autosuggest';
+import AutoSuggest from 'react-autosuggest';
 import nameTranslate from '../jsonfiles/pokemon_translate.json'
 
 
@@ -10,17 +10,7 @@ const SearchBar = () => {
     const frenchNames = Object.keys(nameTranslate).map(element => {
         return element.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     })
-
-    // const lowerCasedCompanies = frenchNames.map(frenchName => {
-    //     return {
-    //         id: frenchName.id,
-    //         name: frenchName.name.toLowerCase()
-    //     };
-    // });
-
-
-
-
+    console.log(frenchNames)
     function getSuggestions(value) {
         return frenchNames.filter(frenchName =>
             frenchName.includes(value.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
@@ -39,8 +29,8 @@ const SearchBar = () => {
                 onSuggestionSelected={(_, { suggestionValue }) =>
                     console.log("Selected: " + suggestionValue)
                 }
-                getSuggestionValue={suggestion => suggestion.name}
-                renderSuggestion={suggestion => <span>{suggestion.name}</span>}
+                getSuggestionValue={suggestion => frenchNames.name}
+                renderSuggestion={suggestion => <span>{frenchNames.name}</span>}
                 inputProps={{
                     placeholder: 'Nom ou numéro',
                     value: value,
