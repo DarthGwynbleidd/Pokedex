@@ -17,17 +17,22 @@ const NavigBar = () => {
         return vfName
     }
 
+        
+    const addZero = (number) => {
+        return +number < 10? `00${+number}` : `0${+number}`
+    }
+
     return (
         <div className='navigbar'>
             <div className='navigbar__top'>
                 <div className='navigbar__top__previous'>
-                    &#60; N°. {currentPokemon.prevId}  {translateName(currentPokemon.prevName)}
+                    &#60; N°. {currentPokemon.prevId < 100? addZero(currentPokemon.prevId) : currentPokemon.prevId}  {translateName(currentPokemon.prevName)}
                 </div>
                 <NavLink onClick={setBackUp(true)} to="/" className='navigbar__top__home'>
                     Retour
                 </NavLink>
                 <div className='navigbar__top__next'>
-                    {translateName(currentPokemon.nextName)}  N°. {currentPokemon.nextId} &#62;
+                    {translateName(currentPokemon.nextName)}  N°. {currentPokemon.nextId < 100? addZero(currentPokemon.nextId) : currentPokemon.nextId} &#62;
                 </div>
             </div>
             <div className='navigbar__bottom'>
@@ -35,7 +40,7 @@ const NavigBar = () => {
                     <div className='navigbar__bottom__blocLeft__leftSup'></div>
                     <div className='navigbar__bottom__blocLeft__leftInf'></div>
                 </div>
-                <div className='navigbar__bottom__center'>{translateName(currentPokemon.pokemonName)} <span> N°. {currentPokemon.id}</span></div>
+                <div className='navigbar__bottom__center'>{translateName(currentPokemon.pokemonName)} <span> N°. {currentPokemon.id < 100? addZero(currentPokemon.id) : currentPokemon.id}</span></div>
                 <div className='navigbar__bottom__blocRight'>
                     <div className='navigbar__bottom__blocRight__rightSup'></div>
                     <div className='navigbar__bottom__blocRight__rightInf'></div>

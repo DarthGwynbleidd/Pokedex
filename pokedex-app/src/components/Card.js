@@ -23,6 +23,11 @@ const Card = (props) => {
         }
         return vfType.toLowerCase()
     }
+    
+    const addZero = (number) => {
+        return +number < 10? `00${+number}` : `0${+number}`
+    }
+
     return (
         <NavLink to={`/:${translateName(props.pokemonName)}`} className='card'>
             <div className='card_vide'>
@@ -30,7 +35,7 @@ const Card = (props) => {
                     <img src={props.image} alt={props.name} />
                 </figure>
                 <div className='card_vide_desc'>
-                    <p><span>No. {props.id}</span></p>
+                    <p><span>No. {props.id< 100? addZero(props.id) : props.id}</span></p>
                     <h5>{translateName(props.pokemonName)}</h5>
                     <div className='card_vide_desc_abilities'>
                         <span className={`pill ${translateType(props.type1)}`}>{translateType(props.type1)}</span>
