@@ -10,10 +10,10 @@ import nameTranslate from '../jsonfiles/pokemon_translate.json'
 import BackUpContext from '../contexts/BackupContext'
 
 const CardsPage = () => {
-    const {setPokemons } = useContext(PokemonContext);
+    const { setPokemons } = useContext(PokemonContext);
     const [group, setGroup] = useState(1)
     const [display, setDisplay] = useState("displayNumericUp")
-    const {backUp, setBackUp} = useContext(BackUpContext)
+    const { backUp, setBackUp } = useContext(BackUpContext)
 
 
     const frenchNames = Object.keys(nameTranslate).map(element => {
@@ -115,10 +115,10 @@ const CardsPage = () => {
             }
             setPokemons(prevPokemons => prevPokemons.concat(temp));
         }
-            if (backUp === false){
-                fetchPokemons();
-                setBackUp(false)
-            }
+        if (backUp === false) {
+            fetchPokemons();
+        }
+        setBackUp(false)
 
     }, [group, setPokemons, display]);
 
