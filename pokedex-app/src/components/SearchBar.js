@@ -12,16 +12,6 @@ const SearchBar = () => {
         return element.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     })
 
-    // const lowerCasedCompanies = frenchNames.map(frenchName => {
-    //     return {
-    //         id: frenchName.id,
-    //         name: frenchName.name.toLowerCase()
-    //     };
-    // });
-
-
-
-
     function getSuggestions(value) {
 
         const inputValue = value.trim().toLowerCase();
