@@ -33,10 +33,11 @@ const BottomButton = (props) => {
         setApparaitUp(document.documentElement.scrollTop > 400 ? true : false);
         // Fait disparaitre le bouton 'charger plus de pokémons' dès que la page dépasse
         // les 2200 px (ce qui correspond à 24 pokémons d'affichés)
-        // setApparaitMore(document.documentElement.offsetHeight < 2200 ? true : false);
- 
+        setApparaitMore(document.documentElement.offsetHeight < 2200 ? true : false);
+
         // Envoie une requête pour charger 12 pokémons supplémentaires dès que le scroll
         // arrive à moins de 1000px du bas le la page.
+
 
         // if (!apparaitMore) {
         //     if (+document.documentElement.offsetHeight !== memoire) {
@@ -51,6 +52,7 @@ const BottomButton = (props) => {
         //         }
         //     }
         // }
+
 
         // Hauteur de la div footer
         const heightFooter = document.querySelector('.footer').offsetHeight;
@@ -69,7 +71,7 @@ const BottomButton = (props) => {
         // le résultat étant une différence, j'inverse le signe pour qu'il reste positif
         // ex calc = -20 => 20 + 20 = 40 => bottom: 40px
         // ex calc = 1278 => bottom: 100px(initialisé dans le useState)
-        setBottomMargin(calc < 0? -calc + 20 : 50);
+        setBottomMargin(calc < 0 ? -calc + 20 : 50);
 
         calculLeftArrow();
     }
