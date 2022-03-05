@@ -25,10 +25,10 @@ const SearchBar = () => {
     return (
         <div className='searchbar'>
             <AutoSuggest className='search'
-                suggestions={suggestions}
+                suggestions={suggestions.slice(0,5)}
                 onSuggestionsClearRequested={() => setSuggestions([])}
                 onSuggestionsFetchRequested={({ value }) => {
-                    console.log(value);
+                    // console.log(value);
                     setValue(value);
                     setSuggestions(getSuggestions(value));
                 }}

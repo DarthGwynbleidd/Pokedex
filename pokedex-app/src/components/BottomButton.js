@@ -31,27 +31,6 @@ const BottomButton = (props) => {
     window.onscroll = () => {
         // Fait apparaitre la flêche dès que le scroll atteint 400
         setApparaitUp(document.documentElement.scrollTop > 400 ? true : false);
-        // Fait disparaitre le bouton 'charger plus de pokémons' dès que la page dépasse
-        // les 2200 px (ce qui correspond à 24 pokémons d'affichés)
-        setApparaitMore(document.documentElement.offsetHeight < 2200 ? true : false);
-
-        // Envoie une requête pour charger 12 pokémons supplémentaires dès que le scroll
-        // arrive à moins de 1000px du bas le la page.
-
-
-        // if (!apparaitMore) {
-        //     if (+document.documentElement.offsetHeight !== memoire) {
-        //         const position = document.documentElement.offsetHeight - document.documentElement.scrollTop;
-        //         if ( position < 1000) {
-
-        //             // remonte le scroll au dessus de 1100px avant de charger les nouveaux pokémons
-        //             // afin de ne pas plusieurs requêtes en même temps
-        //             document.documentElement.scrollTop = document.documentElement.offsetHeight - 1300;
-        //             memoire = document.documentElement.offsetHeight;
-        //             props.setGroup(prevGroup => prevGroup + 12);
-        //         }
-        //     }
-        // }
 
 
         // Hauteur de la div footer
@@ -83,7 +62,6 @@ const BottomButton = (props) => {
 
     return (
         <div className='bottom_button'>
-            {/* <div className={apparaitMore ? 'bottom_button__more' : 'bottom_button__more__no'}> */}
             <div className={'bottom_button__more'}>
                 <button onClick={() => { props.setGroup(prevGroup => prevGroup + 12) }}>Charger d'autres Pokémons</button>
             </div>
