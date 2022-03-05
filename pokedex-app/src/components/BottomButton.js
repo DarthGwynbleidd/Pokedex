@@ -3,7 +3,7 @@ import PokemonStats from './PokemonStats';
 
 const BottomButton = (props) => {
     const [apparaitUp, setApparaitUp] = useState(false);
-    const [apparaitMore, setApparaitMore] = useState(true);
+    // const [apparaitMore, setApparaitMore] = useState(true);
     const [leftMargin, setLeftMargin] = useState();
     // Initialisation du bottom_button__up à 100px du bas de la page
     const [bottomMargin, setBottomMargin] = useState(100);
@@ -38,18 +38,21 @@ const BottomButton = (props) => {
         // Envoie une requête pour charger 12 pokémons supplémentaires dès que le scroll
         // arrive à moins de 1000px du bas le la page.
 
-        if (!apparaitMore) {
-            if (+document.documentElement.offsetHeight !== memoire) {
-                const position = document.documentElement.offsetHeight - document.documentElement.scrollTop;
-                if (position < 930) {
-                    // remonte le scroll au dessus de 1100px avant de charger les nouveaux pokémons
-                    // afin de ne pas plusieurs requêtes en même temps
-                    //             document.documentElement.scrollTop = document.documentElement.offsetHeight - 1300;
-                    //             memoire = document.documentElement.offsetHeight;
-                    //             props.setGroup(prevGroup => prevGroup + 12);
-                }
-            }
-        }
+
+        // if (!apparaitMore) {
+        //     if (+document.documentElement.offsetHeight !== memoire) {
+        //         const position = document.documentElement.offsetHeight - document.documentElement.scrollTop;
+        //         if ( position < 1000) {
+
+        //             // remonte le scroll au dessus de 1100px avant de charger les nouveaux pokémons
+        //             // afin de ne pas plusieurs requêtes en même temps
+        //             document.documentElement.scrollTop = document.documentElement.offsetHeight - 1300;
+        //             memoire = document.documentElement.offsetHeight;
+        //             props.setGroup(prevGroup => prevGroup + 12);
+        //         }
+        //     }
+        // }
+
 
         // Hauteur de la div footer
         const heightFooter = document.querySelector('.footer').offsetHeight;

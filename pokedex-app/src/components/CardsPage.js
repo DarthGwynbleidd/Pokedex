@@ -7,17 +7,18 @@ import BottomButton from './BottomButton';
 import PokemonContext from '../contexts/PokemonContext';
 import DisplayContext from '../contexts/DisplayContext';
 import nameTranslate from '../jsonfiles/pokemon_translate.json'
+import BackUpContext from '../contexts/BackupContext'
 
 const CardsPage = () => {
     const { setPokemons } = useContext(PokemonContext);
     const [group, setGroup] = useState(1)
     const [display, setDisplay] = useState("displayNumericUp")
+    const { backUp, setBackUp } = useContext(BackUpContext)
 
 
     const frenchNames = Object.keys(nameTranslate).map(element => {
         return element.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     }).sort()
-
     useEffect(() => {
 
         async function fetchPokemons() {
@@ -58,7 +59,28 @@ const CardsPage = () => {
 
                 const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${alias}`)
 
-                const obj = { id: '', pokemonName: '', image: '', type1: '', type2: '' };
+                const obj = {
+                    id: "",
+                    name: "",
+                    image: "",
+                    type1: "",
+                    type2: "",
+                    prevId: "",
+                    prevName: "",
+                    nextId: "",
+                    nextName: "",
+                    weight: "",
+                    height: "",
+                    ability1: "",
+                    ability2: "",
+                    hp: "",
+                    attack: "",
+                    defense: "",
+                    specialAttack: "",
+                    specialDefense: "",
+                    speed: ""
+                }
+
                 obj.id = response.data.id;
                 obj.pokemonName = response.data.name;
                 obj.image = response.data.sprites.other["official-artwork"].front_default;
@@ -68,12 +90,36 @@ const CardsPage = () => {
                 } catch (error) {
 
                 }
+                obj.prevId = obj.id === 1 ? length - 1 : obj.id - 1
+                const responsePrev = await axios.get(`https://pokeapi.co/api/v2/pokemon/${obj.prevId}`)
+                obj.prevName = responsePrev.data.name
+
+                obj.nextId = obj.id === length - 1 ? 1 : obj.id + 1
+
+                const responseNext = await axios.get(`https://pokeapi.co/api/v2/pokemon/${obj.nextId}`)
+                obj.nextName = responseNext.data.name
+                obj.height = response.data.height
+                obj.weight = response.data.weight
+                obj.ability1 = response.data.abilities[0].ability.name
+                try { obj.ability2 = response.data.abilities[1].ability.name }
+                catch { }
+                obj.hp = response.data.stats[0].base_stat
+                obj.attack = response.data.stats[1].base_stat
+                obj.defense = response.data.stats[2].base_stat
+                obj.specialAttack = response.data.stats[3].base_stat
+                obj.specialDefense = response.data.stats[4].base_stat
+                obj.speed = response.data.stats[5].base_stat
+
                 temp.push(obj)
 
             }
             setPokemons(prevPokemons => prevPokemons.concat(temp));
         }
-        fetchPokemons();
+        if (backUp === false) {
+            fetchPokemons();
+        }
+        setBackUp(false)
+
     }, [group, setPokemons, display]);
 
     return (

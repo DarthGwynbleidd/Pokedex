@@ -89,20 +89,22 @@
     background-color: #4592c4;
     color: #fff;
 }
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: Righteous, Arial, Helvetica, sans-serif;
+    text-decoration: none;
 }
-body{
-    background: linear-gradient(rgba(146, 146, 146, 0.400), rgba(146, 146, 146, 0.400)), url('../../public/assets/body_background.png');
+body {
+    background: linear-gradient(rgba(146, 146, 146, 0.4), rgba(146, 146, 146, 0.4)),
+        url("../../public/assets/body_background.png");
 }
 .container {
     max-width: 1200px;
     margin: auto;
-    background-color: #E4E4E4;
+    background-color: #e4e4e4;
 }
-h4, h3{
+h4,
+h3 {
     letter-spacing: 2px;
 }
-
