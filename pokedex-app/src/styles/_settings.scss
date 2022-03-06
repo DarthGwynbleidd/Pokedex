@@ -107,4 +107,12 @@ body {
 h4,
 h3 {
     letter-spacing: 2px;
+    
+}
+h3{
+    font-size: 1.5rem;
+
+    @media screen and( max-width:800px) {
+        font-size: 1.2rem;
+    }
 }

@@ -1,11 +1,19 @@
 .pokemon {
-    height:800px;
+    height:900px;
     width: 90%;
     margin: auto;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-direction: row;
+
+    @media screen and( max-width:900px) {
+        
+        height: auto;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
 
     &__left {
         width: 50%;
@@ -18,18 +26,34 @@
 
         &__img{
             height: 50%;
+            width: 100%;
+        }
+        @media screen and( max-width:900px) {
+          
+            width: 80%;
+            
         }
 
         &__img img{
             height: 100%;
-            width: 100%;
-           
+            width: auto;
+
+            @media screen and( max-width:900px) {
+                height: auto;
+                width: 100%;
+                
+            }
         }
 
         &__stat{
             height: 50%;
             width: 100%;
-            // background-color: dimgray;
+            
+            @media screen and( max-width:900px) {
+                height: auto;
+                width: 100%;
+                
+            }
         }
     }
     &__species {
@@ -40,8 +64,19 @@
         justify-content: space-around;
         padding-left: 25px;
 
+        @media screen and( max-width:900px) {
+            width: 80%;
+            padding: 0;
+        }
+
         p{
-            font-size: 17px;
+            font-size: 1.5rem;
+
+            @media screen and( max-width:900px) {
+                
+                margin: 10% 0;
+            }
+
         }
 
         &__anotation {
@@ -51,38 +86,46 @@
         }
 
         &__mensuration {
-            height: 200px;
-            width: 80%;
-           
+            height: 150px;
+            width: 90%;     
             background-color: #30a7d7;
             color: white;            
             border-radius: 20px;
             display: flex;
             flex-direction: row;
-            padding: 15px;
+            padding: 5%;
+
+            @media screen and( max-width:900px) {
+                
+                margin-bottom: 10%;
+            }
 
             &__left{
                 width: 50%;
                 
                 h4, p{
-                    height: 15%;
-                    
+                    height: 25%;
+                   
+                    @media screen and( max-width:900px) {
+                    height: 10%; 
+ 
+                    }
                 }
                 p{
                     color: black;
-                    font-size: 18px;
+                    font-size: 20px;
                     letter-spacing: 1.2px;
                 }
             }
             &__rigth{
                 width: 50%;
-
+                                
                 h4, p{
-                    height: 15%;
+                    height: 25%;
                 }
                 p{
                     color: black;
-                    font-size: 18px;
+                    font-size: 20px;
                     letter-spacing: 1.2px;
                 }
             }
@@ -91,7 +134,7 @@
 
 
         &__types {
-            height: 15%;
+            height: 25%;
             width: 100%;
 
             &__abilities {
@@ -102,103 +145,11 @@
                     letter-spacing: 1.2px;
                     max-width: 110px;
                     margin: 1.6% 1.6% 0 0;
-                    width: 39%;
+                    width: 50%;
                     float: left;
                     font-size: 1rem;
                     text-align: center;
                    
-                }
-
-                .insecte {
-                    @include insecte;
-                }
-
-                .dragon {
-                    @include dragon;
-                }
-
-                .fée {
-                    @include fée;
-                }
-
-                .feu {
-                    @include feu;
-                }
-
-                .spectre {
-                    @include spectre;
-                }
-
-                .sol {
-                    @include sol;
-                }
-
-                .normal {
-                    @include normal;
-                }
-
-                .psy {
-                    @include psy;
-                }
-
-                .acier {
-                    @include acier;
-                }
-
-                .ténèbres {
-                    @include ténèbres;
-                }
-
-                .électrik {
-                    @include électrik;
-                }
-
-                .combat {
-                    @include combat;
-                }
-
-                .vol {
-                    @include vol;
-                }
-
-                .plante {
-                    @include plante;
-                }
-
-                .glace {
-                    @include glace;
-                }
-
-                .poison {
-                    @include poison;
-                }
-
-                .roche {
-                    @include roche;
-                }
-
-                .eau {
-                    @include eau;
-                }
-            }
-        }
-        &__weaknesses {
-            height: 25%;
-            width: 100%;
-  
-
-            &__type {
-                .weakness {
-                    border-radius: 5px;
-                    line-height: 30px;
-                    letter-spacing: 1.2px;
-                    max-width: 110px;
-                    margin: 1.6% 1.6% 0 0;
-                    width: 39%;
-                    float: left;
-                    font-size: 1rem;
-                    text-align: center;
-                    
                 }
 
                 .insecte {
