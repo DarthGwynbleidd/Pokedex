@@ -1,12 +1,18 @@
 import React, { useContext } from 'react';
 import PokemonContext from '../contexts/PokemonContext';
+import CurrentPokemonContext from '../contexts/CurrentPokemonContext';
 
 
 
 const Evolutions = (props) => {
-    const { pokemons } = useContext(PokemonContext);
-    console.log(props)
-    console.log(pokemons)
+    const { currentPokemon } = useContext(CurrentPokemonContext)
+
+
+    const addZero = (number) => {
+        return +number < 10 ? `00${+number}` : `0${+number}`
+    }
+
+
     return (
         <div className='containerevolution'>
             <div className='containerevolution__title'>
@@ -17,21 +23,25 @@ const Evolutions = (props) => {
                 {/* <div className='containerevolution__mainboxcard__cardevo1'>  */}
                 <div className='containerevolution__mainboxcard__card__evo'>
                     <figure className='containerevolution__mainboxcard__card__evo__picture'>
-                        <img src={pokemons[props.id].image} alt="img" />
+                        <img src={currentPokemon.image} alt="img" />
                     </figure>
                     <div className='containerevolution__mainboxcard__card__evo__desc'>
-                        <p><span>No. {pokemons[props.id].id}</span></p>
-                        <h5>{pokemons[props.id].name}</h5>
-                        <div className='containerevolution__mainboxcard__card__evo__abilities'>
-                            <span className={`pill ${pokemons[props.id].type1}`}>{pokemons[props.id].Type1}</span>
+                        <div className='containerevolution__mainboxcard__card__evo__desc__name'>
+                            <h5>{currentPokemon.pokemonName}</h5>
+                            <p><span>#{addZero(currentPokemon.id)}</span></p>
                         </div>
-                        <div className='containerevolution__mainboxcard__card__evo__abilities'>
-                            <span className={`pill ${pokemons[props.id].type2}`}>{pokemons[props.id].type2}</span>
+                        <div className='containerevolution__mainboxcard__card__evo__desc__type'>
+                            <div className='containerevolution__mainboxcard__card__evo__desc__type__abilities'>
+                                <span className={`pill ${currentPokemon.type1}`}>{currentPokemon.type1}</span>
+                            </div>
+                            <div className='containerevolution__mainboxcard__card__evo__desc__type__abilities'>
+                                <span className={`pill ${currentPokemon.type2}`}>{currentPokemon.type2}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div className='containerevolution__mainboxcard__chevron1'></div>
+                <div className='containerevolution__mainboxcard__chevron1'>  </div>
 
                 {/* <div className='containerevolution__mainboxcard__cardevo2'>
                         <div className='card_evo'>
