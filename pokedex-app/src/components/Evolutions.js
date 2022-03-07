@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PokemonContext from '../contexts/PokemonContext';
 import CurrentPokemonContext from '../contexts/CurrentPokemonContext';
 
@@ -6,7 +6,7 @@ import CurrentPokemonContext from '../contexts/CurrentPokemonContext';
 
 const Evolutions = (props) => {
     const { currentPokemon } = useContext(CurrentPokemonContext)
-
+    const [nbrMax, setNbrMax] = useState('__max')
 
     const addZero = (number) => {
         return +number < 10 ? `00${+number}` : `0${+number}`
@@ -16,33 +16,139 @@ const Evolutions = (props) => {
     return (
         <div className='containerevolution'>
             <div className='containerevolution__title'>
-                <p>Evolutions</p>
+                <h3>Evolutions</h3>
             </div>
 
             <div className='containerevolution__mainboxcard'>
-                {/* <div className='containerevolution__mainboxcard__cardevo1'>  */}
-                <div className='containerevolution__mainboxcard__card__evo'>
-                    <figure className='containerevolution__mainboxcard__card__evo__picture'>
-                        <img src={currentPokemon.image} alt="img" />
-                    </figure>
-                    <div className='containerevolution__mainboxcard__card__evo__desc'>
-                        <div className='containerevolution__mainboxcard__card__evo__desc__name'>
-                            <h5>{currentPokemon.pokemonName}</h5>
-                            <p><span>#{addZero(currentPokemon.id)}</span></p>
-                        </div>
-                        <div className='containerevolution__mainboxcard__card__evo__desc__type'>
-                            <div className='containerevolution__mainboxcard__card__evo__desc__type__abilities'>
-                                <span className={`pill ${currentPokemon.type1}`}>{currentPokemon.type1}</span>
+                <div className='containerevolution__mainboxcard__cardevo1'>
+                    <div className='containerevolution__mainboxcard__cardevo1__evo'>
+                        <figure className='containerevolution__mainboxcard__cardevo1__evo__picture'>
+                            <img src={currentPokemon.image} alt="img" />
+                        </figure>
+                        <div className='containerevolution__mainboxcard__cardevo1__evo__desc'>
+                            <div className='containerevolution__mainboxcard__cardevo1__evo__desc__name'>
+                                <h5>{currentPokemon.pokemonName}</h5>
+                                <p><span>#{addZero(currentPokemon.id)}</span></p>
                             </div>
-                            <div className='containerevolution__mainboxcard__card__evo__desc__type__abilities'>
-                                <span className={`pill ${currentPokemon.type2}`}>{currentPokemon.type2}</span>
+                            <div className='containerevolution__mainboxcard__cardevo1__evo__desc__type'>
+                                <div className='containerevolution__mainboxcard__cardevo1__evo__desc__type__abilities'>
+                                    <span className={`pill ${currentPokemon.type1}`}>{currentPokemon.type1}</span>
+                                </div>
+                                <div className='containerevolution__mainboxcard__cardevo1__evo__desc__type__abilities'>
+                                    <span className={`pill ${currentPokemon.type2}`}>{currentPokemon.type2}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div className='containerevolution__mainboxcard__chevron1'>  </div>
+                    <div className='containerevolution__mainboxcard__chevron1'>&#62;</div>
+                <div className='containerevolution__mainboxcard__cardevo2'>
 
+                    <div className='containerevolution__mainboxcard__cardevo2__evo'>
+                        <figure className={`containerevolution__mainboxcard__cardevo2__evo__picture${nbrMax}`}>
+                            <img src={currentPokemon.image} alt="img" />
+                        </figure>
+                        <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
+                            <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax}`}>
+                                <h5>{currentPokemon.pokemonName}</h5>
+                                <p><span>#{addZero(currentPokemon.id)}</span></p>
+                            </div>
+                            <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
+                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                    <span className={`pill ${currentPokemon.type1}`}>{currentPokemon.type1}</span>
+                                </div>
+                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                    <span className={`pill ${currentPokemon.type2}`}>{currentPokemon.type2}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className='containerevolution__mainboxcard__cardevo2__evo'>
+                        <figure className={`containerevolution__mainboxcard__cardevo2__evo__picture${nbrMax}`}>
+                            <img src={currentPokemon.image} alt="img" />
+                        </figure>
+                        <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
+                            <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax}`}>
+                                <h5>{currentPokemon.pokemonName}</h5>
+                                <p><span>#{addZero(currentPokemon.id)}</span></p>
+                            </div>
+                            <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
+                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                    <span className={`pill ${currentPokemon.type1}`}>{currentPokemon.type1}</span>
+                                </div>
+                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                    <span className={`pill ${currentPokemon.type2}`}>{currentPokemon.type2}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className='containerevolution__mainboxcard__cardevo2__evo'>
+                        <figure className={`containerevolution__mainboxcard__cardevo2__evo__picture${nbrMax}`}>
+                            <img src={currentPokemon.image} alt="img" />
+                        </figure>
+                        <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
+                            <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax}`}>
+                                <h5>{currentPokemon.pokemonName}</h5>
+                                <p><span>#{addZero(currentPokemon.id)}</span></p>
+                            </div>
+                            <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
+                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                    <span className={`pill ${currentPokemon.type1}`}>{currentPokemon.type1}</span>
+                                </div>
+                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                    <span className={`pill ${currentPokemon.type2}`}>{currentPokemon.type2}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className='containerevolution__mainboxcard__cardevo2__evo'>
+                        <figure className={`containerevolution__mainboxcard__cardevo2__evo__picture${nbrMax}`}>
+                            <img src={currentPokemon.image} alt="img" />
+                        </figure>
+                        <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
+                            <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax}`}>
+                                <h5>{currentPokemon.pokemonName}</h5>
+                                <p><span>#{addZero(currentPokemon.id)}</span></p>
+                            </div>
+                            <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
+                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                    <span className={`pill ${currentPokemon.type1}`}>{currentPokemon.type1}</span>
+                                </div>
+                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                    <span className={`pill ${currentPokemon.type2}`}>{currentPokemon.type2}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className='containerevolution__mainboxcard__cardevo2__evo'>
+                        <figure className={`containerevolution__mainboxcard__cardevo2__evo__picture${nbrMax}`}>
+                            <img src={currentPokemon.image} alt="img" />
+                        </figure>
+                        <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
+                            <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax}`}>
+                                <h5>{currentPokemon.pokemonName}</h5>
+                                <p><span>#{addZero(currentPokemon.id)}</span></p>
+                            </div>
+                            <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
+                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                    <span className={`pill ${currentPokemon.type1}`}>{currentPokemon.type1}</span>
+                                </div>
+                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                    <span className={`pill ${currentPokemon.type2}`}>{currentPokemon.type2}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {/* <div className='containerevolution__mainboxcard__cardevo2'>
                         <div className='card_evo'>
                             <figure className='card_evo_picture'>

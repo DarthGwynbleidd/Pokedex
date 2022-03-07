@@ -6,7 +6,7 @@ import nameTranslate from '../jsonfiles/pokemon_translate.json'
 const SearchBar = () => {
     const [value, setValue] = useState("");
     const [suggestions, setSuggestions] = useState([]);
-    suggestions.length = 3;
+    suggestions.length = 5;
 
     const frenchNames = Object.keys(nameTranslate).map(element => {
         return element.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
