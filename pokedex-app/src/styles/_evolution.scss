@@ -19,7 +19,7 @@
     }
 
     &__mainboxcard {
-        // width: 35%;
+        height: 350px;
         display: flex;
         justify-content: center;
 
@@ -27,6 +27,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-left: 40px;
+
             &__evo {
                 display: flex;
                 flex-direction: column;
@@ -55,7 +57,7 @@
 
                 &__desc__name {
                     display: flex;
-                    justify-content: center;
+                    justify-content: left;
                     margin-top: 20px;
 
                     & h5 {
@@ -74,7 +76,7 @@
                     display: flex;
                     justify-content: center;
                     margin-top: 20px;
-                    width: 200px;
+                    width: 150px;
 
                     &__abilities {
                         .pill {
@@ -170,13 +172,16 @@
         &__cardevo2 {
 
             display: flex;
+            justify-content: space-around;
+            align-items: center;
             flex-wrap: wrap;
 
 
             &__evo {
-                margin-left: 70px;
-                margin-top: 10px;
-                width: 120px;
+                // margin-left: 70px;
+                // margin-top: 10px;
+                margin: 10px 5px 0;
+                width: 180px;
 
                 &__picture {
                     height: 150px;
@@ -214,6 +219,102 @@
                         font-size: 1.2em;
                     }
                 }
+
+                
+                &__desc__type {
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 20px;
+                    width: 180px;
+
+                    &__abilities {
+                        .pill {
+                            border-radius: 5px;
+                            line-height: 20px;
+                            max-width: 70px;
+                            margin: 0 1.5625% 0 0;
+                            width: 100px;
+                            float: left;
+                            font-size: 12px;
+                            text-align: center;
+                        }
+
+                        .insecte {
+                            @include insecte;
+                        }
+
+                        .dragon {
+                            @include dragon;
+                        }
+
+                        .fée {
+                            @include fée;
+                        }
+
+                        .feu {
+                            @include feu;
+                        }
+
+                        .spectre {
+                            @include spectre;
+                        }
+
+                        .sol {
+                            @include sol;
+                        }
+
+                        .normal {
+                            @include normal;
+                        }
+
+                        .psy {
+                            @include psy;
+                        }
+
+                        .acier {
+                            @include acier;
+                        }
+
+                        .ténèbres {
+                            @include ténèbres;
+                        }
+
+                        .électrik {
+                            @include électrik;
+                        }
+
+                        .combat {
+                            @include combat;
+                        }
+
+                        .vol {
+                            @include vol;
+                        }
+
+                        .plante {
+                            @include plante;
+                        }
+
+                        .glace {
+                            @include glace;
+                        }
+
+                        .poison {
+                            @include poison;
+                            border-radius: 5px;
+
+                        }
+
+                        .roche {
+                            @include roche;
+                        }
+
+                        .eau {
+                            @include eau;
+                        }
+                    }
+                }
+
 
                 &__picture__max {
                     height: 80px;
@@ -256,7 +357,7 @@
             width: 60px;
             color: white;
             font-size: 5em;
-            margin: auto 20px;
+            margin: auto 20px auto 60px;
         }
 
     }

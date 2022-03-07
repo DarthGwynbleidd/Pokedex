@@ -20,7 +20,9 @@ const BottomButton = (props) => {
                 Différence = 300px / 2(pour la marge de gauche)
                 150px + 980px => 1130px de la gauche de mon écran
         */
-        setLeftMargin(((+document.documentElement.offsetWidth - +document.querySelector('.cardsPage').offsetWidth) / 2) + +document.querySelector('.cardsPage').offsetWidth - 60);
+
+            /**** IL FAUT ANNULER CETTE LIGNE QUAND ON EST SUR LA PAGE POKEMONPAGE */
+            setLeftMargin(((+document.documentElement.offsetWidth - +document.querySelector('.cardsPage').offsetWidth) / 2) + +document.querySelector('.cardsPage').offsetWidth - 60);
     }
 
     window.addEventListener('resize', () => {
