@@ -49,7 +49,8 @@ const PokemonSpecies = () => {
                 setCount(prevCount => prevCount + 1)
         }
     }
-
+    if (currentPokemon.abilities !== undefined)
+        console.log(currentPokemon);
 
     return (
         <div className='pokemon'>
@@ -73,9 +74,11 @@ const PokemonSpecies = () => {
 
                     </div>
                     <div className='pokemon__species__mensuration__rigth'>
-                        <h4>{currentPokemon.ability2 ? "Talents" : "Talent"}</h4>
-                        <p>{translateAbilities(currentPokemon.ability1)}</p>
-                        <p>{translateAbilities(currentPokemon.ability2)}</p>
+                        {currentPokemon.abilities !== undefined ? <h4>{currentPokemon.abilities.length > 1 ? "Talents" : "Talent"}</h4> : ""}
+                        {currentPokemon.abilities !== undefined && currentPokemon.abilities.map((ability, index) => {
+                            return <p key={index}>{translateAbilities(ability)}</p>
+                        })}
+                        
                     </div>
                 </div>
                 <div className='pokemon__species__types'>

@@ -61,7 +61,6 @@ const CardsPage = () => {
 
                 const obj = {
                     id: "",
-                    name: "",
                     image: "",
                     type1: "",
                     type2: "",
@@ -71,8 +70,7 @@ const CardsPage = () => {
                     nextName: "",
                     weight: "",
                     height: "",
-                    ability1: "",
-                    ability2: "",
+                    abilities: [],
                     flavor: [],
                     hp: "",
                     attack: "",
@@ -101,9 +99,11 @@ const CardsPage = () => {
                 obj.nextName = responseNext.data.name
                 obj.height = response.data.height
                 obj.weight = response.data.weight
-                obj.ability1 = response.data.abilities[0].ability.name
-                try { obj.ability2 = response.data.abilities[1].ability.name }
-                catch { }
+                for (const index of response.data.abilities){
+                    let tmpAbility = index.ability.name
+                    if (index.is_hidden === false)
+                        obj.abilities.push(tmpAbility)
+                }
                 obj.hp = response.data.stats[0].base_stat
                 obj.attack = response.data.stats[1].base_stat
                 obj.defense = response.data.stats[2].base_stat
@@ -113,8 +113,10 @@ const CardsPage = () => {
                 const responseFlavor = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${alias}`)
                 for (const index of responseFlavor.data.flavor_text_entries) {
                     if (index.language.name === 'fr'){
-                        let tmpFlavor = index.flavor_text
-                        obj.flavor.push(tmpFlavor)
+                        let tmpFlavor = index.flavor_text.replace(/\s+/g, ' ')
+                        if (!(obj.flavor.includes(tmpFlavor))){
+                            obj.flavor.push(tmpFlavor)
+                        }
                     }
     
                 }

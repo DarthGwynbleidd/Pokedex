@@ -27,7 +27,7 @@ const NavigBar = () => {
                 <NavLink to={`/:${translateName(currentPokemon.prevName)}`} className='navigbar__top__previous'>
                     &#60; N°. {currentPokemon.prevId < 100 ? addZero(currentPokemon.prevId) : currentPokemon.prevId}  {translateName(currentPokemon.prevName)}
                 </NavLink>
-                <NavLink onClick={setBackUp(prevBackUp => prevBackUp = true)} to="/" className='navigbar__top__home'>
+                <NavLink /*onClick={setBackUp(prevBackUp => prevBackUp = true)}*/ to="/" className='navigbar__top__home'>
                     Retour
                 </NavLink>
                 <NavLink to={`/:${translateName(currentPokemon.nextName)}`} className='navigbar__top__next'>
