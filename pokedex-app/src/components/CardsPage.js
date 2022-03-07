@@ -64,6 +64,7 @@ const CardsPage = () => {
                     image: "",
                     type1: "",
                     type2: "",
+                    weaknesses: [],
                     prevId: "",
                     prevName: "",
                     nextId: "",
@@ -99,7 +100,7 @@ const CardsPage = () => {
                 obj.nextName = responseNext.data.name
                 obj.height = response.data.height
                 obj.weight = response.data.weight
-                for (const index of response.data.abilities){
+                for (const index of response.data.abilities) {
                     let tmpAbility = index.ability.name
                     if (index.is_hidden === false)
                         obj.abilities.push(tmpAbility)
@@ -112,14 +113,25 @@ const CardsPage = () => {
                 obj.speed = response.data.stats[5].base_stat
                 const responseFlavor = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${alias}`)
                 for (const index of responseFlavor.data.flavor_text_entries) {
-                    if (index.language.name === 'fr'){
+                    if (index.language.name === 'fr') {
                         let tmpFlavor = index.flavor_text.replace(/\s+/g, ' ')
-                        if (!(obj.flavor.includes(tmpFlavor))){
+                        if (!(obj.flavor.includes(tmpFlavor))) {
                             obj.flavor.push(tmpFlavor)
                         }
                     }
-    
+
                 }
+                const responseTypeOne = await axios.get(`https://pokeapi.co/api/v2/type/${obj.type1}`)
+                for (let weak of responseTypeOne.data.damage_relations.double_damage_from) {
+                    obj.weaknesses.push(weak.name)
+                }
+                try {
+                    const responseTypeTwo = await axios.get(`https://pokeapi.co/api/v2/type/${obj.type2}`)
+                    for (let weak of responseTypeTwo.data.damage_relations.double_damage_from) {
+                        obj.weaknesses.push(weak.name)
+                    }
+                }catch {}
+
                 temp.push(obj)
 
             }

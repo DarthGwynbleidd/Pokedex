@@ -43,6 +43,7 @@ const PokemonPage = () => {
                 image: "",
                 type1: "",
                 type2: "",
+                weaknesses: [],
                 prevId: "",
                 prevName: "",
                 nextId: "",
@@ -97,6 +98,16 @@ const PokemonPage = () => {
                         obj.flavor.push(tmpFlavor)
                 }
             }
+            const responseTypeOne = await axios.get(`https://pokeapi.co/api/v2/type/${obj.type1}`)
+                for (let weak of responseTypeOne.data.damage_relations.double_damage_from) {
+                    obj.weaknesses.push(weak.name)
+                }
+                try {
+                    const responseTypeTwo = await axios.get(`https://pokeapi.co/api/v2/type/${obj.type2}`)
+                    for (let weak of responseTypeTwo.data.damage_relations.double_damage_from) {
+                        obj.weaknesses.push(weak.name)
+                    }
+                }catch {}
             temp.push(obj)
             setCurrentPokemon(obj)
         }
