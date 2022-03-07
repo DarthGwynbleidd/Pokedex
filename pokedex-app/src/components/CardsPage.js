@@ -10,7 +10,7 @@ import nameTranslate from '../jsonfiles/pokemon_translate.json'
 import BackUpContext from '../contexts/BackupContext'
 
 const CardsPage = () => {
-    const { setPokemons } = useContext(PokemonContext);
+    const { pokemons, setPokemons } = useContext(PokemonContext);
     const [group, setGroup] = useState(1)
     const [display, setDisplay] = useState("displayNumericUp")
     const { backUp, setBackUp } = useContext(BackUpContext)
@@ -137,7 +137,7 @@ const CardsPage = () => {
             }
             setPokemons(prevPokemons => prevPokemons.concat(temp));
         }
-        if (backUp === false) {
+        if (backUp === false || pokemons.length === 0) {
             fetchPokemons();
         }
         setBackUp(false)
