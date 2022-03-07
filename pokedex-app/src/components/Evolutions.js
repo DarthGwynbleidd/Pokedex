@@ -28,7 +28,7 @@ const Evolutions = (props) => {
                         <div className='containerevolution__mainboxcard__cardevo1__evo__desc'>
                             <div className='containerevolution__mainboxcard__cardevo1__evo__desc__name'>
                                 <h5>{currentPokemon.pokemonName}</h5>
-                                <p><span>#{addZero(currentPokemon.id)}</span></p>
+                                <p><span>#{currentPokemon.id < 100 ? addZero(currentPokemon.id) : currentPokemon.id}</span></p>
                             </div>
                             <div className='containerevolution__mainboxcard__cardevo1__evo__desc__type'>
                                 <div className='containerevolution__mainboxcard__cardevo1__evo__desc__type__abilities'>
@@ -52,7 +52,7 @@ const Evolutions = (props) => {
                         <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
                             <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax}`}>
                                 <h5>{currentPokemon.pokemonName}</h5>
-                                <p><span>#{addZero(currentPokemon.id)}</span></p>
+                                <p><span>#{currentPokemon.id < 100 ? addZero(currentPokemon.id) : currentPokemon.id}</span></p>
                             </div>
                             <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
                                 <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
@@ -73,7 +73,7 @@ const Evolutions = (props) => {
                         <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
                             <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax}`}>
                                 <h5>{currentPokemon.pokemonName}</h5>
-                                <p><span>#{addZero(currentPokemon.id)}</span></p>
+                                <p><span>#{currentPokemon.id < 100 ? addZero(currentPokemon.id) : currentPokemon.id}</span></p>
                             </div>
                             <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
                                 <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
@@ -94,7 +94,7 @@ const Evolutions = (props) => {
                         <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
                             <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax}`}>
                                 <h5>{currentPokemon.pokemonName}</h5>
-                                <p><span>#{addZero(currentPokemon.id)}</span></p>
+                                <p><span>#{currentPokemon.id < 100 ? addZero(currentPokemon.id) : currentPokemon.id}</span></p>
                             </div>
                             <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
                                 <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
@@ -115,7 +115,7 @@ const Evolutions = (props) => {
                         <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
                             <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax}`}>
                                 <h5>{currentPokemon.pokemonName}</h5>
-                                <p><span>#{addZero(currentPokemon.id)}</span></p>
+                                <p><span>#{currentPokemon.id < 100 ? addZero(currentPokemon.id) : currentPokemon.id}</span></p>
                             </div>
                             <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
                                 <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
@@ -136,7 +136,7 @@ const Evolutions = (props) => {
                         <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
                             <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax}`}>
                                 <h5>{currentPokemon.pokemonName}</h5>
-                                <p><span>#{addZero(currentPokemon.id)}</span></p>
+                                <p><span>#{currentPokemon.id < 100 ? addZero(currentPokemon.id) : currentPokemon.id}</span></p>
                             </div>
                             <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
                                 <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
