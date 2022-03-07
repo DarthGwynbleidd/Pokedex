@@ -49,7 +49,7 @@ const PokemonPage = () => {
                 gender: "",
                 ability1: "",
                 ability2: "",
-                flavor: "",
+                flavor: [],
                 hp: '',
                 attack: '',
                 defense: '',
@@ -86,7 +86,14 @@ const PokemonPage = () => {
             obj.specialDefense = response.data.stats[4].base_stat
             obj.speed = response.data.stats[5].base_stat
             const responseFlavor = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${alias}`)
-            obj.flavor = responseFlavor.data.flavor_text_entries[16].flavor_text
+            for (const index of responseFlavor.data.flavor_text_entries) {
+                if (index.language.name === 'fr'){
+                    let tmpFlavor = index.flavor_text
+                    obj.flavor.push(tmpFlavor)
+                }
+
+            }
+            // obj.flavor = responseFlavor.data.flavor_text_entries[16].flavor_text
             temp.push(obj)
             setCurrentPokemon(obj)
 

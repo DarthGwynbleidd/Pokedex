@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PokemonStats from './PokemonStats';
 import typeTranslate from '../jsonfiles/type_translate.json'
 import nameTranslate from '../jsonfiles/pokemon_translate.json'
@@ -7,12 +7,13 @@ import CurrentPokemonContext from '../contexts/CurrentPokemonContext';
 
 const PokemonSpecies = () => {
 
-    const {currentPokemon} = useContext(CurrentPokemonContext)
+    const { currentPokemon } = useContext(CurrentPokemonContext)
+    const [count, setCount] = useState(0)
     const translateName = (pokemonName) => {
         let vfName = ''
         for (let name in nameTranslate) {
             if (nameTranslate[name].toLowerCase() === pokemonName)
-            vfName = name
+                vfName = name
         }
         return vfName
     }
@@ -20,19 +21,36 @@ const PokemonSpecies = () => {
         let vfType = ''
         for (let type in typeTranslate) {
             if (type.toLowerCase() === typeName)
-            vfType = typeTranslate[type]
+                vfType = typeTranslate[type]
         }
         return vfType.toLowerCase()
     }
     const translateAbilities = (abilityName) => {
         let vfAbility = ''
-        for (let ability in abilitiesTranslate){
+        for (let ability in abilitiesTranslate) {
             if (abilitiesTranslate[ability].toLowerCase() === abilityName)
-            vfAbility = ability
+                vfAbility = ability
         }
         return vfAbility
     }
-    
+    let lengthFlavor = ''
+    if (currentPokemon.flavor !== undefined)
+        lengthFlavor = currentPokemon.flavor.length
+    const prevText = () => {
+        if (currentPokemon.flavor !== undefined) {
+            if (count > 0)
+                setCount(prevCount => prevCount - 1)
+        }
+    }
+
+    const nextText = () => {
+        if (currentPokemon.flavor !== undefined) {
+            if (count < lengthFlavor)
+                setCount(prevCount => prevCount + 1)
+        }
+    }
+
+
     return (
         <div className='pokemon'>
             <div className='pokemon__left'>
@@ -44,7 +62,8 @@ const PokemonSpecies = () => {
                 </div>
             </div>
             <div className='pokemon__species'>
-                <p className='pokemon__species__anotation'/*flavor_text*/>{currentPokemon.flavor}</p>
+                {currentPokemon.flavor !== undefined ? <p className='pokemon__species__anotation'/*flavor_text*/>{currentPokemon.flavor[count]}</p> : ""}
+                <p><span onClick={prevText}>g  </span><span onClick={nextText}>  d  </span><span>  {count+1}/{lengthFlavor}</span></p>
                 <div className='pokemon__species__mensuration'>
                     <div className='pokemon__species__mensuration__left'>
                         <h4>Taille</h4>
@@ -54,7 +73,7 @@ const PokemonSpecies = () => {
 
                     </div>
                     <div className='pokemon__species__mensuration__rigth'>
-                        <h4>{currentPokemon.ability2? "Talents" : "Talent"}</h4>
+                        <h4>{currentPokemon.ability2 ? "Talents" : "Talent"}</h4>
                         <p>{translateAbilities(currentPokemon.ability1)}</p>
                         <p>{translateAbilities(currentPokemon.ability2)}</p>
                     </div>
