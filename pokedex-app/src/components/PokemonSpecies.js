@@ -62,10 +62,10 @@ const PokemonSpecies = () => {
                 <div className='pokemon__species__types'>
                     <h3>Types</h3>
                     <div className='pokemon__species__types__abilities'>
-                        <span className={`type ${translateType(currentPokemon.type1)}`}>{translateType(currentPokemon.type1)}</span>
+                        <span className={`pill ${translateType(currentPokemon.type1)}`}>{translateType(currentPokemon.type1)}</span>
                     </div>
                     <div className='pokemon__species__types__abilities'>
-                        <span className={`type ${translateType(currentPokemon.type2)}`}>{translateType(currentPokemon.type2)}</span>
+                        <span className={`pill ${translateType(currentPokemon.type2)}`}>{translateType(currentPokemon.type2)}</span>
                     </div>
                 </div>
 

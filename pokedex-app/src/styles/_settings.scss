@@ -107,12 +107,93 @@ body {
 h4,
 h3 {
     letter-spacing: 2px;
-    
 }
-h3{
+h3 {
     font-size: 1.5rem;
 
     @media screen and( max-width:800px) {
         font-size: 1.2rem;
     }
+}
+.pill {
+    border-radius: 5px;
+    line-height: 30px;
+    letter-spacing: 1.2px;
+    max-width: 110px;
+    margin: 1.6% 1.6% 0 0;
+    width: 50%;
+    float: left;
+    font-size: 1rem;
+    text-align: center;
+}
+.insecte {
+    @include insecte;
+}
+
+.dragon {
+    @include dragon;
+}
+
+.fée {
+    @include fée;
+}
+
+.feu {
+    @include feu;
+}
+
+.spectre {
+    @include spectre;
+}
+
+.sol {
+    @include sol;
+}
+
+.normal {
+    @include normal;
+}
+
+.psy {
+    @include psy;
+}
+
+.acier {
+    @include acier;
+}
+
+.ténèbres {
+    @include ténèbres;
+}
+
+.électrik {
+    @include électrik;
+}
+
+.combat {
+    @include combat;
+}
+
+.vol {
+    @include vol;
+}
+
+.plante {
+    @include plante;
+}
+
+.glace {
+    @include glace;
+}
+
+.poison {
+    @include poison;
+}
+
+.roche {
+    @include roche;
+}
+
+.eau {
+    @include eau;
 }

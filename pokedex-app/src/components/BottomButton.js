@@ -26,7 +26,7 @@ const BottomButton = (props) => {
     window.addEventListener('resize', () => {
         calculLeftArrow();
     })
-    let memoire = 0;
+//    let memoire = 0;
 
     window.onscroll = () => {
         // Fait apparaitre la flêche dès que le scroll atteint 400
