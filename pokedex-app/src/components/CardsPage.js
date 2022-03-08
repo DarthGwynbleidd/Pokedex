@@ -10,7 +10,7 @@ import nameTranslate from '../jsonfiles/pokemon_translate.json'
 import BackUpContext from '../contexts/BackupContext'
 
 const CardsPage = () => {
-    const { setPokemons } = useContext(PokemonContext);
+    const { pokemons, setPokemons } = useContext(PokemonContext);
     const [group, setGroup] = useState(1)
     const [display, setDisplay] = useState("displayNumericUp")
     const { backUp, setBackUp } = useContext(BackUpContext)
@@ -61,18 +61,18 @@ const CardsPage = () => {
 
                 const obj = {
                     id: "",
-                    name: "",
                     image: "",
                     type1: "",
                     type2: "",
+                    weaknesses: [],
                     prevId: "",
                     prevName: "",
                     nextId: "",
                     nextName: "",
                     weight: "",
                     height: "",
-                    ability1: "",
-                    ability2: "",
+                    abilities: [],
+                    flavor: [],
                     hp: "",
                     attack: "",
                     defense: "",
@@ -100,22 +100,44 @@ const CardsPage = () => {
                 obj.nextName = responseNext.data.name
                 obj.height = response.data.height
                 obj.weight = response.data.weight
-                obj.ability1 = response.data.abilities[0].ability.name
-                try { obj.ability2 = response.data.abilities[1].ability.name }
-                catch { }
+                for (const index of response.data.abilities) {
+                    let tmpAbility = index.ability.name
+                    if (index.is_hidden === false)
+                        obj.abilities.push(tmpAbility)
+                }
                 obj.hp = response.data.stats[0].base_stat
                 obj.attack = response.data.stats[1].base_stat
                 obj.defense = response.data.stats[2].base_stat
                 obj.specialAttack = response.data.stats[3].base_stat
                 obj.specialDefense = response.data.stats[4].base_stat
                 obj.speed = response.data.stats[5].base_stat
+                const responseFlavor = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${alias}`)
+                for (const index of responseFlavor.data.flavor_text_entries) {
+                    if (index.language.name === 'fr') {
+                        let tmpFlavor = index.flavor_text.replace(/\s+/g, ' ')
+                        if (!(obj.flavor.includes(tmpFlavor))) {
+                            obj.flavor.push(tmpFlavor)
+                        }
+                    }
+
+                }
+                const responseTypeOne = await axios.get(`https://pokeapi.co/api/v2/type/${obj.type1}`)
+                for (let weak of responseTypeOne.data.damage_relations.double_damage_from) {
+                    obj.weaknesses.push(weak.name)
+                }
+                try {
+                    const responseTypeTwo = await axios.get(`https://pokeapi.co/api/v2/type/${obj.type2}`)
+                    for (let weak of responseTypeTwo.data.damage_relations.double_damage_from) {
+                        obj.weaknesses.push(weak.name)
+                    }
+                }catch {}
 
                 temp.push(obj)
 
             }
             setPokemons(prevPokemons => prevPokemons.concat(temp));
         }
-        if (backUp === false) {
+        if (backUp === false || pokemons.length === 0) {
             fetchPokemons();
         }
         setBackUp(false)
