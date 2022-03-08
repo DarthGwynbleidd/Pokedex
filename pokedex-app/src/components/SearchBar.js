@@ -18,6 +18,11 @@ const SearchBar = () => {
             name: frenchName
         };
     });
+    if (Number.isInteger(value)) {
+        setValue(pokemons.id)
+    }
+
+
 
 
 
