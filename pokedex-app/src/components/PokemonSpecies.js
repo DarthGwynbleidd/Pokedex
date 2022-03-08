@@ -62,7 +62,7 @@ const PokemonSpecies = () => {
             </div>
             <div className='pokemon__species'>
                 {currentPokemon.flavor !== undefined ? <p className='pokemon__species__anotation'/*flavor_text*/>{currentPokemon.flavor[count]}</p> : ""}
-                <p><span onClick={prevText}>g  </span><span onClick={nextText}>  d  </span><span>  {count+1}/{lengthFlavor}</span></p>
+                <p className='pokemon__species__anotation__img'><img onClick={prevText} src='./assets/chevrons/chevron-suivant.png' alt='paragraphe suivant' /><span> {count+1}/{lengthFlavor} </span><img onClick={nextText} src='./assets/chevrons/chevron-precedent.png' alt='paragraphe précédent' /></p>
                 <div className='pokemon__species__mensuration'>
                     <div className='pokemon__species__mensuration__left'>
                         <h4>Taille</h4>
