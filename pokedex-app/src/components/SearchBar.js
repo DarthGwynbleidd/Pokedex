@@ -11,10 +11,14 @@ const SearchBar = () => {
     const frenchNames = Object.keys(nameTranslate).map(element => {
         return element.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     })
-    console.log(frenchNames)
+
     function getSuggestions(value) {
-        return frenchNames.filter(frenchName =>
-            frenchName.includes(value.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))
+
+        const inputValue = value.trim().toLowerCase();
+        const inputLength = inputValue.length;
+
+        return inputLength === 0 ? [] : frenchNames.filter(frenchName => 
+            frenchName.slice(0, inputLength) === inputValue
         );
         
     }
@@ -31,8 +35,8 @@ const SearchBar = () => {
                 onSuggestionSelected={(_, { suggestionValue }) =>
                     console.log("Selected: " + suggestionValue)
                 }
-                getSuggestionValue={suggestion => frenchNames.name}
-                renderSuggestion={suggestion => <span>{frenchNames.name}</span>}
+                getSuggestionValue={suggestion => suggestion}
+                renderSuggestion={suggestion => <span>{suggestion}</span>}
                 inputProps={{
                     placeholder: 'Nom ou numéro',
                     value: value,
