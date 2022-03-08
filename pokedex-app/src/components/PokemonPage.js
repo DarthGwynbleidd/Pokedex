@@ -17,20 +17,23 @@ const PokemonPage = () => {
     const pokemonNameNoAccent = urlName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     const [currentPokemon, setCurrentPokemon] = useState({})
 
+    let alias = ""
+
     useEffect(() => {
         const temp = []
 
+        
+        for (let element in nameTranslate) {
+            let noAccent = element.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+            if (noAccent === pokemonNameNoAccent)
+                alias = nameTranslate[element]
+        }
         async function fetchPokemons() {
 
             const responseLength = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/`)
             const length = responseLength.data.count + 1
 
-            let alias = ""
-            for (let element in nameTranslate) {
-                let noAccent = element.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-                if (noAccent === pokemonNameNoAccent)
-                    alias = nameTranslate[element]
-            }
+
 
             const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${alias}`)
 
@@ -40,6 +43,7 @@ const PokemonPage = () => {
                 image: "",
                 type1: "",
                 type2: "",
+                weaknesses: [],
                 prevId: "",
                 prevName: "",
                 nextId: "",
@@ -47,9 +51,8 @@ const PokemonPage = () => {
                 weight: "",
                 height: "",
                 gender: "",
-                ability1: "",
-                ability2: "",
-                flavor: "",
+                abilities: [],
+                flavor: [],
                 hp: '',
                 attack: '',
                 defense: '',
@@ -76,9 +79,11 @@ const PokemonPage = () => {
             obj.nextName = responseNext.data.name
             obj.height = response.data.height
             obj.weight = response.data.weight
-            obj.ability1 = response.data.abilities[0].ability.name
-            try { obj.ability2 = response.data.abilities[1].ability.name }
-            catch { }
+            for (const index of response.data.abilities) {
+                let tmpAbility = index.ability.name
+                if (index.is_hidden === false)
+                    obj.abilities.push(tmpAbility)
+            }
             obj.hp = response.data.stats[0].base_stat
             obj.attack = response.data.stats[1].base_stat
             obj.defense = response.data.stats[2].base_stat
@@ -86,32 +91,41 @@ const PokemonPage = () => {
             obj.specialDefense = response.data.stats[4].base_stat
             obj.speed = response.data.stats[5].base_stat
             const responseFlavor = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${alias}`)
-            obj.flavor = responseFlavor.data.flavor_text_entries[16].flavor_text
+            for (const index of responseFlavor.data.flavor_text_entries) {
+                if (index.language.name === 'fr') {
+                    let tmpFlavor = index.flavor_text.replace(/\s+/g, ' ')
+                    if (!(obj.flavor.includes(tmpFlavor)))
+                        obj.flavor.push(tmpFlavor)
+                }
+            }
+            const responseTypeOne = await axios.get(`https://pokeapi.co/api/v2/type/${obj.type1}`)
+                for (let weak of responseTypeOne.data.damage_relations.double_damage_from) {
+                    obj.weaknesses.push(weak.name)
+                }
+                try {
+                    const responseTypeTwo = await axios.get(`https://pokeapi.co/api/v2/type/${obj.type2}`)
+                    for (let weak of responseTypeTwo.data.damage_relations.double_damage_from) {
+                        obj.weaknesses.push(weak.name)
+                    }
+                }catch {}
             temp.push(obj)
             setCurrentPokemon(obj)
-
-
         }
-
         if (pokemons.length === 0) {
             fetchPokemons()
 
         } else {
+            let isIn = false
             for (let pokemon of pokemons) {
-                if (!pokemon[name]) {
-                    fetchPokemons();
+                if (pokemon.pokemonName === alias){
+                    isIn = true
+                    setCurrentPokemon(pokemon)
                 }
-                else
-                    setCurrentPokemon(prevCurrentPokemon => prevCurrentPokemon = pokemon)
             }
-
+            if (!isIn)
+                fetchPokemons()
         }
-
         setPokemons(prevPokemons => prevPokemons.concat(temp));
-
-
-
-
     }, [name]);
 
     return (
