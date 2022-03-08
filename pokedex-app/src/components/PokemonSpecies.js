@@ -49,8 +49,6 @@ const PokemonSpecies = () => {
                 setCount(prevCount => prevCount + 1)
         }
     }
-    if (currentPokemon.abilities !== undefined)
-        console.log(currentPokemon.abilities);
 
     return (
         <div className='pokemon'>
@@ -91,29 +89,13 @@ const PokemonSpecies = () => {
                     </div>
                 </div>
 
-                { <div className='pokemon__species__weaknesses'>
+                {<div className='pokemon__species__weaknesses'>
                     <h3>Faiblesses</h3>
                     {currentPokemon.weaknesses !== undefined && currentPokemon.weaknesses.map((weak, index) => {
-                        return  <div className='pokemon__species__types'>
+                        return  <div className='pokemon__species__type'>
                                     <span key={index} className={`pill ${translateType(weak)}`}>{translateType(weak)}</span>
                                 </div>
                     })}
-                    {/* <div className='pokemon__species__weaknesses__type'>
-                        <span className='weakness feu'>Feu</span>
-                    </div>
-
-                    <div className='pokemon__species__weaknesses__type'>
-                        <span className='weakness vol'>Vol</span>
-                    </div>
-                    <div className='pokemon__species__weaknesses__type'>
-                        <span className='weakness glace'>Glace</span>
-                    </div>
-
-                    <div className='pokemon__species__weaknesses__type'>
-                        <span className='weakness psy'>Psy</span>
-                    </div> */}
-
-
                 </div> }
             </div>
         </div>
