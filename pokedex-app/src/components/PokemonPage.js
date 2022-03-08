@@ -115,6 +115,7 @@ const PokemonPage = () => {
     }, [name]);
 
     return (
+
         <CurrentPokemonContext.Provider value={{ currentPokemon, setCurrentPokemon }}>
             <div className='pokemonPage'>
                 <NavigBar />
@@ -123,6 +124,7 @@ const PokemonPage = () => {
 
             </div>
         </CurrentPokemonContext.Provider>
+
     );
 };
 
