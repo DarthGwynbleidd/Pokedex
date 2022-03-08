@@ -1,4 +1,6 @@
+
 import React, { useContext, useState } from 'react';
+
 import DisplayContext from '../contexts/DisplayContext';
 import PokemonContext from '../contexts/PokemonContext';
 
@@ -43,8 +45,10 @@ const RandomSelect = () => {
                 <img className='randomSelect__wrapper__pokeball' src='./assets/top-buttons/select-logo.png' alt='pokeball' />
                 <select id="selectBox" onChange={handleChange} value={optionSelected} className='randomSelect__wrapper__select'>
 
+
                     <option value="default">Choisissez une option</option>
                     <option value="displayNumericUp">Tri par ordre croissant</option>
+
                     <option value="displayNumericDown">Tri par ordre décroissant</option>
                     <option value="displayAlphaUp">Tri de A-Z</option>
                     <option value="displayAlphaDown">Tri de Z-A</option>

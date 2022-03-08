@@ -98,6 +98,7 @@ const PokemonPage = () => {
         } else {
             for (let pokemon of pokemons) {
                 if (!pokemon[name]) {
+                    console.log(pokemon[name])
                     fetchPokemons();
                 }
                 else
