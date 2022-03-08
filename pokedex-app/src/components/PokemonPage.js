@@ -117,9 +117,11 @@ const PokemonPage = () => {
         } else {
             let isIn = false
             for (let pokemon of pokemons) {
+
                 if (pokemon.pokemonName === alias){
                     isIn = true
                     setCurrentPokemon(pokemon)
+
                 }
             }
             if (!isIn)
@@ -129,6 +131,7 @@ const PokemonPage = () => {
     }, [name]);
 
     return (
+
         <CurrentPokemonContext.Provider value={{ currentPokemon, setCurrentPokemon }}>
             <div className='pokemonPage'>
                 <NavigBar />
@@ -137,6 +140,7 @@ const PokemonPage = () => {
 
             </div>
         </CurrentPokemonContext.Provider>
+
     );
 };
 
