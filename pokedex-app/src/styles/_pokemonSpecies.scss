@@ -1,5 +1,5 @@
 .pokemon {
-    height:900px;
+    height: 900px;
     width: 90%;
     margin: auto;
     display: flex;
@@ -8,15 +8,13 @@
     flex-direction: row;
 
     @media screen and( max-width:900px) {
-        
         height: auto;
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
     }
     @media screen and( max-width:450px) {
-            width: 100%
-
+        width: 100%;
     }
 
     &__left {
@@ -28,47 +26,42 @@
         justify-content: space-around;
         align-items: center;
 
-        &__img{
+        &__img {
             height: 50%;
             width: 100%;
         }
         @media screen and( max-width:900px) {
-          
             width: 80%;
-            
         }
 
-        &__img img{
+        &__img img {
             height: 100%;
             width: auto;
 
             @media screen and( max-width:900px) {
                 height: auto;
                 width: 100%;
-                
             }
             // @media screen and( max-width:700px) {
             //     height: 90%;
             //     width: 100%;
-                
+
             // }
-            
         }
 
-        &__stat{
-            height: 50%;
+        &__stat {
+            min-height: 400px;
+            max-height: 50%;
             width: 100%;
-            
-            @media screen and( max-width:900px) {
-                height: auto;
-                width: 100%;
-                
-            }
-            @media screen and( max-width: 750px) {
-                height: 380px;
-                width: 100%;
-                
-            }
+
+            // @media screen and( max-width:900px) {
+            //     height: 400px;
+            //     width: 100%;
+            // }
+            // @media screen and( max-width: 750px) {
+            //     height: 370px;
+            //     width: 100%;
+            // }
         }
     }
     &__species {
@@ -84,34 +77,46 @@
             padding: 0;
         }
 
-        p{
+        p {
             font-size: 1.5rem;
 
             @media screen and( max-width:900px) {
-                
-                margin: 10% 0;
+                margin: 5% 0;
             }
 
             @media screen and( max-width: 750px) {
-                font-size: 1.2rem;                
+                font-size: 1.2rem;
             }
             @media screen and( max-width:400px) {
-                font-size: 1rem; 
-
+                font-size: 1rem;
             }
         }
 
         &__anotation {
             height: auto;
-            
-            text-align: start;
+
+            &__img {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+
+                img{
+                    width: 45px;
+                    height: 45px;
+                    
+                    @media screen and( max-width:400px) {
+                        width: 20px;
+                        height: 20px;
+                    }                       
+                }
+            }
         }
 
         &__mensuration {
             height: 150px;
-            width: 90%;     
+            width: 100%;
             background-color: #30a7d7;
-            color: white;            
+            color: white;
             border-radius: 20px;
             display: flex;
             flex-direction: row;
@@ -119,77 +124,66 @@
             text-align: center;
 
             @media screen and( max-width:900px) {
-                
-                margin-bottom: 10%;
+                height: 150pxpx;
+                margin-bottom: 5%;
             }
 
-            &__left{
+            &__left {
                 width: 50%;
-                
-                h4, p{
-                    height: 25%;
-                   
-                    @media screen and( max-width:900px) {
-                        height: 15%; 
- 
-                    }
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
 
-                    @media screen and( max-width:700px) {
-                        height: 10%; 
- 
-                    }
-
+                h4,
+                p {
+                    height: 100%;
                 }
-                p{
+                p {
                     color: black;
                     font-size: 20px;
                     letter-spacing: 1.2px;
 
                     @media screen and( max-width:400px) {
-                        font-size: 1rem; 
-    
+                        font-size: 1rem;
                     }
                 }
-
             }
-            &__rigth{
+            &__rigth {
                 width: 50%;
-                                
-                h4, p{
-                    height: 25%;
+                height: 100%;
 
-                    @media screen and( max-width:900px) {
-                        height: 20%; 
-                    }
-                    @media screen and( max-width:700px) {
-                        height: 15%; 
- 
-                    }
-
+                h4,
+                p {
+                    margin-bottom: 6%;
                 }
 
-                p{
+                p {
                     color: black;
                     font-size: 20px;
                     letter-spacing: 1.2px;
 
                     @media screen and( max-width:400px) {
-                        font-size: 1rem; 
- 
+                        font-size: 1rem;
                     }
                 }
             }
-            
         }
-
 
         &__types {
             height: 15%;
             width: 100%;
+
+            @media screen and( max-width:900px) {
+                height: 100px;
+            }
         }
-        &__weaknesses{
-            height: 20%;
+        &__weaknesses {
+            height: 30%;
             width: 100%;
+            @media screen and( max-width:900px) {
+                height: 180px;
+            }
+
         }
     }
 }

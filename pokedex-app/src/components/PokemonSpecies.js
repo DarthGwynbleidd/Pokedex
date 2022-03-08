@@ -62,7 +62,11 @@ const PokemonSpecies = () => {
             </div>
             <div className='pokemon__species'>
                 {currentPokemon.flavor !== undefined ? <p className='pokemon__species__anotation'/*flavor_text*/>{currentPokemon.flavor[count]}</p> : ""}
-                <p className='pokemon__species__anotation__img'><img onClick={prevText} src='./assets/chevrons/chevron-suivant.png' alt='paragraphe suivant' /><span> {count+1}/{lengthFlavor} </span><img onClick={nextText} src='./assets/chevrons/chevron-precedent.png' alt='paragraphe précédent' /></p>
+                <p className='pokemon__species__anotation__img'>
+                    <img onClick={prevText} src='./assets/chevrons/chevron-precedent.png' alt='description précédent' />
+                    <span> {count + 1}/{lengthFlavor} </span>
+                    <img onClick={nextText} src='./assets/chevrons/chevron-suivant.png' alt='description suivant' />
+                </p>
                 <div className='pokemon__species__mensuration'>
                     <div className='pokemon__species__mensuration__left'>
                         <h4>Taille</h4>
@@ -76,7 +80,7 @@ const PokemonSpecies = () => {
                         {currentPokemon.abilities !== undefined && currentPokemon.abilities.map((ability, index) => {
                             return <p key={index}>{translateAbilities(ability)}</p>
                         })}
-                        
+
                     </div>
                 </div>
                 <div className='pokemon__species__types'>
@@ -92,11 +96,11 @@ const PokemonSpecies = () => {
                 {<div className='pokemon__species__weaknesses'>
                     <h3>Faiblesses</h3>
                     {currentPokemon.weaknesses !== undefined && currentPokemon.weaknesses.map((weak, index) => {
-                        return  <div className='pokemon__species__type'>
-                                    <span key={index} className={`pill ${translateType(weak)}`}>{translateType(weak)}</span>
-                                </div>
+                        return <div className='pokemon__species__type'>
+                            <span key={index} className={`pill ${translateType(weak)}`}>{translateType(weak)}</span>
+                        </div>
                     })}
-                </div> }
+                </div>}
             </div>
         </div>
     );
