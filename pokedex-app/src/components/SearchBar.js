@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AutoSuggest from 'react-autosuggest/dist/Autosuggest';
+import { NavLink } from 'react-router-dom';
 import nameTranslate from '../jsonfiles/pokemon_translate.json'
 
 
@@ -28,7 +29,7 @@ const SearchBar = () => {
     return (
         <div className='searchbar'>
             <AutoSuggest className='search'
-                suggestions={suggestions.slice(0,5)}
+                suggestions={suggestions.slice(0, 5)}
                 onSuggestionsClearRequested={() => setSuggestions([])}
                 onSuggestionsFetchRequested={({ value }) => {
                     // console.log(value);
@@ -40,8 +41,9 @@ const SearchBar = () => {
                 }
                 getSuggestionValue={suggestion => suggestion.name}
                 renderSuggestion={suggestion => {
-                    
-                    return <span>{suggestion.name}</span>}}
+
+                    return <span>{suggestion.name}</span>
+                }}
                 inputProps={{
                     placeholder: 'Nom ou numéro',
                     value: value,
@@ -51,9 +53,10 @@ const SearchBar = () => {
                 }}
                 highlightFirstSuggestion={true}
             />
-            <div onClick={() => { }} className='searchbutton'>
+            <NavLink to={`/:${value}`} className='searchbutton'>
                 <img className='imgloupe' src="./assets/cards-page/icon.png" alt="pics" />
-            </div>
+            </NavLink>
+
         </div >
 
     );
