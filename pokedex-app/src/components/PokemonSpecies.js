@@ -45,8 +45,9 @@ const PokemonSpecies = () => {
 
     const nextText = () => {
         if (currentPokemon.flavor !== undefined) {
-            if (count < lengthFlavor)
+            if (count < lengthFlavor -1)
                 setCount(prevCount => prevCount + 1)
+               
         }
     }
 
