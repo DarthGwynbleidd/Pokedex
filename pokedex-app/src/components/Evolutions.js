@@ -7,12 +7,45 @@ import axios from 'axios';
 const Evolutions = () => {
     const { currentPokemon } = useContext(CurrentPokemonContext)
     const [nbrMax, setNbrMax] = useState('')
-    const [listEvolution, setListEvolution] = useState([])
+    const [listEvolution, setListEvolution] = useState({})
+
+
 
     useEffect(() => {
+
+        async function fetchInfos(url) {
+            const obj = {}
+            const response = await axios.get(`${url}`)
+            obj.id = response.data.id;
+            obj.image = response.data.sprites.other["official-artwork"].front_default;
+            obj.type1 = response.data.types[0].type.name;
+            try {
+                obj.type2 = response.data.types[1].type.name;
+            } catch (error) {
+
+            }
+            return obj
+        }
+
         async function fetchEvolutions() {
             const response = await axios.get(`${currentPokemon.evolution_chain}`)
+            let info = fetchInfos(response.data.chain.species.url)
+            let list = {
+                name: `${response.data.chain.species.name}`,
+                id: `${info.id}`,
+                image: `${info.image}`,
+                type1: `${info.type1}`,
+                type2: `${info.type2}`,
+                to: []
+            }
+            let path = response.data.chain.evolves_to
+            while (path.length !== 0) {
+                for (let pokemon of path) {
+                    list.push(pokemon.species.name)
+                }
+            }
         }
+
     }, [])
 
     const addZero = (number) => {
@@ -47,7 +80,7 @@ const Evolutions = () => {
                 <div className='containerevolution__mainboxcard__cardevo1'>
                     <div className='containerevolution__mainboxcard__cardevo1__evo'>
                         <figure className='containerevolution__mainboxcard__cardevo1__evo__picture'>
-                            <img src={currentPokemon.image} alt="img" />
+                            <img src={ } alt="img" />
                         </figure>
                         <div className='containerevolution__mainboxcard__cardevo1__evo__desc'>
                             <div className='containerevolution__mainboxcard__cardevo1__evo__desc__name'>
