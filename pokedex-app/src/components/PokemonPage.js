@@ -135,7 +135,7 @@ const PokemonPage = () => {
             <div className='pokemonPage'>
                 <NavigBar />
                 <PokemonSpecies />
-                <Evolutions />
+                {/* <Evolutions /> */}
 
             </div>
         </CurrentPokemonContext.Provider>
