@@ -45,7 +45,6 @@ const Evolutions = () => {
         }
         if (Object.keys(currentPokemon).length !== 0) {
             apiCall()
-            
         }
     }, [currentPokemon])
     
