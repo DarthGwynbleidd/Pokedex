@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import typeTranslate from '../jsonfiles/type_translate.json'
 import nameTranslate from '../jsonfiles/pokemon_translate.json'
-import PokemonStats from './PokemonStats';
 import { NavLink } from 'react-router-dom';
+import PageTwoContext from '../contexts/PageTwoContext'
+
 
 const Card = (props) => {
     // const effetClass = `card_${Math.floor(Math.random() * (5 - 1) + 1)}`;// chiffre aléatoire (1 à 4) pour className card
+    const {setPageTwo } = useContext(PageTwoContext);
 
     const translateName = (pokemonName) => {
         let vfName = ''
@@ -28,8 +30,9 @@ const Card = (props) => {
         return +number < 10? `00${+number}` : `0${+number}`
     }
 
+
     return (
-        <NavLink to={`/:${translateName(props.pokemonName)}`} className='card'>
+        <NavLink onClick={setPageTwo(true)} to={`/:${translateName(props.pokemonName)}`} className='card'>
             <div className='card_vide'>
                 <figure className='card_vide_picture'>
                     <img src={props.image} alt={props.name} />

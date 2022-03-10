@@ -3,9 +3,11 @@ import { NavLink } from 'react-router-dom';
 import nameTranslate from '../jsonfiles/pokemon_translate.json'
 import CurrentPokemonContext from '../contexts/CurrentPokemonContext';
 import BackUpContext from '../contexts/BackupContext'
+import PageTwoContext from '../contexts/PageTwoContext'
 
 const NavigBar = () => {
     const { setBackUp } = useContext(BackUpContext)
+    const { setPageTwo } = useContext(PageTwoContext)
     const { currentPokemon } = useContext(CurrentPokemonContext)
     const translateName = (pokemonName) => {
         let vfName = ''
@@ -21,13 +23,18 @@ const NavigBar = () => {
         return +number < 10 ? `00${+number}` : `0${+number}`
     }
 
+    const changePageTwo = () => {
+        setBackUp(prevBackUp => prevBackUp = true);
+        setPageTwo(false);
+    }
+
     return (
         <div className='navigbar'>
             <div className='navigbar__top'>
                 <NavLink to={`/:${translateName(currentPokemon.prevName)}`} className='navigbar__top__previous'>
                     &#60; N°. {currentPokemon.prevId < 100 ? addZero(currentPokemon.prevId) : currentPokemon.prevId}  {translateName(currentPokemon.prevName)}
                 </NavLink>
-                <NavLink onClick={setBackUp(prevBackUp => prevBackUp = true)} to="/" className='navigbar__top__home'>
+                <NavLink onClick={changePageTwo} to="/" className='navigbar__top__home'>
                     Retour
                 </NavLink>
                 <NavLink to={`/:${translateName(currentPokemon.nextName)}`} className='navigbar__top__next'>

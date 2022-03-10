@@ -7,15 +7,19 @@ import PokemonSpecies from './PokemonSpecies';
 import nameTranslate from '../jsonfiles/pokemon_translate.json'
 import PokemonContext from '../contexts/PokemonContext';
 import CurrentPokemonContext from '../contexts/CurrentPokemonContext'
+import PageTwoContext from '../contexts/PageTwoContext'
 
 
 const PokemonPage = () => {
 
     const { name } = useParams()
     const { pokemons, setPokemons } = useContext(PokemonContext);
+    const { setPageTwo } = useContext(PageTwoContext);
     const urlName = name.split(":").join("")
     const pokemonNameNoAccent = urlName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     const [currentPokemon, setCurrentPokemon] = useState({})
+    // met PageTwo sur true pour empecher le calcul du scroll dans BottomButton
+    setPageTwo(true)
 
     let alias = ""
 
