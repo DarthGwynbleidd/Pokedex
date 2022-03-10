@@ -80,32 +80,6 @@ const Evolutions = () => {
     }
 
     return (
-        // <div>
-        //     <h5>{translateName(evoChain.pokemonName)}</h5>
-        //     {console.log(evoChain)}
-        //     {
-        //         evoChain.to !== undefined &&
-        //         evoChain.to.length > 0 &&
-        //         evoChain.to.map((evolutions) => {
-        //             return (
-        //                 <div key={evolutions.id}>
-
-        //                     <h5>{translateName(evolutions.pokemonName)}</h5>
-        //                     {
-        //                         evolutions.to.length > 0 &&
-        //                         evolutions.to.map((evolutions2) => {
-        //                             return (
-        //                                 <div key={evolutions2.id}>
-        //                                     <h5>{translateName(evolutions2.pokemonName)}</h5>
-        //                                 </div>
-        //                             )
-        //                         })
-        //                     }
-        //                 </div>
-        //             )
-        //         })
-        //     }
-        // </div>
 
         <div className='containerevolution'>
             <div className='containerevolution__title'>
@@ -135,208 +109,132 @@ const Evolutions = () => {
                     </div>
                 </div>
                 <div className='containerevolution__mainboxcard__chevron1'>&#62;</div>
+                {nbrMax > 4 &&
+                    <div className='containerevolution__mainboxcard__cardevo2'>
+                        {
+                            evoChain.to !== undefined &&
+                            evoChain.to.length > 0 &&
+                            evoChain.to.map(evolutions => {
+                                return (
+                                    <div key={evolutions.id}>
+
+                                        <div className='containerevolution__mainboxcard__cardevo2__evo'>
+                                            <figure className={`containerevolution__mainboxcard__cardevo2__evo__picture${nbrMax > 3 ? '__max' : ''}`}>
+                                                <img src={evolutions.image} alt="img" />
+                                            </figure>
+                                            <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
+                                                <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax > 3 ? '__max' : ''}`}>
+                                                    <h5>{translateName(evolutions.pokemonName)}</h5>
+                                                    <p><span>#{evolutions.id < 100 ? addZero(evolutions.id) : evolutions.id}</span></p>
+                                                </div>
+                                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
+                                                    <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                                        <span className={`pill ${translateType(evolutions.type1)}`}>{translateType(evolutions.type1)}</span>
+                                                    </div>
+                                                    <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                                        <span className={`pill ${translateType(evolutions.type2)}`}>{translateType(evolutions.type2)}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {/* </div> */}
+                                        {evolutions.to.length !== 0 &&
+                                            <div className='containerevolution__mainboxcard__chevron1'>&#62;</div>}
+                                        {evolutions.to.length > 0 &&
+                                            evolutions.to.map(evolution => {
+                                                return (
+                                                    // <div className='containerevolution__mainboxcard__cardevo2'>
+                                                    <div key={evolution.id} className='containerevolution__mainboxcard__cardevo2__evo'>
+                                                        <figure className={`containerevolution__mainboxcard__cardevo2__evo__picture${nbrMax > 3 ? '__max' : ''}`}>
+                                                            <img src={evolution.image} alt="img" />
+                                                        </figure>
+                                                        <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
+                                                            <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax > 3 ? '__max' : ''}`}>
+                                                                <h5>{translateName(evolution.pokemonName)}</h5>
+                                                                <p><span>#{evolution.id < 100 ? addZero(evolution.id) : evolution.id}</span></p>
+                                                            </div>
+                                                            <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
+                                                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                                                    <span className={`pill ${translateType(evolution.type1)}`}>{translateType(evolution.type1)}</span>
+                                                                </div>
+                                                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                                                    <span className={`pill ${translateType(evolution.type2)}`}>{translateType(evolution.type2)}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                )
+                                            })}
+
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                }
                 {
+                    nbrMax <= 4 &&
                     evoChain.to !== undefined &&
                     evoChain.to.length > 0 &&
                     evoChain.to.map(evolutions => {
                         return (
                             <div key={evolutions.id}>
-                                <div className='containerevolution__mainboxcard__cardevo2__evo'>
-                                    <figure className={`containerevolution__mainboxcard__cardevo2__evo__picture${nbrMax > 3 ? '__max' : ''}`}>
-                                        <img src={evolutions.image} alt="img" />
-                                    </figure>
-                                    <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
-                                        <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax > 3 ? '__max' : ''}`}>
-                                            <h5>{translateName(evolutions.pokemonName)}</h5>
-                                            <p><span>#{evolutions.id < 100 ? addZero(evolutions.id) : evolutions.id}</span></p>
-                                        </div>
-                                        <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
-                                            <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-                                                <span className={`pill ${translateType(evolutions.type1)}`}>{translateType(evolutions.type1)}</span>
+                                <div className='containerevolution__mainboxcard__cardevo2'>
+                                    <div className='containerevolution__mainboxcard__cardevo2__evo'>
+                                        <figure className={`containerevolution__mainboxcard__cardevo2__evo__picture${nbrMax > 3 ? '__max' : ''}`}>
+                                            <img src={evolutions.image} alt="img" />
+                                        </figure>
+                                        <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
+                                            <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax > 3 ? '__max' : ''}`}>
+                                                <h5>{translateName(evolutions.pokemonName)}</h5>
+                                                <p><span>#{evolutions.id < 100 ? addZero(evolutions.id) : evolutions.id}</span></p>
                                             </div>
-                                            <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-                                                <span className={`pill ${translateType(evolutions.type2)}`}>{translateType(evolutions.type2)}</span>
+                                            <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
+                                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                                    <span className={`pill ${translateType(evolutions.type1)}`}>{translateType(evolutions.type1)}</span>
+                                                </div>
+                                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                                    <span className={`pill ${translateType(evolutions.type2)}`}>{translateType(evolutions.type2)}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                {evolutions.to.length !== 0 && <div className='containerevolution__mainboxcard__chevron1'>&#62;</div>}
-                                {evolutions.to.length > 0 &&
-                                    evolutions.to.map(evolution => {
-                                        return (
-                                            <div key={evolution.id} className='containerevolution__mainboxcard__cardevo2__evo'>
-                                                <figure className={`containerevolution__mainboxcard__cardevo2__evo__picture${nbrMax > 3 ? '__max' : ''}`}>
-                                                    <img src={evolution.image} alt="img" />
-                                                </figure>
-                                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
-                                                    <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax > 3 ? '__max' : ''}`}>
-                                                        <h5>{translateName(evolution.pokemonName)}</h5>
-                                                        <p><span>#{evolution.id < 100 ? addZero(evolution.id) : evolution.id}</span></p>
-                                                    </div>
-                                                    <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
-                                                        <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-                                                            <span className={`pill ${translateType(evolution.type1)}`}>{translateType(evolution.type1)}</span>
+                                    {/* </div> */}
+                                    {evolutions.to.length !== 0 && <div className='containerevolution__mainboxcard__chevron1'>&#62;</div>}
+                                    {evolutions.to.length > 0 &&
+                                        evolutions.to.map(evolution => {
+                                            return (
+                                                // <div className='containerevolution__mainboxcard__cardevo2'>
+                                                <div key={evolution.id} className='containerevolution__mainboxcard__cardevo2__evo'>
+                                                    <figure className={`containerevolution__mainboxcard__cardevo2__evo__picture${nbrMax > 3 ? '__max' : ''}`}>
+                                                        <img src={evolution.image} alt="img" />
+                                                    </figure>
+                                                    <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
+                                                        <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax > 3 ? '__max' : ''}`}>
+                                                            <h5>{translateName(evolution.pokemonName)}</h5>
+                                                            <p><span>#{evolution.id < 100 ? addZero(evolution.id) : evolution.id}</span></p>
                                                         </div>
-                                                        <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-                                                            <span className={`pill ${translateType(evolution.type2)}`}>{translateType(evolution.type2)}</span>
+                                                        <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
+                                                            <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                                                <span className={`pill ${translateType(evolution.type1)}`}>{translateType(evolution.type1)}</span>
+                                                            </div>
+                                                            <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                                                <span className={`pill ${translateType(evolution.type2)}`}>{translateType(evolution.type2)}</span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        )
-                                    })}
-                            </div>)
+                                            )
+                                        })
+                                    }
 
-                    })
+                                </div>
+                            </div>
+                            )
+                })
                 }
-
-                {/* <div className='containerevolution__mainboxcard__chevron1'>&#62;</div>
-        //         <div className='containerevolution__mainboxcard__cardevo2'>
-
-        //             <div className='containerevolution__mainboxcard__cardevo2__evo'>
-        //                 <figure className={`containerevolution__mainboxcard__cardevo2__evo__picture${nbrMax}`}>
-        //                     <img src={currentPokemon.image} alt="img" />
-        //                 </figure>
-        //                 <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
-        //                     <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax}`}>
-        //                         <h5>{translateName(currentPokemon.pokemonName)}</h5>
-        //                         <p><span>#{currentPokemon.id < 100 ? addZero(currentPokemon.id) : currentPokemon.id}</span></p>
-        //                     </div>
-        //                     <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
-        //                         <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-        //                             <span className={`pill ${translateType(currentPokemon.type1)}`}>{translateType(currentPokemon.type1)}</span>
-        //                         </div>
-        //                         <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-        //                             <span className={`pill ${translateType(currentPokemon.type2)}`}>{translateType(currentPokemon.type2)}</span>
-        //                         </div>
-        //                     </div>
-        //                 </div>
-        //             </div>
-
-
-        //             <div className='containerevolution__mainboxcard__cardevo2__evo'>
-        //                 <figure className={`containerevolution__mainboxcard__cardevo2__evo__picture${nbrMax}`}>
-        //                     <img src={currentPokemon.image} alt="img" />
-        //                 </figure>
-        //                 <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
-        //                     <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax}`}>
-        //                         <h5>{translateName(currentPokemon.pokemonName)}</h5>
-        //                         <p><span>#{currentPokemon.id < 100 ? addZero(currentPokemon.id) : currentPokemon.id}</span></p>
-        //                     </div>
-        //                     <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
-        //                         <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-        //                             <span className={`pill ${translateType(currentPokemon.type1)}`}>{translateType(currentPokemon.type1)}</span>
-        //                         </div>
-        //                         <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-        //                             <span className={`pill ${translateType(currentPokemon.type2)}`}>{translateType(currentPokemon.type2)}</span>
-        //                         </div>
-        //                     </div>
-        //                 </div>
-        //             </div>
-
-
-        //             <div className='containerevolution__mainboxcard__cardevo2__evo'>
-        //                 <figure className={`containerevolution__mainboxcard__cardevo2__evo__picture${nbrMax}`}>
-        //                     <img src={currentPokemon.image} alt="img" />
-        //                 </figure>
-        //                 <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
-        //                     <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax}`}>
-        //                         <h5>{translateName(currentPokemon.pokemonName)}</h5>
-        //                         <p><span>#{currentPokemon.id < 100 ? addZero(currentPokemon.id) : currentPokemon.id}</span></p>
-        //                     </div>
-        //                     <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
-        //                         <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-        //                             <span className={`pill ${translateType(currentPokemon.type1)}`}>{translateType(currentPokemon.type1)}</span>
-        //                         </div>
-        //                         <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-        //                             <span className={`pill ${translateType(currentPokemon.type2)}`}>{translateType(currentPokemon.type2)}</span>
-        //                         </div>
-        //                     </div>
-        //                 </div>
-        //             </div>
-
-
-        //             <div className='containerevolution__mainboxcard__cardevo2__evo'>
-        //                 <figure className={`containerevolution__mainboxcard__cardevo2__evo__picture${nbrMax}`}>
-        //                     <img src={currentPokemon.image} alt="img" />
-        //                 </figure>
-        //                 <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
-        //                     <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax}`}>
-        //                         <h5>{translateName(currentPokemon.pokemonName)}</h5>
-        //                         <p><span>#{currentPokemon.id < 100 ? addZero(currentPokemon.id) : currentPokemon.id}</span></p>
-        //                     </div>
-        //                     <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
-        //                         <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-        //                             <span className={`pill ${translateType(currentPokemon.type1)}`}>{translateType(currentPokemon.type1)}</span>
-        //                         </div>
-        //                         <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-        //                             <span className={`pill ${translateType(currentPokemon.type2)}`}>{translateType(currentPokemon.type2)}</span>
-        //                         </div>
-        //                     </div>
-        //                 </div>
-        //             </div>
-
-
-        //             <div className='containerevolution__mainboxcard__cardevo2__evo'>
-        //                 <figure className={`containerevolution__mainboxcard__cardevo2__evo__picture${nbrMax}`}>
-        //                     <img src={currentPokemon.image} alt="img" />
-        //                 </figure>
-        //                 <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
-        //                     <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax}`}>
-        //                         <h5>{translateName(currentPokemon.pokemonName)}</h5>
-        //                         <p><span>#{currentPokemon.id < 100 ? addZero(currentPokemon.id) : currentPokemon.id}</span></p>
-        //                     </div>
-        //                     <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
-        //                         <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-        //                             <span className={`pill ${translateType(currentPokemon.type1)}`}>{translateType(currentPokemon.type1)}</span>
-        //                         </div>
-        //                         <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-        //                             <span className={`pill ${translateType(currentPokemon.type2)}`}>{translateType(currentPokemon.type2)}</span>
-        //                         </div>
-        //                     </div>
-        //                 </div>
-        //             </div>
-        //         </div> */}
-                {/* <div className='containerevolution__mainboxcard__cardevo2'>
-        //                 <div className='card_evo'>
-        //                     <figure className='card_evo_picture'>
-        //                         <img src={ } alt={ } />
-        //                     </figure>
-        //                     <div className='card_evo_desc'>
-        //                         <p><span>No. { }</span></p>
-        //                         <h5>{translateName()}</h5>
-        //                         <div className='card_evo_desc_abilities'>
-        //                             <span className={`pill ${translateType()}`}>{translateType()}</span>
-        //                         </div>
-        //                         <div className='card_evo_desc_abilities'>
-        //                             <span className={`pill ${translateType()}`}>{translateType()}</span>
-        //                         </div>
-        //                     </div>
-        //                 </div>
-        //             </div> */}
-                {/* <div className='containerevolution__mainboxcard__chevron2'></div> */}
-                {/*
-        //             <div className='containerevolution__mainboxcard__cardevo3'>
-        //                 <div className='card_evo'>
-        //                     <figure className='card_evo_picture'>
-        //                         <img src={ } alt={ } />
-        //                     </figure>
-        //                     <div className='card_evo_desc'>
-        //                         <p><span>No. { }</span></p>
-        //                         <h5>{translateName()}</h5>
-        //                         <div className='card_evo_desc_abilities'>
-        //                             <span className={`pill ${translateType()}`}>{translateType()}</span>
-        //                         </div>
-        //                         <div className='card_evo_desc_abilities'>
-        //                             <span className={`pill ${translateType()}`}>{translateType()}</span>
-        //                         </div>
-        //                     </div>
-        //                 </div>
-        //             </div> */}
-
-                {/* </div> */}
             </div>
-        </div>
+        </div >
 
     );
 };
