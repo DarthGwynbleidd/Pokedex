@@ -30,12 +30,14 @@ const Evolutions = () => {
         async function fetchEvolutions(array) {
             if (array[0].evolves_to.length > 0) {
                 let tmp = await fetchInfos(array[0].species.name)
-                tmp.to = array[0].evolves_to.map(evolution => {
-                    return fetchEvolutions([evolution])
-                })
+                tmp.to = await Promise.all(array[0].evolves_to.map(async evolution => {
+                    let test = await fetchEvolutions([evolution])
+                    return test
+                }))
                 return tmp
             } else {
-                return fetchInfos(array[0].species.name)
+                let tmp = await fetchInfos(array[0].species.name)
+                return tmp
             }
         }
         async function apiCall (){
