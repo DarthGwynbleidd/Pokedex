@@ -78,7 +78,8 @@ const CardsPage = () => {
                     defense: "",
                     specialAttack: "",
                     specialDefense: "",
-                    speed: ""
+                    speed: "",
+                    evolution_chain: ""
                 }
 
                 obj.id = response.data.id;
@@ -121,6 +122,7 @@ const CardsPage = () => {
                     }
 
                 }
+                obj.evolution_chain = responseFlavor.data.evolution_chain.url
                 const responseTypeOne = await axios.get(`https://pokeapi.co/api/v2/type/${obj.type1}`)
                 for (let weak of responseTypeOne.data.damage_relations.double_damage_from) {
                     obj.weaknesses.push(weak.name)
@@ -130,7 +132,7 @@ const CardsPage = () => {
                     for (let weak of responseTypeTwo.data.damage_relations.double_damage_from) {
                         obj.weaknesses.push(weak.name)
                     }
-                }catch {}
+                } catch { }
 
                 temp.push(obj)
 

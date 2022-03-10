@@ -20,8 +20,8 @@ function App() {
             <Header />
             <Routes>
               <Route path="/" element={<CardsPage />} />
-              <Route path="/:name" element={<PokemonPage />} />
-              <Route path="*" element={<NotFound />} />
+              <Route path="/:name" exact element={<PokemonPage />} />
+              <Route path="/error" element={<NotFound />} />
             </Routes>
             <Footer />
           </div>

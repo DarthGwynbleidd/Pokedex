@@ -22,7 +22,7 @@ const PokemonPage = () => {
     useEffect(() => {
         const temp = []
 
-        
+
         for (let element in nameTranslate) {
             let noAccent = element.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
             if (noAccent === pokemonNameNoAccent)
@@ -58,7 +58,8 @@ const PokemonPage = () => {
                 defense: '',
                 specialAttack: '',
                 specialDefense: '',
-                speed: ''
+                speed: '',
+                evolution_chain: ''
             }
 
             obj.id = response.data.id;
@@ -98,16 +99,17 @@ const PokemonPage = () => {
                         obj.flavor.push(tmpFlavor)
                 }
             }
+            obj.evolution_chain = responseFlavor.data.evolution_chain.url
             const responseTypeOne = await axios.get(`https://pokeapi.co/api/v2/type/${obj.type1}`)
-                for (let weak of responseTypeOne.data.damage_relations.double_damage_from) {
+            for (let weak of responseTypeOne.data.damage_relations.double_damage_from) {
+                obj.weaknesses.push(weak.name)
+            }
+            try {
+                const responseTypeTwo = await axios.get(`https://pokeapi.co/api/v2/type/${obj.type2}`)
+                for (let weak of responseTypeTwo.data.damage_relations.double_damage_from) {
                     obj.weaknesses.push(weak.name)
                 }
-                try {
-                    const responseTypeTwo = await axios.get(`https://pokeapi.co/api/v2/type/${obj.type2}`)
-                    for (let weak of responseTypeTwo.data.damage_relations.double_damage_from) {
-                        obj.weaknesses.push(weak.name)
-                    }
-                }catch {}
+            } catch { }
             temp.push(obj)
             setCurrentPokemon(obj)
         }
@@ -117,7 +119,7 @@ const PokemonPage = () => {
         } else {
             let isIn = false
             for (let pokemon of pokemons) {
-                if (pokemon.pokemonName === alias){
+                if (pokemon.pokemonName === alias) {
                     isIn = true
                     setCurrentPokemon(pokemon)
                 }

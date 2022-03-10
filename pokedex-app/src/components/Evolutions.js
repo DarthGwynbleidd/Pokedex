@@ -1,15 +1,53 @@
-import React, { useContext, useState } from 'react';
-import PokemonContext from '../contexts/PokemonContext';
+import React, { useContext, useEffect, useState } from 'react';
 import CurrentPokemonContext from '../contexts/CurrentPokemonContext';
 import typeTranslate from '../jsonfiles/type_translate.json'
 import nameTranslate from '../jsonfiles/pokemon_translate.json'
-import abilitiesTranslate from '../jsonfiles/abilities_translate.json'
+import axios from 'axios';
 
-
-const Evolutions = (props) => {
+const Evolutions = () => {
     const { currentPokemon } = useContext(CurrentPokemonContext)
-    const [nbrMax, setNbrMax] = useState('__max')
+    const [nbrMax, setNbrMax] = useState('')
+    let evoChain = {}
 
+    useEffect(() => {
+
+        async function fetchInfos(name) {
+            const obj = {}
+            const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
+            obj.pokemonName = name
+            obj.id = response.data.id;
+            obj.image = response.data.sprites.other["official-artwork"].front_default;
+            obj.type1 = response.data.types[0].type.name;
+            try {
+                obj.type2 = response.data.types[1].type.name;
+            } catch (error) {
+
+            }
+            obj.to = []
+            return obj
+        }
+
+        async function fetchEvolutions(array) {
+            if (array[0].evolves_to.length > 0) {
+                let tmp = await fetchInfos(array[0].species.name)
+                tmp.to = array[0].evolves_to.map(evolution => {
+                    return fetchEvolutions([evolution])
+                })
+                return tmp
+            } else {
+                return fetchInfos(array[0].species.name)
+            }
+        }
+        async function apiCall (){
+            const response = await axios.get(`${currentPokemon.evolution_chain}`)
+            evoChain = await fetchEvolutions([response.data.chain])
+            console.log(evoChain);
+        }
+        if (Object.keys(currentPokemon).length !== 0) {
+            apiCall()
+        }
+    }, [currentPokemon])
+    
     const addZero = (number) => {
         return +number < 10 ? `00${+number}` : `0${+number}`
     }
@@ -18,7 +56,7 @@ const Evolutions = (props) => {
         let vfName = ''
         for (let name in nameTranslate) {
             if (nameTranslate[name].toLowerCase() === pokemonName)
-            vfName = name
+                vfName = name
         }
         return vfName
     }
@@ -27,21 +65,10 @@ const Evolutions = (props) => {
         let vfType = ''
         for (let type in typeTranslate) {
             if (type.toLowerCase() === typeName)
-            vfType = typeTranslate[type]
+                vfType = typeTranslate[type]
         }
         return vfType.toLowerCase()
     }
-
-    const translateAbilities = (abilityName) => {
-        let vfAbility = ''
-        for (let ability in abilitiesTranslate){
-            if (abilitiesTranslate[ability].toLowerCase() === abilityName)
-            vfAbility = ability
-        }
-        return vfAbility
-    }
-    
-
 
     return (
         <div className='containerevolution'>
@@ -72,7 +99,7 @@ const Evolutions = (props) => {
                     </div>
                 </div>
 
-                    <div className='containerevolution__mainboxcard__chevron1'>&#62;</div>
+                <div className='containerevolution__mainboxcard__chevron1'>&#62;</div>
                 <div className='containerevolution__mainboxcard__cardevo2'>
 
                     <div className='containerevolution__mainboxcard__cardevo2__evo'>
@@ -86,31 +113,10 @@ const Evolutions = (props) => {
                             </div>
                             <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
                                 <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-                                <span className={`pill ${translateType(currentPokemon.type1)}`}>{translateType(currentPokemon.type1)}</span>
+                                    <span className={`pill ${translateType(currentPokemon.type1)}`}>{translateType(currentPokemon.type1)}</span>
                                 </div>
                                 <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-                                <span className={`pill ${translateType(currentPokemon.type2)}`}>{translateType(currentPokemon.type2)}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div className='containerevolution__mainboxcard__cardevo2__evo'>
-                        <figure className={`containerevolution__mainboxcard__cardevo2__evo__picture${nbrMax}`}>
-                            <img src={currentPokemon.image} alt="img" />
-                        </figure>
-                        <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
-                            <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax}`}>
-                                <h5>{translateName(currentPokemon.pokemonName)}</h5>
-                                <p><span>#{currentPokemon.id < 100 ? addZero(currentPokemon.id) : currentPokemon.id}</span></p>
-                            </div>
-                            <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
-                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-                                <span className={`pill ${translateType(currentPokemon.type1)}`}>{translateType(currentPokemon.type1)}</span>
-                                </div>
-                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-                                <span className={`pill ${translateType(currentPokemon.type2)}`}>{translateType(currentPokemon.type2)}</span>
+                                    <span className={`pill ${translateType(currentPokemon.type2)}`}>{translateType(currentPokemon.type2)}</span>
                                 </div>
                             </div>
                         </div>
@@ -128,31 +134,10 @@ const Evolutions = (props) => {
                             </div>
                             <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
                                 <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-                                <span className={`pill ${translateType(currentPokemon.type1)}`}>{translateType(currentPokemon.type1)}</span>
+                                    <span className={`pill ${translateType(currentPokemon.type1)}`}>{translateType(currentPokemon.type1)}</span>
                                 </div>
                                 <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-                                <span className={`pill ${translateType(currentPokemon.type2)}`}>{translateType(currentPokemon.type2)}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div className='containerevolution__mainboxcard__cardevo2__evo'>
-                        <figure className={`containerevolution__mainboxcard__cardevo2__evo__picture${nbrMax}`}>
-                            <img src={currentPokemon.image} alt="img" />
-                        </figure>
-                        <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
-                            <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax}`}>
-                                <h5>{translateName(currentPokemon.pokemonName)}</h5>
-                                <p><span>#{currentPokemon.id < 100 ? addZero(currentPokemon.id) : currentPokemon.id}</span></p>
-                            </div>
-                            <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
-                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-                                <span className={`pill ${translateType(currentPokemon.type1)}`}>{translateType(currentPokemon.type1)}</span>
-                                </div>
-                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-                                <span className={`pill ${translateType(currentPokemon.type2)}`}>{translateType(currentPokemon.type2)}</span>
+                                    <span className={`pill ${translateType(currentPokemon.type2)}`}>{translateType(currentPokemon.type2)}</span>
                                 </div>
                             </div>
                         </div>
@@ -170,10 +155,52 @@ const Evolutions = (props) => {
                             </div>
                             <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
                                 <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-                                <span className={`pill ${translateType(currentPokemon.type1)}`}>{translateType(currentPokemon.type1)}</span>
+                                    <span className={`pill ${translateType(currentPokemon.type1)}`}>{translateType(currentPokemon.type1)}</span>
                                 </div>
                                 <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
-                                <span className={`pill ${translateType(currentPokemon.type2)}`}>{translateType(currentPokemon.type2)}</span>
+                                    <span className={`pill ${translateType(currentPokemon.type2)}`}>{translateType(currentPokemon.type2)}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className='containerevolution__mainboxcard__cardevo2__evo'>
+                        <figure className={`containerevolution__mainboxcard__cardevo2__evo__picture${nbrMax}`}>
+                            <img src={currentPokemon.image} alt="img" />
+                        </figure>
+                        <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
+                            <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax}`}>
+                                <h5>{translateName(currentPokemon.pokemonName)}</h5>
+                                <p><span>#{currentPokemon.id < 100 ? addZero(currentPokemon.id) : currentPokemon.id}</span></p>
+                            </div>
+                            <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
+                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                    <span className={`pill ${translateType(currentPokemon.type1)}`}>{translateType(currentPokemon.type1)}</span>
+                                </div>
+                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                    <span className={`pill ${translateType(currentPokemon.type2)}`}>{translateType(currentPokemon.type2)}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div className='containerevolution__mainboxcard__cardevo2__evo'>
+                        <figure className={`containerevolution__mainboxcard__cardevo2__evo__picture${nbrMax}`}>
+                            <img src={currentPokemon.image} alt="img" />
+                        </figure>
+                        <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
+                            <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax}`}>
+                                <h5>{translateName(currentPokemon.pokemonName)}</h5>
+                                <p><span>#{currentPokemon.id < 100 ? addZero(currentPokemon.id) : currentPokemon.id}</span></p>
+                            </div>
+                            <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
+                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                    <span className={`pill ${translateType(currentPokemon.type1)}`}>{translateType(currentPokemon.type1)}</span>
+                                </div>
+                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                    <span className={`pill ${translateType(currentPokemon.type2)}`}>{translateType(currentPokemon.type2)}</span>
                                 </div>
                             </div>
                         </div>
@@ -197,7 +224,7 @@ const Evolutions = (props) => {
                         </div>
                     </div> */}
                 <div className='containerevolution__mainboxcard__chevron2'></div>
-                {/* 
+                {/*
                     <div className='containerevolution__mainboxcard__cardevo3'>
                         <div className='card_evo'>
                             <figure className='card_evo_picture'>
