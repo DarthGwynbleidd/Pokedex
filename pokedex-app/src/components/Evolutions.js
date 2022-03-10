@@ -7,7 +7,7 @@ import axios from 'axios';
 const Evolutions = () => {
     const { currentPokemon } = useContext(CurrentPokemonContext)
     const [nbrMax, setNbrMax] = useState('')
-    let evoChain = {}
+    const [evoChain, setEvoChain] = useState({})
 
     useEffect(() => {
 
@@ -40,16 +40,16 @@ const Evolutions = () => {
                 return tmp
             }
         }
-        async function apiCall (){
+        async function apiCall() {
             const response = await axios.get(`${currentPokemon.evolution_chain}`)
-            evoChain = await fetchEvolutions([response.data.chain])
+            await setEvoChain(await fetchEvolutions([response.data.chain]))
             console.log(evoChain);
         }
         if (Object.keys(currentPokemon).length !== 0) {
             apiCall()
         }
     }, [currentPokemon])
-    
+
     const addZero = (number) => {
         return +number < 10 ? `00${+number}` : `0${+number}`
     }
@@ -82,26 +82,50 @@ const Evolutions = () => {
                 <div className='containerevolution__mainboxcard__cardevo1'>
                     <div className='containerevolution__mainboxcard__cardevo1__evo'>
                         <figure className='containerevolution__mainboxcard__cardevo1__evo__picture'>
-                            <img src={currentPokemon.image} alt="img" />
+                            <img src={evoChain.image} alt="img" />
                         </figure>
                         <div className='containerevolution__mainboxcard__cardevo1__evo__desc'>
                             <div className='containerevolution__mainboxcard__cardevo1__evo__desc__name'>
-                                <h5>{translateName(currentPokemon.pokemonName)}</h5>
-                                <p><span>#{currentPokemon.id < 100 ? addZero(currentPokemon.id) : currentPokemon.id}</span></p>
+                                <h5>{translateName(evoChain.pokemonName)}</h5>
+                                <p><span>#{evoChain.id < 100 ? addZero(evoChain.id) : evoChain.id}</span></p>
                             </div>
                             <div className='containerevolution__mainboxcard__cardevo1__evo__desc__type'>
                                 <div className='containerevolution__mainboxcard__cardevo1__evo__desc__type__abilities'>
-                                    <span className={`pill ${translateType(currentPokemon.type1)}`}>{translateType(currentPokemon.type1)}</span>
+                                    <span className={`pill ${translateType(evoChain.type1)}`}>{translateType(evoChain.type1)}</span>
                                 </div>
                                 <div className='containerevolution__mainboxcard__cardevo1__evo__desc__type__abilities'>
-                                    <span className={`pill ${translateType(currentPokemon.type2)}`}>{translateType(currentPokemon.type2)}</span>
+                                    <span className={`pill ${translateType(evoChain.type2)}`}>{translateType(evoChain.type2)}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>{
+                    evoChain.to !== undefined &&
+                    evoChain.to.length > 0 &&
+                    evoChain.to.map(evolutions => {
+                        <div className='containerevolution__mainboxcard__cardevo2__evo'>
+                            <figure className={`containerevolution__mainboxcard__cardevo2__evo__picture${nbrMax}`}>
+                                <img src={evolutions.image} alt="img" />
+                            </figure>
+                            <div className='containerevolution__mainboxcard__cardevo2__evo__desc'>
+                                <div className={`containerevolution__mainboxcard__cardevo2__evo__desc__name${nbrMax}`}>
+                                    <h5>{translateName(evolutions.pokemonName)}</h5>
+                                    <p><span>#{evolutions.id < 100 ? addZero(evolutions.id) : evolutions.id}</span></p>
+                                </div>
+                                <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type'>
+                                    <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                        <span className={`pill ${translateType(evolutions.type1)}`}>{translateType(evolutions.type1)}</span>
+                                    </div>
+                                    <div className='containerevolution__mainboxcard__cardevo2__evo__desc__type__abilities'>
+                                        <span className={`pill ${translateType(evolutions.type2)}`}>{translateType(evolutions.type2)}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    })
+                }
 
-                <div className='containerevolution__mainboxcard__chevron1'>&#62;</div>
+                {/* <div className='containerevolution__mainboxcard__chevron1'>&#62;</div>
                 <div className='containerevolution__mainboxcard__cardevo2'>
 
                     <div className='containerevolution__mainboxcard__cardevo2__evo'>
@@ -207,7 +231,7 @@ const Evolutions = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 {/* <div className='containerevolution__mainboxcard__cardevo2'>
                         <div className='card_evo'>
                             <figure className='card_evo_picture'>
