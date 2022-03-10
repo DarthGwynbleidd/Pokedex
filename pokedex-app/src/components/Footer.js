@@ -5,7 +5,7 @@ const Footer = () => {
         <div className='footer'>
             <div className='footer__medaille'>
                 <img src='./assets/footer/medaille.png' alt=""></img>
-                <p>Created By PAPA, ANGIE, VINCE & 42.</p>
+                <p>Created By ANGIE, VINCE, PAPA & 42.</p>
             </div>
             <div className='footer__media'>
                 <div className='footer__media__liens'>
