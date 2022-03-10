@@ -125,10 +125,14 @@ h3 {
     letter-spacing: 1.2px;
     max-width: 110px;
     margin: 1.6% 1.6% 0 0;
-    width: 50%;
+    width: 40%;
     float: left;
     font-size: 1rem;
     text-align: center;
+
+    @media screen and(max-width:500px){
+        width: 30%; 
+    }
 }
 .insecte {
     @include insecte;
