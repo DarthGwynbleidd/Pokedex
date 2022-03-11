@@ -8,12 +8,16 @@ import PokemonContext from '../contexts/PokemonContext';
 import DisplayContext from '../contexts/DisplayContext';
 import nameTranslate from '../jsonfiles/pokemon_translate.json'
 import BackUpContext from '../contexts/BackupContext'
+import PageTwoContext from '../contexts/PageTwoContext'
 
 const CardsPage = () => {
     const { pokemons, setPokemons } = useContext(PokemonContext);
     const [group, setGroup] = useState(1)
     const [display, setDisplay] = useState("displayNumericUp")
     const { backUp, setBackUp } = useContext(BackUpContext)
+    const {setPageTwo } = useContext(PageTwoContext)
+
+    setPageTwo(false)
 
 
     const frenchNames = Object.keys(nameTranslate).map(element => {
