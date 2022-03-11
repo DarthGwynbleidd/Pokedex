@@ -9,7 +9,7 @@
     background-color: #53a4cf;
     color: #fff;
 }
-@mixin fee {
+@mixin fée {
     background: linear-gradient(180deg, #fdb9e9 50%, #fdb9e9 50%);
     background-color: #fdb9e9;
     color: #212121;
@@ -44,12 +44,12 @@
     background-color: #9eb7b8;
     color: #212121;
 }
-@mixin tenebres {
+@mixin ténèbres {
     background: linear-gradient(180deg, #707070 50%, #707070 50%);
     background-color: #707070;
     color: #fff;
 }
-@mixin electrik {
+@mixin électrik {
     background: linear-gradient(180deg, #eed535 50%, #eed535 50%);
     background-color: #eed535;
     color: #212121;
@@ -89,16 +89,119 @@
     background-color: #4592c4;
     color: #fff;
 }
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: Righteous, Arial, Helvetica, sans-serif;
+    text-decoration: none;
 }
-body{
-    background: linear-gradient(rgba(146, 146, 146, 0.400), rgba(146, 146, 146, 0.400)), url('../../public/assets/body_background.png');
+body {
+    background: linear-gradient(rgba(146, 146, 146, 0.4), rgba(146, 146, 146, 0.4)),
+        url("../../public/assets/body_background.png");
 }
 .container {
     max-width: 1200px;
     margin: auto;
-    background-color: #E4E4E4;
+    background-color: #e4e4e4;
+}
+h4,
+h3 {
+    letter-spacing: 2px;
+}
+h3 {
+    font-size: 1.5rem;
+
+    @media screen and( max-width:800px) {
+        font-size: 1.2rem;
+    }
+    @media screen and( max-width:400px) {
+        font-size: 1rem; 
+
+    }
+}
+.pill {
+    border-radius: 5px;
+    line-height: 30px;
+    letter-spacing: 1.2px;
+    max-width: 110px;
+    margin: 1.6% 1.6% 0 0;
+    width: 40%;
+    float: left;
+    font-size: 1rem;
+    text-align: center;
+
+    @media screen and(max-width:500px){
+        width: 30%; 
+    }
+}
+.insecte {
+    @include insecte;
+}
+
+.dragon {
+    @include dragon;
+}
+
+.fée {
+    @include fée;
+}
+
+.feu {
+    @include feu;
+}
+
+.spectre {
+    @include spectre;
+}
+
+.sol {
+    @include sol;
+}
+
+.normal {
+    @include normal;
+}
+
+.psy {
+    @include psy;
+}
+
+.acier {
+    @include acier;
+}
+
+.ténèbres {
+    @include ténèbres;
+}
+
+.électrik {
+    @include électrik;
+}
+
+.combat {
+    @include combat;
+}
+
+.vol {
+    @include vol;
+}
+
+.plante {
+    @include plante;
+}
+
+.glace {
+    @include glace;
+}
+
+.poison {
+    @include poison;
+}
+
+.roche {
+    @include roche;
+}
+
+.eau {
+    @include eau;
 }

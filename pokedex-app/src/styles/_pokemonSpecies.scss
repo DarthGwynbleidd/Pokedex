@@ -1,0 +1,189 @@
+.pokemon {
+    height: 900px;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: row;
+
+    @media screen and( max-width:900px) {
+        height: auto;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    @media screen and( max-width:450px) {
+        width: 100%;
+    }
+
+    &__left {
+        width: 50%;
+
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+
+        &__img {
+            height: 50%;
+            width: 100%;
+        }
+        @media screen and( max-width:900px) {
+            width: 80%;
+        }
+
+        &__img img {
+            height: 100%;
+            width: auto;
+
+            @media screen and( max-width:900px) {
+                height: auto;
+                width: 100%;
+            }
+            // @media screen and( max-width:700px) {
+            //     height: 90%;
+            //     width: 100%;
+
+            // }
+        }
+
+        &__stat {
+            min-height: 400px;
+            max-height: 50%;
+            width: 100%;
+
+            // @media screen and( max-width:900px) {
+            //     height: 400px;
+            //     width: 100%;
+            // }
+            // @media screen and( max-width: 750px) {
+            //     height: 370px;
+            //     width: 100%;
+            // }
+        }
+    }
+    &__species {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding-left: 25px;
+
+        @media screen and( max-width:900px) {
+            width: 80%;
+            padding: 0;
+        }
+
+        p {
+            font-size: 1.5rem;
+
+            @media screen and( max-width:900px) {
+                margin: 5% 0;
+            }
+
+            @media screen and( max-width: 750px) {
+                font-size: 1.2rem;
+            }
+            @media screen and( max-width:400px) {
+                font-size: 1rem;
+            }
+        }
+
+        &__anotation {
+            height: auto;
+
+            &__img {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+
+                img{
+                    width: 45px;
+                    height: 45px;
+                    
+                    @media screen and( max-width:400px) {
+                        width: 20px;
+                        height: 20px;
+                    }                       
+                }
+            }
+        }
+
+        &__mensuration {
+            height: 150px;
+            width: 100%;
+            background-color: #30a7d7;
+            color: white;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: row;
+            padding: 5% 0;
+            text-align: center;
+
+            @media screen and( max-width:900px) {
+                height: 150pxpx;
+                margin-bottom: 5%;
+            }
+
+            &__left {
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+
+                h4,
+                p {
+                    height: 100%;
+                }
+                p {
+                    color: black;
+                    font-size: 20px;
+                    letter-spacing: 1.2px;
+
+                    @media screen and( max-width:400px) {
+                        font-size: 1rem;
+                    }
+                }
+            }
+            &__rigth {
+                width: 50%;
+                height: 100%;
+
+                h4,
+                p {
+                    margin-bottom: 6%;
+                }
+
+                p {
+                    color: black;
+                    font-size: 20px;
+                    letter-spacing: 1.2px;
+
+                    @media screen and( max-width:400px) {
+                        font-size: 1rem;
+                    }
+                }
+            }
+        }
+
+        &__types {
+            height: 15%;
+            width: 100%;
+
+            @media screen and( max-width:900px) {
+                height: 100px;
+            }
+        }
+        &__weaknesses {
+            height: 30%;
+            width: 100%;
+            @media screen and( max-width:900px) {
+                height: 180px;
+            }
+
+        }
+    }
+}

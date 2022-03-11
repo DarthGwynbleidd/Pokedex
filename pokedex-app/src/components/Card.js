@@ -1,22 +1,54 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import typeTranslate from '../jsonfiles/type_translate.json'
+import nameTranslate from '../jsonfiles/pokemon_translate.json'
+import { NavLink } from 'react-router-dom';
+import PageTwoContext from '../contexts/PageTwoContext'
+
 
 const Card = (props) => {
+    // const effetClass = `card_${Math.floor(Math.random() * (5 - 1) + 1)}`;// chiffre aléatoire (1 à 4) pour className card
+    const {setPageTwo } = useContext(PageTwoContext);
+
+    const translateName = (pokemonName) => {
+        let vfName = ''
+        for (let name in nameTranslate) {
+            if (nameTranslate[name].toLowerCase() === pokemonName)
+                vfName = name
+        }
+        return vfName
+    }
+    const translateType = (typeName) => {
+        let vfType = ''
+        for (let type in typeTranslate) {
+            if (type.toLowerCase() === typeName)
+                vfType = typeTranslate[type]
+        }
+        return vfType.toLowerCase()
+    }
+    
+    const addZero = (number) => {
+        return +number < 10? `00${+number}` : `0${+number}`
+    }
+
+
     return (
-        <div className='card'>
-            <figure className='card_picture'>
-                <img src={props.image} alt={props.name} />
-            </figure>
-            <div className='card_desc'>
-                <p><span>No. {props.number}</span></p>
-                <h5>{props.name}</h5>
-                <div className='card_desc_abilities'>
-                    <span className={`pill ${props.type1}`}>{props.type1}</span>
-                </div>
-                <div className='card_desc_abilities'>
-                    <span className={`pill ${props.type2}`}>{props.type2}</span>
+        <NavLink onClick={setPageTwo(true)} to={`/:${translateName(props.pokemonName)}`} className='card'>
+            <div className='card_vide'>
+                <figure className='card_vide_picture'>
+                    <img src={props.image} alt={props.name} />
+                </figure>
+                <div className='card_vide_desc'>
+                    <p><span>No. {props.id< 100? addZero(props.id) : props.id}</span></p>
+                    <h5>{translateName(props.pokemonName)}</h5>
+                    <div className='card_vide_desc_abilities'>
+                        <span className={`pill ${translateType(props.type1)}`}>{translateType(props.type1)}</span>
+                    </div>
+                    <div className='card_vide_desc_abilities'>
+                        <span className={`pill ${translateType(props.type2)}`}>{translateType(props.type2)}</span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </NavLink>
     );
 };
 
