@@ -14,6 +14,7 @@ const Evolutions = () => {
     useEffect(() => {
 
         async function fetchInfos(name) {
+
             const obj = {}
             const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
             obj.pokemonName = name
