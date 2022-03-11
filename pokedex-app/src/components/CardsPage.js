@@ -116,7 +116,9 @@ const CardsPage = () => {
                 obj.specialAttack = response.data.stats[3].base_stat
                 obj.specialDefense = response.data.stats[4].base_stat
                 obj.speed = response.data.stats[5].base_stat
-                const responseFlavor = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${alias}`)
+                
+                let replace = alias.toString().replace(/-.*/g, '')
+                const responseFlavor = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${replace}`)
                 for (const index of responseFlavor.data.flavor_text_entries) {
                     if (index.language.name === 'fr') {
                         let tmpFlavor = index.flavor_text.replace(/\s+/g, ' ')

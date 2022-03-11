@@ -109,7 +109,8 @@ const Evolutions = () => {
                         </div>
                     </div>
                 </div>
-                <div className='containerevolution__mainboxcard__chevron1'>&#62;</div>
+                {evoChain.to !== undefined &&
+                            evoChain.to.length > 0 &&<div className='containerevolution__mainboxcard__chevron1'>&#62;</div>}
                 {nbrMax > 4 &&
                     <div className='containerevolution__mainboxcard__cardevo2'>
                         {
