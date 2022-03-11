@@ -6,6 +6,7 @@ import NavigBar from './NavigBar';
 import PokemonSpecies from './PokemonSpecies';
 import nameTranslate from '../jsonfiles/pokemon_translate.json'
 import PokemonContext from '../contexts/PokemonContext';
+import ReloadEvoContext from '../contexts/ReloadEvoContext'
 import CurrentPokemonContext from '../contexts/CurrentPokemonContext'
 import PageTwoContext from '../contexts/PageTwoContext'
 
@@ -18,6 +19,7 @@ const PokemonPage = () => {
     const urlName = name.split(":").join("")
     const pokemonNameNoAccent = urlName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     const [currentPokemon, setCurrentPokemon] = useState({})
+    const [check, setCheck] = useState(false)
     // met PageTwo sur true pour empecher le calcul du scroll dans BottomButton
     setPageTwo(true)
 
@@ -136,12 +138,13 @@ const PokemonPage = () => {
 
     return (
         <CurrentPokemonContext.Provider value={{ currentPokemon, setCurrentPokemon }}>
+            <ReloadEvoContext.Provider value={{check, setCheck}}>
             <div className='pokemonPage'>
                 <NavigBar />
                 <PokemonSpecies />
                 <Evolutions />
-
             </div>
+            </ReloadEvoContext.Provider>
         </CurrentPokemonContext.Provider>
     );
 };

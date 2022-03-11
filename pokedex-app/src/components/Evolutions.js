@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import CurrentPokemonContext from '../contexts/CurrentPokemonContext';
+import ReloadEvoContext from '../contexts/ReloadEvoContext';
 import typeTranslate from '../jsonfiles/type_translate.json'
 import nameTranslate from '../jsonfiles/pokemon_translate.json'
 import axios from 'axios';
@@ -8,7 +9,7 @@ const Evolutions = () => {
     const { currentPokemon } = useContext(CurrentPokemonContext)
     const [nbrMax, setNbrMax] = useState(1)
     const [evoChain, setEvoChain] = useState({})
-    const [check, setCheck] = useState(false)
+    const {check, setCheck} = useContext(ReloadEvoContext)
 
     useEffect(() => {
 

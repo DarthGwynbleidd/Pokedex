@@ -27,7 +27,7 @@ const BottomButton = (props) => {
             */
 
             /**** IL FAUT ANNULER CETTE LIGNE QUAND ON EST SUR LA PAGE POKEMONPAGE */
-            !pageTwo && setLeftMargin(((+document.documentElement.offsetWidth - +document.querySelector('.cardsPage').offsetWidth) / 2) + +document.querySelector('.cardsPage').offsetWidth - 60);
+            setLeftMargin(((+document.documentElement.offsetWidth - +document.querySelector('.cardsPage').offsetWidth) / 2) + +document.querySelector('.cardsPage').offsetWidth - 60);
         }
 
         window.addEventListener('resize', () => {
