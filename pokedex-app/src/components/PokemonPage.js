@@ -16,8 +16,8 @@ const PokemonPage = () => {
     const { name } = useParams()
     const { pokemons, setPokemons } = useContext(PokemonContext);
     const { setPageTwo } = useContext(PageTwoContext);
-    const urlName = name.split(":").join("")
-    const pokemonNameNoAccent = urlName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    // const urlName = name.split(":").join("")
+    const pokemonNameNoAccent = name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
     const [currentPokemon, setCurrentPokemon] = useState({})
     const [check, setCheck] = useState(false)
     // met PageTwo sur true pour empecher le calcul du scroll dans BottomButton
@@ -38,7 +38,6 @@ const PokemonPage = () => {
 
             const responseLength = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/`)
             const length = responseLength.data.count + 1
-
 
 
             const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${alias}`)
@@ -97,7 +96,9 @@ const PokemonPage = () => {
             obj.specialAttack = response.data.stats[3].base_stat
             obj.specialDefense = response.data.stats[4].base_stat
             obj.speed = response.data.stats[5].base_stat
-            let replace = alias.toString().replace(/-.*/g, '')
+            let replace = alias
+            if (alias === "zygarde-50")
+                replace = alias.toString().replace(/-.*/g, '')
             const responseFlavor = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${replace}`)
             for (const index of responseFlavor.data.flavor_text_entries) {
                 if (index.language.name === 'fr') {

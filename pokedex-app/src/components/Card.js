@@ -32,7 +32,7 @@ const Card = (props) => {
 
 
     return (
-        <NavLink onClick={setPageTwo(true)} to={`/:${translateName(props.pokemonName)}`} className='card'>
+        <NavLink onClick={setPageTwo(true)} to={`/${translateName(props.pokemonName)}`} className='card'>
             <div className='card_vide'>
                 <figure className='card_vide_picture'>
                     <img src={props.image} alt={props.name} />

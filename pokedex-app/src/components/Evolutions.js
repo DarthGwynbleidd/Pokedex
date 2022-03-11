@@ -12,11 +12,12 @@ const Evolutions = () => {
     const {check, setCheck} = useContext(ReloadEvoContext)
 
     useEffect(() => {
-
+        console.log(currentPokemon);
         async function fetchInfos(name) {
 
             const obj = {}
             const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`)
+            console.log(name);
             obj.pokemonName = name
             obj.id = response.data.id;
             obj.image = response.data.sprites.other["official-artwork"].front_default;
@@ -32,7 +33,10 @@ const Evolutions = () => {
 
         async function fetchEvolutions(array) {
             if (array[0].evolves_to.length > 0) {
-                let tmp = await fetchInfos(array[0].species.name)
+                let name = array[0].species.name
+                if (name === "zygarde")
+                    name = "zygarde-50"
+                let tmp = await fetchInfos(name)
                 tmp.to = await Promise.all(array[0].evolves_to.map(async evolution => {
                     let test = await fetchEvolutions([evolution])
                     return test
@@ -40,12 +44,16 @@ const Evolutions = () => {
                 return tmp
             } else {
                 setNbrMax(prevNbrMax => prevNbrMax + 1)
-                let tmp = await fetchInfos(array[0].species.name)
+                let name = array[0].species.name
+                if (name === "zygarde")
+                    name = "zygarde-50"
+                let tmp = await fetchInfos(name)
                 return tmp
             }
         }
 
         async function apiCall() {
+            console.log(currentPokemon.evolution_chain);
             const response = await axios.get(`${currentPokemon.evolution_chain}`)
             setNbrMax(1)
             setEvoChain(await fetchEvolutions([response.data.chain]))

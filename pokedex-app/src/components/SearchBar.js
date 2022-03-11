@@ -68,7 +68,7 @@ const SearchBar = () => {
                 }}
                 highlightFirstSuggestion={true}
             />
-            {frenchNames.includes(input) ? <NavLink to={`/:${input}`} className='searchbutton'>
+            {frenchNames.includes(input) ? <NavLink to={`/${input}`} className='searchbutton'>
                 <img className='imgloupe' src="./assets/cards-page/icon.png" alt="pics" />
             </NavLink> : <NavLink to={`error`} className='searchbutton'>
                 <img className='imgloupe' src="./assets/cards-page/icon.png" alt="pics" />

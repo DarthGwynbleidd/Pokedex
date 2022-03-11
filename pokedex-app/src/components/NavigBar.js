@@ -36,13 +36,13 @@ const NavigBar = () => {
     return (
         <div className='navigbar'>
             <div className='navigbar__top'>
-                <NavLink onClick={reloadEvo} to={`/:${translateName(currentPokemon.prevName)}`} className='navigbar__top__previous'>
+                <NavLink onClick={reloadEvo} to={`/${translateName(currentPokemon.prevName)}`} className='navigbar__top__previous'>
                     &#60; N°. {currentPokemon.prevId < 100 ? addZero(currentPokemon.prevId) : currentPokemon.prevId}  {translateName(currentPokemon.prevName)}
                 </NavLink>
                 <NavLink onClick={changePageTwo} to="/" className='navigbar__top__home'>
                     Retour
                 </NavLink>
-                <NavLink onClick={reloadEvo} to={`/:${translateName(currentPokemon.nextName)}`} className='navigbar__top__next'>
+                <NavLink onClick={reloadEvo} to={`/${translateName(currentPokemon.nextName)}`} className='navigbar__top__next'>
                     {translateName(currentPokemon.nextName)}  N°. {currentPokemon.nextId < 100 ? addZero(currentPokemon.nextId) : currentPokemon.nextId} &#62;
                 </NavLink>
 
